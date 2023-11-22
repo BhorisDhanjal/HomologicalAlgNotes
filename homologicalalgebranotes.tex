@@ -121,9 +121,7 @@
 	
 	The adjoint definition is simply a rephrasing of this.
 	
-	\begin{proposition}[Correspondence of internal and external hom]
-		In a symmetric monoidal category with internal homs we have a natural isomorphism \[ \Hom(A,[B,C]) \cong \Hom (A \times B, C)\]
-	\end{proposition}
+
 	
 	\begin{proposition}[Tensor-Internal Hom adjunction]
 		For a closed monoidal category $\mathbf C$ and objects $A,B,C \in \mathbf{C}$. The tensor product is left adjoint to the internal hom functor, in particular
@@ -150,7 +148,7 @@
 	
 	Now we claim that this adjunction between Tensor product and internal homs is all we need to say that Tensor is left adjoint to the typical Hom functor in $\mathrm{Mod}$. 
 	
-	First note that $\mathrm{Mod}$ is a symmetric monoidal category with the typical tensor product. Now note that the typical Hom functor takes two modules $M, N$ to the set of module homomorphisms between them say $L(M,N)$ but this is a module itself! So the internal hom and external Hom functor correspond perfectly and one can be recovered from the other.
+	First note that $\mathrm{Mod}$ is a symmetric monoidal category with the typical tensor product. Now note that the typical Hom functor takes two modules $M, N$ to the set of module homomorphisms between them say $L(M,N)$ but this is a module itself! So the external Hom can be recovered from the internal hom. This is covered in the appendix in greater detail.
 	
 	We state these very quickly here
 	Let $R$ be a commutative ring and $M,N$ modules over $R$.
@@ -213,13 +211,13 @@
 	
 	\section{Chain complexes}
 	A \textbf{chain complex} $(A_\bullet, \varphi_\bullet)$ is a collection of modules over a commutative ring and homomorphisms $\varphi_i: A_i \to A_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
-	\[\begin{tikzcd}
-		\cdots & {A_{i-1}} & {A_i} & {A_{i+1}} & \cdots
-		\arrow["{\varphi_{i+1}}"', from=1-4, to=1-3]
-		\arrow["{\varphi_i}"', from=1-3, to=1-2]
-		\arrow["{\varphi_{i-1}}"', from=1-2, to=1-1]
-		\arrow["{\varphi_{i+2}}"', from=1-5, to=1-4]
-	\end{tikzcd}\]
+\[\begin{tikzcd}
+	\cdots & {A_{i+1}} & {A_i} & {A_{i-1}} & \cdots
+	\arrow["{\varphi_{i+1}}", from=1-2, to=1-3]
+	\arrow["{\varphi_i}", from=1-3, to=1-4]
+	\arrow["{\varphi_{i-1}}", from=1-4, to=1-5]
+	\arrow["{\varphi_{i+2}}", from=1-1, to=1-2]
+\end{tikzcd}\]
 	The \textbf{homology} of the complex at $A_i$ is denoted as its $i^{\mathrm{th}}$ homology defined as follows,
 	\[ H_i := \ker \varphi_i/ \mathrm{im} \varphi_{i+1} \]
 	Reversing the arrows gives us the analogous definitions for cochain complexes and cohomology.
@@ -290,15 +288,14 @@
 		Finally we get $M/\mathfrak{m}M \cong M/\mathfrak{m}M \oplus K/\mathfrak{m}K\implies K=\mathfrak{m}K \implies K=0$ by Nakayama
 	\end{proof}
 	This holds for not necessarily finitely generated modules too refer to \cite[Th.~2.5]{matsumura_1987}	.
-	\begin{theorem} If $M$ is a finitely presented module over a Noetherian ring $R$ (prime ideals fin gen) then TFAE
+	\begin{proposition} If $M$ is a finitely presented module over a Noetherian ring $R$ (prime ideals fin gen) then TFAE
 	\begin{enumerate}
 		\item $M$ is projective.
 		\item $M$ localized at maximal ideals is free.
 		\item A finite set of elements $\{x_i\}^n$ in $R$ generate $R$ such that $M[x_i^{-1}]$ is free over $R[x_i^{-1}]$.
 	\end{enumerate}		
-	\end{theorem}
-	\begin{proof}
-	
+	\end{proposition}
+This proceeds just from the previous result.
 
 %		Note If $R$ is local and $M$ is fin-gen projective module then $M$ is free, this is a consequence of Nakayama. As $M \oplus Q = R$ so if $R$ has maximal ideal $\mathfrak{m}$ then $M/\mathfrak{m}M$ is a vector space	over the field $R/\mathfrak{m}R$ and its basis lifts to minimal set of generators of $M$, consider $N=M/\sum R m_i$ and so $ N/ IN=M/(IM+\sum_i R m_i)=M/M=0\implies N=IN$ then apply typical Nakayama to get $N=0
 %		\implies M= \sum_i R m_i$, for $I$ an ideal inside the Jacobson radical of $R$
@@ -306,9 +303,6 @@
 %		So now to prove $1 \iff 2 $ consider a finitely presented module localized over 
 %		
 %		If $M,N$ finitely presented over $R$ and their localizations are isomorphic then theres some element of $f\in R-P$ such that $M[f^{-1}] \cong N[f^{-1}]$
-
-	\end{proof}
-
 	\begin{theorem}[Quillen–Suslin]
 		Every finitely generated projective module over a polynomial algebra is free.
 	\end{theorem}
@@ -414,26 +408,16 @@
 %	We claim if the free functor is exact and faithful then $R$-Mod has enough injectives. Consider $M \in R$-Mod since $\mathrm{Ab}$ has enough injectives there is some injective $A \in \mathrm{Ab}$ and a monomorphism $i:U(M) \rightarrowtail A$ the adjoint of this is a morphism $j:M \to F(A) $ so showing $F(A)$ is injective and $j$ being a monomorphism we are done.
 	
 	\end{proof}
-%	\begin{corollary}
-%		Direct sum of injective modules over Noetherian ring is injective
-%	\end{corollary}
-%	\begin{proof}
-%		Say $R$ is a ring we know it is Noetherian if its ideals are finitely generated.
-%		
-%		To show that for a collection of injective modules $\{Q_i\}_{i \in I}$ over $R$ we have $Q=\bigoplus_{i \in I} Q_i $ is injective. It suffices to show due to Baer's criterion that for $f: I \subseteq R $ an ideal maps from $I \to Q $ lift through $R$.
-%		
-%		Now as $I$ is finitely generated say by elements $\{x_j\}_{j=1}^n$ consider $f_k=p_k \circ f$ where $p_k$ is the projection from $Q \to Q_k$ (note this is well defined as direct sum is a biproduct in modules).
-%		\[\begin{tikzcd}
-%			I && R \\
-%			\\
-%			{Q=\bigoplus_{i\in I} Q_i} & {Q_k}
-%			\arrow["\subseteq", from=1-1, to=1-3]
-%			\arrow["f"', from=1-1, to=3-1]
-%			\arrow["{p_k}"', from=3-1, to=3-2]
-%			\arrow["{f_k}", from=1-1, to=3-2]
-%		\end{tikzcd}\]
-%		So now summing across all $f_k$ we get $f$ factors through a finite summand of $Q$
-%	\end{proof}
+Alternatively consider the following alternative proof for the second part
+\begin{proposition}
+	Given $\mathrm{Ab}$ has enough injectives then so does $R-$Mod.
+\end{proposition}
+\begin{proof}
+	The proof proceeds categorically and relies on the notion of the free-forgetful functor adjunction. In particular in this case we have the adjunction as \[ (F \dashv U), F: \mathrm{Ab} \rightleftarrows R\mathrm{-Mod}: U\]
+	Where $U$ denotes the forgetful functor and $F$ denotes the `free' functor sending $A \in \mathrm{Ab}$ to $A \otimes_\Z R$.
+	
+	Now from Prop.  and Prop. we are done if we show forgetful functor is additive and exact.
+\end{proof}
 
 	\begin{proposition}[Bass-Papp]
 		A ring is Noetherian iff every direct sum of injective modules over it are injective
@@ -442,7 +426,20 @@
 		Let $R$ be a Noetherian ring. First note that due to right adjointness of the Hom functor we have $\Hom_R(M, \oplus_i N_i) \cong \oplus_i \Hom_R(M,N_i)$ for $M,N$ $R-$ modules.
 	\end{proof}
 	This result is also true for arbitrary direct limits as shown in \cite[Th. 3.46]{lam2012lectures}.
+	\begin{definition}[Indecomposable module]
+			An injective module $E$ is indecomposable if (cannot be written as a direct sum of two nonzero modules.
+	\end{definition}
 	
+	\begin{proposition}
+		If $R$ is Noetherian, and $E$ is some indecomposable injective $R-$module we have,
+		\begin{enumerate}
+			\item $E \cong E(R/P)$ for some prime ideal $P\subset R$.
+			\item $E(R/P)\cong E(R/Q) \iff P=Q$ so there is a 1-1 correspondence between indecomposable injectives and primes.
+		\end{enumerate} 
+	\end{proposition}
+	\begin{proof}
+		Use primary decomposition.
+	\end{proof}
 	
 	\subsection{Injective resolutions}	
 	\begin{definition}[Injective resolution]
@@ -454,7 +451,7 @@
 	
 	\subsection{Injective envelopes}
 	\begin{definition}[Essential submodules/extensions]
-		For a ring $R$ and $M,E \in R-$Mod such that $M \subset N$ we say $M$ is an essential submodule of $E$ or $E$ is an essential extension of $M$ if every non-zero submodule of $E$ has nonzero intersection with $M$, i.e. $ M \cap L =0 \implies L =0$
+		For a ring $R$ and $M,E \in R-$Mod such that $M \subset N$ we say $M$ is an \textbf{essential submodule} of $E$ or $E$ is an \textbf{essential extension} of $M$ if every non-zero submodule of $E$ has nonzero intersection with $M$, i.e. $ M \cap L =0 \implies L =0$
 \end{definition}
 
 	The following proposition provides the definition of an \textbf{injective envelope}
@@ -471,9 +468,9 @@
 		\begin{enumerate}
 			\item Consider preorder of essential submodules $E_i$ of $F$. 
 			Any submodule $N$ of $\cup_i E_i$ meets some $E_i$ nontrivially, and thus meets $M$ nontrivially. So $M$ is essential in $\cup E_i$. It follows via Zorn's that there is a maximal essential extension of $M $ contained in $F$.
-			\item Suppose $F$ is injective and $M \subset E \subset F$ with $E$ beign the maximal essential extension of $M$. If $E'$ was an essential extension of $E$ in $F$ then it would be one of $M$ and so implies $E'=E$.
+			\item Suppose $F$ is injective and $M \subset E \subset F$ with $E$ being the maximal essential extension of $M$. If $E'$ was an essential extension of $E$ in $F$ then it would be one of $M$ and so implies $E'=E$.
 			
-			It suffices to treat the case where $M=E$. Let $N$ be a submodule of $F$ maximal along those not meeting $E$. Since they dont meet $E \oplus N\cong E+N \subset F$. To show that $F=E+N$ from which it follows $E \oplus N \cong F$ so $E$ is injective.
+			 Let $N$ be a submodule of $F$ maximal along those not meeting $E$. Since they dont meet $E \oplus N\cong E+N \subset F$. To show that $F=E+N$ from which it follows $E \oplus N \cong F$ so $E$ is injective.
 			
 			Consider $\alpha: E \subset F \twoheadrightarrow F/N$ an epi. As $N$ does not meet $E$, this epi is also a inclusion.
 			
@@ -481,14 +478,44 @@
 			
 			
 			Since $F$ is injective we may find a map $\beta: F/N \to F$ extending $\alpha.$ Since $\ker \beta \cap E = \ker \alpha =0$ and $E$ essential in $F/N$ we see even $\ker \beta =0$. So $\beta(F/N)$ essential extension of $E$ by maximality it means its equal to $E$ so $F/N=E$. So $E+N=F.$ And direct summand of injective is injective.
+			\item By the notion of enough injectives we can say there is a mono from $M$ to $E$ by previous construction. To show uniqueness suppose there are two such essential maximal inclusions. So there are monos and an extension (due to essentiality of $E_2$)as below,
+				\[\begin{tikzcd}
+					& {E_1} \\
+					M & {E_2}
+					\arrow["{f_1}", tail, from=2-1, to=1-2]
+					\arrow["{f_2}"', tail, from=2-1, to=2-2]
+					\arrow["g", from=1-2, to=2-2]
+				\end{tikzcd}\]
+				We get $\ker g=0$ as $\ker f_1=0$ and chasing $M$ around kernel of $g$ restricted to $M$ is also 0. So we get $g(E_1) $ injective submodule of $E_2$ and its a direct summand say $E_2=g(E_1) \oplus K$ but also $f_2(M)\subset g(E_1)$ so by essentiality of $M$ in $E_2$ again $K=0$ so they are the same.
+			
 		\end{enumerate}
 		
-		
+	
+	\end{proof}
+	To recap,
+	\begin{definition}[Injective envelope/hull]
+		For $R-$modules $M \subset F$ the unique essential extension of $M$	which is injective and as an intermediate submodule is called the injective envelope of $M$.
+	\end{definition}
+	
+	\begin{proposition}
+		If $N \subset M$ is an essential submodule then any map $M \to E$ that restricts to a monomorphism on $N$ is a monomorphism.
+	\end{proposition}
+	\begin{proof}
+		We have that for $L \subset M $ an submodule $N \cap L=0 \implies L=0$.
 	\end{proof}
 	\section{Flat modules}
 	
 	\section{Morphisms and homotopies of complexes}
-	
+	Recall the definition of a chain complex.
+	A \textbf{chain complex} $(A_\bullet, \varphi_\bullet)$ is a collection of $R-$Modules and homomorphisms $\varphi_i: A_i \to A_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
+	\[\begin{tikzcd}
+		\cdots & {A_{i+1}} & {A_i} & {A_{i-1}} & \cdots
+		\arrow["{\varphi_{i+1}}", from=1-2, to=1-3]
+		\arrow["{\varphi_i}", from=1-3, to=1-4]
+		\arrow["{\varphi_{i-1}}", from=1-4, to=1-5]
+		\arrow["{\varphi_{i+2}}", from=1-1, to=1-2]
+	\end{tikzcd}\]
+	It is useful to denote the entire chain complex as $A$ and think of it as a graded $R-$Module\footnote{Where $R$ is just trivially graded.}.
 	\subsection{Diagram chasing lemmas}
 	
 	\section{Derived functors}
@@ -520,31 +547,40 @@
 	\appendix
 	\section{Categories}
 	\subsection{Preliminary notions}
- 
-	A \textbf{category} consists of the following,
-	\begin{itemize}
-		\item Objects: A,B,C,\dots
-		\item Arrows/Morphisms: f,g,h,\dots
-		\item For each $ f $ there exists, $ \mathrm{dom}(f) , \mathrm{cod}(f)$ called domain and codomain of $ f $. We write $ f: A \to B $ to indicate $ A=\mathrm{dom}(f) $ and $ B=\mathrm{cod}(f) $.
-		\item Given  $ f: A \to B$ and $ g: B \to C $ there exists, $ g \circ f: A \to C $ called the \textit{composite} of $ f $ and $ g $.
-		\item For each $ A $, there exists $ 1_A:A\to A $ called the \textit{identity arrow} of $ A $.
-		\item Arrows should also satisfy the following,
+ 	\begin{definition}[Category]
+ 		A \textbf{category} consists of the following,
+ 		\begin{itemize}
+ 			\item Objects: A,B,C,\dots
+ 			\item Arrows/Morphisms: f,g,h,\dots
+ 			\item For each $ f $ there exists, $ \mathrm{dom}(f) , \mathrm{cod}(f)$ called domain and codomain of $ f $. We write $ f: A \to B $ to indicate $ A=\mathrm{dom}(f) $ and $ B=\mathrm{cod}(f) $.
+ 			\item Given  $ f: A \to B$ and $ g: B \to C $ there exists, $ g \circ f: A \to C $ called the \textit{composite} of $ f $ and $ g $.
+ 			\item For each $ A $, there exists $ 1_A:A\to A $ called the \textit{identity arrow} of $ A $.
+ 			\item Arrows should also satisfy the following,
+ 			\begin{itemize}
+ 				\item Associativity: $ h \circ(g \circ f) = (h \circ g) \circ f,$ for all $ f:A \to B, g:B \to C, h: C \to D $.
+ 				\item Unit: $ f\circ 1_A=f=1_B\circ f, $ for all $ f:A \to B $.	
+ 			\end{itemize}
+ 		\end{itemize}
+ 	\end{definition}
+	
+	\begin{definition}[Functor]
+			For categories $\mathbf{C}, \mathbf{D}$ we define a \textbf{functor} $ F: C \to D $ to be a a mapping of objects and arrows to objects and arrows, such that
 		\begin{itemize}
-			\item Associativity: $ h \circ(g \circ f) = (h \circ g) \circ f,$ for all $ f:A \to B, g:B \to C, h: C \to D $.
-			\item Unit: $ f\circ 1_A=f=1_B\circ f, $ for all $ f:A \to B $.	
+			\item $ F(f:A\to B) =F(f):F(A)\to F(B)$
+			\item $ F(1_a)=1_{F(A)} $
+			\item $ F(g \circ f) = F(g)\circ F(f)$.
 		\end{itemize}
-	\end{itemize}
-	
-	For categories $\mathbf{C}, \mathbf{D}$ we define a \textbf{functor} $ F: C \to D $ to be a a mapping of objects and arrows to objects and arrows, such that
-	\begin{itemize}
-		\item $ F(f:A\to B) =F(f):F(A)\to F(B)$
-		\item $ F(1_a)=1_{F(A)} $
-		\item $ F(g \circ f) = F(g)\circ F(f)$.
-	\end{itemize}
-	
+	\end{definition}
+
+	\begin{definition}[Generalized elements]
 		For an object $ A \in \mathbf{C} $ arbitrary arrows $ x:X\to A $ are called the \textbf{generalized elements} of $ A $ with stage of definition given by $ X $.
+	\end{definition}
 		
-		A \textbf{bifunctor} is any functor of two variables i.e. domain in terms of a product category.
+		\begin{definition}[Bifunctor]
+			A \textbf{bifunctor} is any functor of two variables i.e. domain in terms of a product category.
+		\end{definition}
+		
+		
 		\begin{lemma}[Bifunctor lemma]\label{bifunctorlemma}
 		A mapping $F: \mathbf{A} \times \mathbf{B} \to \mathbf{C}$ is a bifunctor if its functorial in each component and the following square commutes,
 		\[\begin{tikzcd}
@@ -560,22 +596,26 @@
 		\end{tikzcd}\]
 		\end{lemma}
 		
+		\begin{definition}[Natural transformations]
+			A \textbf{natural transformation} is a map between functors.
+			
+			For functors $F,G: \mathbf{C} \to \mathbf{D}$ a natural transformation $\eta: F \to G$ is a family of morphisms (in $\mathbf{D}$) which consist of \textbf{components} $\eta_X	$ which associates for every object $C \in \mathbf{C} $ a morphism between objects in $\mathbf{D}$, $\eta_C:F(C)\to G(C)$. Also components must commute naturally, in particular for $f: C \to C' $ we have $\eta_{C'} \circ F(f)=G(f)\circ\eta_C$, i.e. below diagram commutes,
+			\[\begin{tikzcd}
+				C && {F(C)} && {G(C)} \\
+				\\
+				{C'} && {F(C')} && {G(C')}
+				\arrow["{\eta_C}", from=1-3, to=1-5]
+				\arrow["{\eta_{C'}}", from=3-3, to=3-5]
+				\arrow["{F(f)}"', from=1-3, to=3-3]
+				\arrow["{G(f)}", from=1-5, to=3-5]
+				\arrow["f"', from=1-1, to=3-1]
+			\end{tikzcd}\]
+		\end{definition}
 		
-		A \textbf{natural transformation} is a map between functors.
-		
-		For functors $F,G: \mathbf{C} \to \mathbf{D}$ a natural transformation $\eta: F \to G$ is a family of morphisms (in $\mathbf{D}$) which consist of \textbf{components} $\eta_X	$ which associates for every object $C \in \mathbf{C} $ a morphism between objects in $\mathbf{D}$, $\eta_C:F(C)\to G(C)$. Also components must commute naturally, in particular for $f: C \to C' $ we have $\eta_{C'} \circ F(f)=G(f)\circ\eta_C$, i.e. below diagram commutes,
-		\[\begin{tikzcd}
-			C && {F(C)} && {G(C)} \\
-			\\
-			{C'} && {F(C')} && {G(C')}
-			\arrow["{\eta_C}", from=1-3, to=1-5]
-			\arrow["{\eta_{C'}}", from=3-3, to=3-5]
-			\arrow["{F(f)}"', from=1-3, to=3-3]
-			\arrow["{G(f)}", from=1-5, to=3-5]
-			\arrow["f"', from=1-1, to=3-1]
-		\end{tikzcd}\]
-		
-		The \textbf{Yoneda embedding} is a functor $y:\mathbf{C}\to \mathbf{Sets}^{\mathbf{C}^\text{Op}}$ mapping objects to their contravariant representable functor (i.e. presheaves). In particular $y(C)=\textrm{Hom}_\mathbf{C}(-,C)$ it takes arrows to the natural transformation $yf=\mathrm{Hom}_\mathbf{C}(-,f):\mathrm{Hom}_\mathbf{C}(-,C) \to \mathrm{Hom}_\mathbf{C}(-,D)$
+		\begin{definition}[Yoneda embedding]
+			The \textbf{Yoneda embedding} is a functor $y:\mathbf{C}\to \mathbf{Sets}^{\mathbf{C}^\text{Op}}$ mapping objects to their contravariant representable functor (i.e. presheaves). In particular $y(C)=\textrm{Hom}_\mathbf{C}(-,C)$ it takes arrows to the natural transformation $yf=\mathrm{Hom}_\mathbf{C}(-,f):\mathrm{Hom}_\mathbf{C}(-,C) \to \mathrm{Hom}_\mathbf{C}(-,D)$
+			
+		\end{definition}
 		
 	\begin{proposition}[Yoneda Lemma]
 			For a locally small category (i.e. small hom-sets) $\mathbf{C}$ we have $\textrm{Hom}(yC,F) \cong FC$ for $C \in \mathbf{C}$ and a functor $F \in \mathbf{Sets}^{\mathbf{C}^{op}}$. The isomorphism is natural in both $C$ and $F$.
@@ -588,8 +628,8 @@
 		\item All objects in presheaves are colimits of some representable functors (in particular the end). 
 		\item So Yoneda embedding is the free cocompletion of any category. In particular there is a UMP for maps from $\mathbf{C}$ to any cocomplete categories factoring through presheaves wrt Yoneda embedding
 	\end{itemize}	
-	
-	
+	An adjoint categorifies the idea of a very weak notion of equivalence sometimes even called a pseudo inverse.
+	\begin{definition}[Classical definition of adjoint]
 	The functors $F: \mathbf{C} \rightleftarrows \mathbf{D}: U$ form an \textbf{adjunction} between categories if there exists a natural transformation $\eta: 1_\mathbf{C} \to U \circ F$ with this unit having the following UMP,
 	\[\begin{tikzcd}
 		D && {U(F(C))} && {U(D)} \\
@@ -602,10 +642,38 @@
 	\end{tikzcd}\]
 	
 	$F$ is called the left adjoint of $U$ and vice versa, and is denoted as $F \dashv U$.
+	\end{definition}
 	
-	Alternatively we also have the following formulation, $F \dashv U$ if for $C\in \mathbf{C}, D \in \mathbf{D}$ there exist natural isomorphisms $\phi: \textrm{Hom}_\mathbf{D}(FC, D) \cong \textrm{Hom}_\mathbf{C}(C, UD):\psi$
+	\begin{definition}[Hom-set definition of adjoint]
+			Alternatively we also have the following formulation, $F \dashv U$ if for $C\in \mathbf{C}, D \in \mathbf{D}$ there exist natural isomorphisms $\phi: \textrm{Hom}_\mathbf{D}(FC, D) \cong \textrm{Hom}_\mathbf{C}(C, UD):\psi$
+	\end{definition}
 	
-	Furthermore units and counits completely characterize adjoints, (WRITE WHY HERE).
+	\begin{definition}[Unit-counit definition]
+		For $F: \mathbf{C} \rightleftarrows \mathbf{D}:U$ and natural transformations $\eta: 1_\mathbf{C} \to U \circ F$ and $\epsilon: F \circ U \to 1_\mathbf{D}$ namely unit and counit. 
+		
+		We say $F \dashv U$ iff the following triangle identities hold,
+		\[\begin{tikzcd}
+			UD && UD \\
+			& UFUD \\
+			FC && FC \\
+			& FUFC
+			\arrow["{1_{UD}}", from=1-1, to=1-3]
+			\arrow["{\eta_{UD}}"', from=1-1, to=2-2]
+			\arrow["{U_{\epsilon_D}}"', from=2-2, to=1-3]
+			\arrow["{1_{FC}}", from=3-1, to=3-3]
+			\arrow["{F_{\eta_C}}"', from=3-1, to=4-2]
+			\arrow["{\epsilon_{FC}}"', from=4-2, to=3-3]
+		\end{tikzcd}\]
+	\end{definition}
+	The unit-counit characterization is useful theoretically but we typically only use the Hom-set characterization for all practical purposes.
+	
+	\subsubsection{Examples of adjoints}
+	Free-forgetful adjunction.Typically the forgetful functor usually has a left adjoint which is vaguely `free'. Obviously neither `free'-ness or `forgetful`-ness have concrete categorical definitions but differ from case to case. We will use it for proving injectives are enough.
+	
+	Tensor-Internal Hom adjunction, which we shall see shortly has a special case over topologies where it is called the smash functor hom adjunction. A special case of this (over $S^1$) is the suspension-loop adjunction which yields an example of the Eckmann-Hilton duality. 
+	
+	For arbitrary diagonal functor over some diagram, its right adjoint is limits and left adjoint is its colilmit.
+	
 		\subsection{Monoidal categories}
 	A \textbf{monoidal category} is a category $\mathbf{C}$ with a bifunctor $ \otimes: \mathbf{C} \times \mathbf{C} \to \mathbf{C}$, a `unit' element $I$, and natural isomorphisms that make the functor associative and unital with $I$ as expected. It is a generalization of the notion of a `tensor product'. Its used to define enriched categories.
 	
@@ -678,7 +746,7 @@
 		\[ \Hom[A,B]\cong \Hom(I,[A,B]) \]
 	\end{proposition}
 	
-	\subsection{Examples of internal homs}
+	\subsubsection{Examples of internal homs}
 	In general internal homs and external homs need not correspond, intuitively the internal hom contains a lot more information than just the external hom. And for monoidal unit $I$ maps from $I \to [A,B]$ correspond to the external homs $A \to B$.
 	
 	Heyting algebras correspond to intuitionistic propositional logic. And its internal hom corresponds to its preorder that is to say $p \leq q $ iff $  p \implies q$. This is quite interesting as external homs in Heyting algebras are simply sets with at most one element while internal homs are very illuminating. Furthermore extending this analogy to type theory the idea of the tensor internal hom adjunction is just the notion of `currying'. \textbf{(CITE WHY I FORGOT)}	.
