@@ -43,7 +43,7 @@
 \begin{document}
 	\tableofcontents
 	\maketitle
-	The material is presented mostly module theoretically with appropriate categorical abstractions when appropriate (and pedagogically relevant) to better elucidate the concepts in play. We give a proof sketch of the Freyd-Mitchell embedding at the end and demonstrate usage of abelian categories. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}.
+	The material is presented mostly module theoretically with appropriate categorical abstractions when appropriate to better elucidate the concepts in play. We give a proof sketch of the Freyd-Mitchell embedding at the end and demonstrate usage of abelian categories. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}.
 
 	\section{Modules and tensor products}
 	\begin{definition}[Module]
@@ -82,10 +82,9 @@
 		\item $(m+m', n)-(m,n)-(m',n')$ and $(m,n+n')-(m,n)-(m,n')$
 		\item $(xm,n)-x(m,n)$ and $(m,xn)-x(m,n)$
 	\end{itemize}
-	For all $m,m'\in M, n,n' \in N, x \in R$. It should be clear from the definitions that identifying these points together makes the quotient bilinear as required and it is the smallest such module as there we have added no extraneous conditions.	This is easy to verify any maps $f: M\times N \to P$ as above will extend naturally to $F: R^{\otimes M\times N} \to P$ and is factoring through the tensor product mapping say $\varphi: M\times N \to M \otimes N$
+	For all $m,m'\in M, n,n' \in N, x \in R$. It is clear from the definitions that identifying these points together makes the quotient bilinear as required and it is the smallest such module as there we have added no extraneous conditions due to freeness. Furthermore any bilinear maps $f: M\times N \to P$ as above will extend naturally to $F: R^{\otimes M\times N} \to P$ and thus factoring through the tensor product mapping say $\varphi: M\times N \to M \otimes N$
 	
-	\textbf{COMPLETE THIS PROOF
-	CITE THIS SOMEWHERE}
+
 	
 	\subsection{Properties of tensor products}
 	Let $R$ be some commutative ring with unity and let $M,N,P$ be $R-$modules.
@@ -105,19 +104,19 @@
 		$(M \otimes N) \otimes X = M \otimes (N \otimes X)$	
 	\end{proposition}
 	\begin{proof}
-		Direct consequence of the ump simply draw the diagrams first starting with $M \times N \to P$ and then $N \times X \to P$
+		Direct consequence of the UMP simply draw the diagrams first starting with $M \times N \to P$ and then $N \times X \to P$
 	\end{proof}
 	
 
 	
 	\subsection{Tensor-Internal Hom adjunction}
-	As covered in the appendix we have a notion of an internal hom functor as a bifunctor $[-,-]:  \mathbf{C}^\mathrm{op} \times \mathbf{C} \to \mathbf{C}$ for some symmetric monoidal category $\mathbf{C}$. We construct this as an internal hom by considering for all $A \in \mathbf{C}$ adjoint pairs between $(-\otimes A) \dashv [A,-]: \mathbf{C}\to \mathbf{C}$, if they exist. If all these adjoint pairs exist the category is further called a closed monoidal category. 
+	As covered in the appendix we have a notion of an internal hom functor as a bifunctor $[-,-]:  \mathbf{C}^\mathrm{op} \times \mathbf{C} \to \mathbf{C}$ for some symmetric monoidal category $\mathbf{C}$. We construct this by considering for all $A \in \mathbf{C}$ adjoint pairs between $(-\otimes A) \dashv [A,-]: \mathbf{C}\to \mathbf{C}$, if they exist. If all these adjoint pairs exist the category is further called a closed monoidal category. 
 	
 	To see why this is the natural definition and not simply meaningless abstract nonsense it is useful to think about the construction over $\mathbf{Sets}$. 
 	
 	Consider the idea of set exponents (which internal homs are a special case of). Given sets $A, B$, we can consider the set $[A,B]$ of functions from $A \to B$ often denoted in terms of exponentiation $B^A= \prod_{a \in A} B$. This choice of notation stems from the fact that exponentiation gives the cardinality of the function set. Furthermore this leads to a well defined notion of exponential objects which we won't discuss here.
 	
-	But if we have any functions from a set $C$ into $B^A$ its naturally bijective to the functions from $C \times A \to B$ (note that cartesian products are also symmetric monoidal products so this is just a special case). Since we have the condition $(B^A)^C=B^{(A\times C)} $! 
+	But if we have any functions from a set $C$ into $B^A$ its naturally bijective to the functions from $C \times A \to B$ (note that cartesian products are also symmetric monoidal products so this is just a special case). This is very clearly seen in the condition $(B^A)^C=B^{(A\times C)} $! 
 	
 	The adjoint definition is simply a rephrasing of this.
 	
@@ -127,6 +126,7 @@
 		For a closed monoidal category $\mathbf C$ and objects $A,B,C \in \mathbf{C}$. The tensor product is left adjoint to the internal hom functor, in particular
 		\[ [A\otimes B,C ] \cong [A, [B,C]] \]
 	\end{proposition}
+	This was proved in the appendix \ref{tensorinternalhomadjunction}
 	
 	We state a categorical fact here intstead of the appendix due to its huge importance, the proof is as in \cite{Awodey}
 	\begin{proposition}[Right adjoints preserve limits]
@@ -144,7 +144,7 @@
 		
 		Note that the dual construction holds too to state that right adjoints preserve colimits.
 	\end{proof}
-	This was proved in the appendix.
+	
 	
 	Now we claim that this adjunction between Tensor product and internal homs is all we need to say that Tensor is left adjoint to the typical Hom functor in $\mathrm{Mod}$. 
 	
@@ -169,7 +169,7 @@
 	\end{proof}
 	The notions of exact sequence will be seen again in the next section, but for completeness sake we state it here.
 	\begin{definition}[Exact sequence of modules]
-		A collection of modules $A_i$ and module homomorphisms $\alpha_i: A_i \to A_{i+1}$ is called exact if $\mathrm{Im}(\alpha_i) = \mathrm{Ker}(\alpha_{i+1})$
+		A collection of modules $F_i$ and module homomorphisms $\alpha_i: F_i \to F_{i+1}$ is called exact if $\mathrm{Im}(\alpha_i) = \mathrm{Ker}(\alpha_{i+1})$
 	\end{definition}
 	\begin{definition}[Short exact sequence of modules] 
 		If a sequence of modules and maps as such is exact, $0 \to A \to B \to C \to 0$. The map between $A \to B$ is injective and the map between $B \to C $ is surjective, furthermore $C \cong B/A$ due to the fact that $A $ can be considered an ideal of $B$ due to the exactness conditions.
@@ -184,15 +184,15 @@
 		&\vdots
 	\end{align*}
 	
-	\begin{definition}[Covariant exact functor]
-		A covariant exact functor is a functor that preserves short exact sequences. If it preserves exactness of $0 \to A \to B \to C$ its called left exact and if it preserves exactness of $A \to B \to C \to 0$ it is called right exact. Simply switch left and right for contravariant case.
+	\begin{definition}[Exact functor]
+		A covariant exact functor is a functor that preserves short exact sequences. If it preserves exactness of $0 \to A \to B \to C$ its called left exact and if it preserves exactness of $A \to B \to C \to 0$ it is called right exact. 
 	\end{definition}
 	
 	\begin{proposition}[Right exactness of tensor product]
 		
 	\end{proposition}
 	\begin{proof}
-		This is simply a consequence of left adjoints preserving colimits.
+		This is simply a consequence of left adjoints preserving colimits as it preserves cokernels and direct sums which are colimits so it is right exact.
 	\end{proof}
 	
 	
@@ -205,33 +205,34 @@
 		But by exactness we get $M/IM \cong (R/I) \otimes M/IM$
 	\end{proof}
 	
-	\begin{corollary}
-		$R/I \otimes R/J = R/(I+J)$ for $I,j$ ideals of $R$.
-	\end{corollary}
+%	\begin{corollary}
+%		$R/I \otimes R/J = R/(I+J)$ for $I,J$ ideals of $R$.
+%	\end{corollary}
+%	
 	
 	\section{Chain complexes}
-	A \textbf{chain complex} $(A_\bullet, \varphi_\bullet)$ is a collection of modules over a commutative ring and homomorphisms $\varphi_i: A_i \to A_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
+	A \textbf{chain complex} $(F_\bullet, \varphi_\bullet)$ is a collection of modules over a commutative ring and homomorphisms $\varphi_i: F_i \to F_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
 \[\begin{tikzcd}
-	\cdots & {A_{i+1}} & {A_i} & {A_{i-1}} & \cdots
+	\cdots & {F_{i+1}} & {F_i} & {F_{i-1}} & \cdots
 	\arrow["{\varphi_{i+1}}", from=1-2, to=1-3]
 	\arrow["{\varphi_i}", from=1-3, to=1-4]
 	\arrow["{\varphi_{i-1}}", from=1-4, to=1-5]
 	\arrow["{\varphi_{i+2}}", from=1-1, to=1-2]
 \end{tikzcd}\]
-	The \textbf{homology} of the complex at $A_i$ is denoted as its $i^{\mathrm{th}}$ homology defined as follows,
-	\[ H_i := \ker \varphi_i/ \mathrm{im} \varphi_{i+1} \]
+	The \textbf{homology} of the complex at $F_i$ is denoted as its $i^{\mathrm{th}}$ homology defined as follows,
+	\[ H_iF := \ker \varphi_i/ \mathrm{im} \varphi_{i+1} \]
 	Reversing the arrows gives us the analogous definitions for cochain complexes and cohomology.
 	
 	The homomorphisms are often called \textbf{`boundary operators'} or \textbf{`differentials'}. This nomenclature is motivated by the de Rahm cohomology. Furthermore elements of $\ker \varphi_i$ are called `\textbf{cycles}' and elements of $\mathrm{im} \varphi_{i+1}$ are called \textbf{boundaries}, this echoes the aphorism `cycles modulo boundaries' often encountered in singular homology.
 	
 	A chain complex is said to be \textbf{exact} if all its homologies are zero. In particular it is exact at one object if its homology there is zero.
 	
-	Note that these definitions can be easily viewed in terms of objects of Abelian categories, in particular for such a given enumerable chain it is called a $\Z-$graded chain complex. (WRITE THIS PROPERLY)
+	Note that these definitions can be easily viewed in terms of objects of Abelian categories.
 	
 	\section{Free and Projective modules}
-	Recall a\textbf{ free module} of rank $n$ is one that is isomorphic to $n$direct sums of its underlying ring. And homomorphisms from free modules to other modules are determined by the image of their generators, i.e. free objects are left adjoints to forgetful functors. \footnote{This holds in free monoids $\mathrm{Hom}_\mathbf{Mon}(F(X), M) \cong \mathrm{Hom}_\mathbf{Sets} (X, U(M))$ where $F(X)$ denotes the free monoid generated by elements from the set $X$ and $U(M)$ is the underlying set of a monoid $M$. Recall the hom-set definition of adjunctions. Refer to \cite[p. ~208]{Awodey} }
+	Recall a\textbf{ free module} of rank $n$ is one that is isomorphic to $n$ direct sums of its underlying ring. And homomorphisms from free modules to other modules are determined by the image of their generators, i.e. free objects are left adjoints to forgetful functors. \footnote{This holds in free monoids $\mathrm{Hom}_\mathbf{Mon}(F(X), M) \cong \mathrm{Hom}_\mathbf{Sets} (X, U(M))$ where $F(X)$ denotes the free monoid generated by elements from the set $X$ and $U(M)$ is the underlying set of a monoid $M$, refer to \cite[p. ~208]{Awodey} }
 	
-	A module $P$ is said to be \textbf{projective} if it satisfies the following lifting property, i.e. every morphism from $P$ to $N$ factors through an epi into $N$, note that the lift need not be unique this is \textit{not} an UMP
+	A module $P$ is said to be \textbf{projective} if it satisfies the following lifting property, every morphism from $P$ to $N$ factors through an epi into $N$. Note that the lift need not be unique this is \textit{not} an UMP
 	\[\begin{tikzcd}
 		&& M \\
 		\\
@@ -313,9 +314,10 @@ This proceeds just from the previous result.
 		\section{Resolutions}
 	Given a module $M$ its \textbf{left resolution} is given by the data of a exact sequence $(A_\bullet, \varphi_\bullet)$ into $M$ as such,
 	\[ 	\cdots \to A_1	\to A_0 \xrightarrow{\alpha} M \to 0 \]
-	where $\alpha $ is called the \textbf{augmentation map}, if the exact sequence is free its a free resolution and such for projective. This will come up again in injective resolutions.
+	where $\alpha $ is called the \textbf{augmentation map}, if the exact sequence is free its a free resolution and such for projective. 
 	
-	\textbf{WRITE EXAMPLE OF KOSZKUL COMPLEX}
+	If we have a cochain complex instead it forms a \textbf{right resolution} and if its elements are injective we call them injective resolutions.
+	
 	
 	
 	\section{Injective modules}
@@ -409,36 +411,47 @@ This proceeds just from the previous result.
 	
 	\end{proof}
 Alternatively consider the following alternative proof for the second part
-\begin{proposition}
-	Given $\mathrm{Ab}$ has enough injectives then so does $R-$Mod.
+\begin{proposition}[Categorical proof]
+	$R-$Mod has enough injectives.
 \end{proposition}
 \begin{proof}
-	The proof proceeds categorically and relies on the notion of the free-forgetful functor adjunction. In particular in this case we have the adjunction as \[ (F \dashv U), F: \mathrm{Ab} \rightleftarrows R\mathrm{-Mod}: U\]
-	Where $U$ denotes the forgetful functor and $F$ denotes the `free' functor sending $A \in \mathrm{Ab}$ to $A \otimes_\Z R$.
+	We assume that $\mathrm{Ab}$ has enough injectives as proven via the divisibility condition.
 	
-	Now from Prop.  and Prop. we are done if we show forgetful functor is additive and exact.
+	The proof proceeds categorically and relies on the notion of the free-forgetful functor adjunction. In particular in this case the forgetful functor $U: R\mathrm{-Mod} \to \mathrm{Ab}$ formed by restriction of scalars i.e. sending the module to its underlying abelian group. To put this analytically consider $f: \Z \to R$. Now a $R$-Module $M$ can be canonically taught of as an $\Z$ module due to the following morphism $M \times \Z \to M$ given by $(m,z) \mapsto mf(z)$.
+	
+	 Now suppose $M,N \in R$-Mod and some $u:M \to N$ is an $R-$homomorphism this naturally maps to a $\Z-$homomorphism as $u(mz)=u(m)z$. This describes the notion of `forgetting' the module structure.
+	
+	This forgetful functor has both left and right adjoint. With its left adjoint being sending $A \in \mathrm{Ab} $ to $R \otimes_\Z A$ (this is the free functor) and its right adjoint being sending $A\in \mathrm{Ab}$ to $\Hom_\Z(R,A)$.
+	
+	This is a specific case of the extension $\dashv $ restriction $\dashv$ coextension adjoint triple.
+	
+	The point being that as the forgetful functor has both left and right adjoints, it preserves both limits and colimits, in particular kernels and cokernels. So it is both left and right exact therefore it is an exact functor. It is also clearly a faithful functor. Now due to Prop. \ref{adjointinjective} we have that $R-$mod has enough injectives.
 \end{proof}
 
 	\begin{proposition}[Bass-Papp]
 		A ring is Noetherian iff every direct sum of injective modules over it are injective
 	\end{proposition}
 	\begin{proof}
-		Let $R$ be a Noetherian ring. First note that due to right adjointness of the Hom functor we have $\Hom_R(M, \oplus_i N_i) \cong \oplus_i \Hom_R(M,N_i)$ for $M,N$ $R-$ modules.
+		Let $R$ be a Noetherian ring. First note that for finitely generated $M$ we have $\Hom_R(M, \oplus_i N_i) \cong \oplus_i \Hom_R(M,N_i)$ for $M,N$ $R-$ modules.
+		
+		($\implies $)Let $R$ be Noetherian and let $E_i $ be a family of injective $R$-Modules. Note that $I \subset R$ ideals of $R$ are finitely generated. Now we also have the surjection $ \Hom(R,E_i) \twoheadleftarrow \Hom(I,E_i) $ by inclusion. The ideals of a Noetherian ring are finitely generated so by the above condition we also get a surjection between $\oplus_i \Hom (R, E_i) \cong \Hom(R, \oplus_i E_i) \twoheadleftarrow \Hom(I, \oplus_i E_i)$ now Baer's criterion implies that $\oplus_i E_i$ is injective.
+		
+		($\impliedby $) Suppose if possible $R$ is not Noetherian so we have a non stable ascending chain of ideals $\{J_i\}_{i \in \Lambda}$. Consider its union say $J= 	\cup_{i \in \Lambda} J_i$. And consider homomorphism $J \to \oplus_i E(R/J_i)$ where $E(-)$ denotes injective envelope (discussed later). Claim that the homomorphism doesn't extend over $R$ (Why complete this?)
 	\end{proof}
 	This result is also true for arbitrary direct limits as shown in \cite[Th. 3.46]{lam2012lectures}.
 	\begin{definition}[Indecomposable module]
-			An injective module $E$ is indecomposable if (cannot be written as a direct sum of two nonzero modules.
+			An injective module $E$ is indecomposable if it cannot be written as a direct sum of two nonzero modules.
 	\end{definition}
 	
-	\begin{proposition}
-		If $R$ is Noetherian, and $E$ is some indecomposable injective $R-$module we have,
+	\begin{proposition}[Matlis' Theorem]
+		If $R$ is Noetherian, and $E$ is some indecomposable injective $R-$module $M$ we have,
 		\begin{enumerate}
-			\item $E \cong E(R/P)$ for some prime ideal $P\subset R$.
+			\item $M \cong E(R/P)$ for some prime ideal $P\subset R$.
 			\item $E(R/P)\cong E(R/Q) \iff P=Q$ so there is a 1-1 correspondence between indecomposable injectives and primes.
 		\end{enumerate} 
 	\end{proposition}
 	\begin{proof}
-		Use primary decomposition.
+		Here $E(R/P)$ denotes the injective envelope of $R/P$.	
 	\end{proof}
 	
 	\subsection{Injective resolutions}	
@@ -496,27 +509,186 @@ Alternatively consider the following alternative proof for the second part
 	\begin{definition}[Injective envelope/hull]
 		For $R-$modules $M \subset F$ the unique essential extension of $M$	which is injective and as an intermediate submodule is called the injective envelope of $M$.
 	\end{definition}
-	
+	The injective hull can be used to define a unique minimum injective resolution. (\textbf{WHY?})
 	\begin{proposition}
-		If $N \subset M$ is an essential submodule then any map $M \to E$ that restricts to a monomorphism on $N$ is a monomorphism.
+		If $N \subset M$ is an essential submodule then any map $M \to X$ that restricts to a monomorphism on $N$ is a monomorphism.
 	\end{proposition}
 	\begin{proof}
-		We have that for $L \subset M $ an submodule $N \cap L=0 \implies L=0$.
+		Consider the injective envelope of $N$ say $E$.
+		\[\begin{tikzcd}
+			N \\
+			E \\
+			M && X
+			\arrow["\subseteq"', from=1-1, to=2-1]
+			\arrow["\subseteq"', from=2-1, to=3-1]
+			\arrow[from=3-1, to=3-3]
+			\arrow[tail, from=1-1, to=3-3]
+			\arrow[dashed, from=3-3, to=2-1]
+		\end{tikzcd}\]
 	\end{proof}
-	\section{Flat modules}
-	
-	\section{Morphisms and homotopies of complexes}
+%	\section{Flat modules}
+	\section{More on chain complexes}
+	\subsection{Morphisms and homotopies of complexes}
 	Recall the definition of a chain complex.
-	A \textbf{chain complex} $(A_\bullet, \varphi_\bullet)$ is a collection of $R-$Modules and homomorphisms $\varphi_i: A_i \to A_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
+	A \textbf{chain complex} $(F_\bullet, \varphi_\bullet)$ is a collection of $R-$Modules and homomorphisms $\varphi_i: F_i \to F_{i-1}$ such that $\varphi_i \varphi_{i+1}=0$,
 	\[\begin{tikzcd}
-		\cdots & {A_{i+1}} & {A_i} & {A_{i-1}} & \cdots
+		F:\cdots & {F_{i+1}} & {F_i} & {F_{i-1}} & \cdots
 		\arrow["{\varphi_{i+1}}", from=1-2, to=1-3]
 		\arrow["{\varphi_i}", from=1-3, to=1-4]
 		\arrow["{\varphi_{i-1}}", from=1-4, to=1-5]
 		\arrow["{\varphi_{i+2}}", from=1-1, to=1-2]
 	\end{tikzcd}\]
-	It is useful to denote the entire chain complex as $A$ and think of it as a graded $R-$Module\footnote{Where $R$ is just trivially graded.}.
-	\subsection{Diagram chasing lemmas}
+	It is useful to denote the entire chain complex as $F$ and think of it as a graded $R-$Module\footnote{Where $R$ is just trivially graded.} of the form $F=\oplus_{i \in \Z} F_i$, note that $F_n F_m \subseteq F_{n+m}$. 
+	
+	Note this graded module has associated with it the an endomorphism $\varphi^2=0$. We say this has degree $-1$ as it sends $a \in F_n$ to $b \in F_{n-1}$. If the grading is not relevant often this $(F,\varphi )$ is called a \textbf{differential module} with elements of $\ker \varphi $ as cycles and elements of $\mathrm{im} \varphi $ as boundaries of $F$.
+	
+	Furthermore the $i^{\textbf{th}}$ homology module is defined as we did previously $H_i(F)=\ker \varphi_i/ \mathrm{im} \varphi_{i+1}$ and the direct sum of all these homology modules is denoted as $H(F)=\ker \varphi/ \mathrm{im} \varphi $ and if its equal to 0 the complex is exact.
+	
+	
+	\[ 	\cdots \to F_2	\to F_1 \xrightarrow{\varphi_1} F_0 \to 0 \]
+		A complex is called a left resolution as before if its only non trivial homology is $H_0(F)=\mathrm{coker}(\varphi_1)$. If all $F_i$ projective we call it a projective resolution
+		
+	Dually with the arrows reversed its called an right resolution and if the modules are injective its an injective resolution.
+	
+	A map between differential modules $(F, \varphi), (G, \psi)$ is just $\alpha: F \to G$ such that $a \alpha = \psi \alpha $. Now if they are chain complexes we also require grading to be preserved.
+	So a map between them requires a family of functions $\alpha_i: F_i \to G_i$ making the following diagrams commute,
+	\[\begin{tikzcd}
+		\cdots & {F_i} & {F_{i-1}} & \cdots \\
+		\cdots & {G_i} & {G_{i-1}} & \cdots
+		\arrow["{\varphi_i}", from=1-2, to=1-3]
+		\arrow["{\alpha_i}"', from=1-2, to=2-2]
+		\arrow["{\alpha_{i-1}}", from=1-3, to=2-3]
+		\arrow["{\psi_i}"', from=2-2, to=2-3]
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-3, to=2-4]
+		\arrow[from=1-3, to=1-4]
+	\end{tikzcd}\]
+	
+	If $\alpha $ is a morphism between differential modules then it carries $\ker \varphi \to \ker \psi$ and $\image \varphi \to \image \psi$ as such it induces a map on the homology which we use the same label for $$\alpha: HF \to HG$$
+	Similarly as above if grading is relevant then we have a sequence of maps,
+	\[ \alpha_i: H_i F \to H_i G \]
+	
+	This gives rise to a natural question given two maps between complexs when is their induced homology same? This is answered by the notion of homotopy equivalence (natural transformation).
+	
+	\begin{definition}[Homotopy equivalence of maps]
+		If $\alpha, \beta $ are maps between differential modules $(F, \varphi), (G, \psi )$ then $\alpha $ is homotopically equivalent to $\beta $ if there is a map $h: F \to G $ such that $\alpha - \beta = \psi h+ h \varphi$. If grading is relevant the picture formed is as such, we require a family of maps $h_i: F_i \to G_{i+1}$ \footnote{i.e. It has degree $1$, sometimes the subscript is dropped and just treated as $h$}
+		\[\begin{tikzcd}
+			\cdots && {F_i} && {F_{i-1}} && \cdots \\
+			\\
+			\cdots && {G_i} && {G_{i-1}} && \cdots
+			\arrow["{\varphi_i}", from=1-3, to=1-5]
+			\arrow["{\psi_i}"', from=3-3, to=3-5]
+			\arrow["{h_{i-1}}"', from=1-5, to=3-3]
+			\arrow["{\beta_i}"', shift right, from=1-3, to=3-3]
+			\arrow[from=3-3, to=3-1]
+			\arrow["{h_i}"', from=1-3, to=3-1]
+			\arrow["{\alpha_{i-1}}", shift left, from=1-5, to=3-5]
+			\arrow[from=1-1, to=1-3]
+			\arrow["{h_{i-2}}"', from=1-7, to=3-5]
+			\arrow[from=1-5, to=1-7]
+			\arrow["{\alpha_i}", shift left, from=1-3, to=3-3]
+			\arrow["{\beta_{i-1}}"', shift right, from=1-5, to=3-5]
+			\arrow[from=3-5, to=3-7]
+		\end{tikzcd}\]
+		The intution behind this particular choice of definition is that the map $\alpha - \beta $ maps all cycles to boundaries which have zero homology. So really $\alpha- \beta$ is null homotopic, as such this relation is an equivalence relation.
+	\end{definition}
+	Recall the notion of singular homology, for a topological space $X$, and consider the set of all continuous maps from $n$-simplexes to $X$, which determines the singular $n$-simplex $\sigma: \Delta^n \to X$ which in turn form a basis that generate a free abelian group called $C_n$ whose elements are finite formal sums $
+	\sum_i n_i \sigma_i$ \footnote{$n_i$ are from integers which induces a $\Z$ grading.}. This induces a boundary map $\delta_n:C_n \to C_{n-1}$ defined as \[ \delta_n(\sigma) = \sum_i (-1)^i \sigma:[v_0, \dots, \hat{v_i}, \dots, v_n]\]
+	Which in turn gives rise to a chain complex $(C_\bullet, \delta_\bullet)$ with singular homology defined in the expected manner \[ H_i(X)=\ker \delta_i/ \image \delta_{i+1	} \]
+	The importance of this as an example is that it relates to our above generalization of chain complex homotopy. If we have continuous maps $\alpha ,\beta :X \to Y$ they induce a morphism between the singular chain complexes. And the typical notion of a homotopy between $\alpha, \beta $ as $H:X \times [0,1] \to Y $ itself induces a chain morphism $h(x)=H(x\times [0,1])$.
+	
+	The key point that motivated the definition of homotopy equivalence is summarized in the proof of the below proposition,
+	\begin{proposition}
+		If $\alpha, \beta: (F,\varphi) \to (G,\psi)$ are two morphisms of differential modules and $\alpha $ is homotopically equivalent to $\beta $ then they induce the same maps on the homologies. That is to say $\alpha- \beta $ induces the zero map on homology.
+	\end{proposition}
+	\begin{proof}
+		Let $x \in \ker \varphi $ a cycle of $F$ to show $(\alpha - \beta) (x) \in \image \psi $ i.e. in boundary of $G$. But this is clear from the definition of homotopy equivalence 
+		\[ (\alpha-\beta) (x)=\psi h (x) + h \varphi(x) = \psi h(x) \]
+		The proof for chain complexes with nontrivial grading is identical we just need to keep track of the indices.
+	\end{proof}
+	
+	An important concept is that explicit modules $M, N$ can often be replaced with their projective resolutions say $F,G$ instead. And maps between modules $M \to N$ is the same as homotopy classes of maps between their resolutions $F \to G$. With the dual notion for injective resolutions (extending to cochain maps).
+	
+	We will see the case for projectives,
+	\begin{proposition}
+		Let the following chain complexes of modules be realized as follows, $M = \mathrm{coker } \varphi_1, N = \mathrm{coker } \psi _1$
+		\[ F: \cdots \to F_i \xrightarrow{\varphi_i}  F_{i-1} \cdots \to F_1 \xrightarrow{\varphi_1} \ F_0\]
+		\[ G: \cdots \to G_i \xrightarrow{\psi_i}  G_{i-1} \cdots \to G_1 \xrightarrow{\psi_1}  G_0  \]
+		If $F$ is projective and homologies of $G$ vanish except at $H_0G=N$, then maps of modules $\beta : M \to N	$ is a map induced on $H_0$ by a map of complexes $\alpha: F \to G$ which is determined by $\beta $ upto homotopy.
+	\end{proposition}
+	\begin{proof}
+		We have $g: G_0 \twoheadrightarrow N$ and some $f: F_0 \to M$. Consider the composition $\beta f$ which can be lifted to some map $\alpha_0 : F_0 \to G_0$ due to the surjectivity of $g$ and $F_0$ being projective	. 
+		\[\begin{tikzcd}
+			\cdots & {F_1} & {F_0} & M \\
+			\cdots & {G_1} & {G_0} & N
+			\arrow["g"', two heads, from=2-3, to=2-4]
+			\arrow["\beta", from=1-4, to=2-4]
+			\arrow["f", from=1-3, to=1-4]
+			\arrow["{\varphi_1}", from=1-2, to=1-3]
+			\arrow["{\psi_1}"', from=2-2, to=2-3]
+			\arrow["{\alpha_0}", dashed, from=1-3, to=2-3]
+			\arrow[from=1-1, to=1-2]
+			\arrow[from=2-1, to=2-2]
+		\end{tikzcd}\]
+		Also this gives that $\alpha_0 \varphi_1$ sends $F_1 \to \ker g = \image \psi_1$ where the second equivalence is by exactness. So even $\alpha_0 \varphi_1 $ has a lift $\alpha_1 : F_1 \to G_1$. Continuing this inductive procedure we get the required $\alpha $ map.
+		
+		To show that the induced map $\alpha $ is unique consider another $\alpha' $ then consider $\alpha-\alpha'$ which would be a lifting of a zero map between $M,N$. So we wish to show $(\alpha-\alpha')_i=h_{i-1}\varphi_i +\psi_{i+1}h_i$ for some degree 1 map $h_i: F_i \to G_{i+1}$. Firstly note that the map $\alpha-\alpha'$ is a lift over the zero map. So in particular $\alpha_0 $ by the previous construction is taking $F_0 \to \image(\psi_1)$. By exactness thats equal to $\ker \psi_2$. So we have a lift $h_0: F_0 \to G_1$ such that $\psi_1 h_0=(\alpha-\alpha')_0$.
+		
+		Now we claim that $h_0\varphi_1 - (\alpha-\alpha')_1 $ maps into $\ker \psi_1=\image \psi_2 $ by exactness. This statement is true due to the commuting square condition of chain complexes that require $$\alpha_0 \varphi_1-\psi_1\alpha_1=0	$$ But we know $\alpha_0=\psi_1 h_0$ so we get $\psi_1(h_0\varphi_1 - \alpha_1)=0$. Now similarly due to projectiveness we can lift this to a map $h_1: F_1 \to G_2$. Continuing this gives us the required homotopy map.
+		
+		So $\alpha\sim \alpha'$
+	\end{proof}
+	
+	\begin{corollary}
+		Two projective resolutions $F, F'$ of some module $M$ are homotopy equivalent 
+	\end{corollary}
+	\begin{proof}
+		Proof follows the same as second half of the previous proposition.
+	\end{proof}
+	\begin{corollary}
+		For an additive functor $F$ and two projective resolutions $P, P'$ of some module $M$, $H_i(FP) \cong H_i(FP')$.
+	\end{corollary}
+	
+	\subsection{Exact sequences of chain complexes}
+	Consider $(A,\varphi),(B,\psi),(C,\chi)$ to be chain complexes we can define a short exact sequence of complexes as \[ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 \]
+	For $\alpha, \beta $ maps of complexes as discussed above, and $\beta \alpha=0$, if for all $i$ the underlying sequence of modules is exact\[ 0 \to A_i \xrightarrow{\alpha_i } B_i \xrightarrow{\beta_i } C_i \to 0\]
+	
+	These maps also induce maps on the homologies $\alpha_i: H_i A \to H_i B, \beta_i: H_i B \to H_i C$. Furthermore there is a natural map \[ 	\delta_i : H_i C \to H_{i-1}B \] which is called the \textbf{connecting homomorphism}
+	
+	Before seeing how to construct this $\delta $ it is useful to have a complete picture of the data in front of us. This can be seen below,
+	\[\begin{tikzcd}
+		& \vdots & \vdots & \vdots \\
+		0 & {A_i} & {B_i} & {C_i} & 0 \\
+		0 & {A_{i-1}} & {B_{i-1}} & {C_{i-1}} & 0 \\
+		0 & {A_{i-2}} & {B_{i-2}} & {C_{i-2}} & 0 \\
+		& \vdots & \vdots & \vdots
+		\arrow[from=2-1, to=2-2]
+		\arrow["{\alpha_i}", from=2-2, to=2-3]
+		\arrow["{\beta_i}", from=2-3, to=2-4]
+		\arrow[from=2-4, to=2-5]
+		\arrow[from=3-1, to=3-2]
+		\arrow[from=4-1, to=4-2]
+		\arrow["{\alpha_{i-1}}", from=3-2, to=3-3]
+		\arrow["{\beta_{i-1}}", from=3-3, to=3-4]
+		\arrow[from=3-4, to=3-5]
+		\arrow["{\alpha_{i-2}}", from=4-2, to=4-3]
+		\arrow["{\beta_{i-2}}", from=4-3, to=4-4]
+		\arrow[from=4-4, to=4-5]
+		\arrow["{\varphi_i}"', from=2-2, to=3-2]
+		\arrow["{\varphi_{i-1}}"', from=3-2, to=4-2]
+		\arrow[from=4-2, to=5-2]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=1-4, to=2-4]
+		\arrow["{\psi_i}"', from=2-3, to=3-3]
+		\arrow["{\chi_i}"', from=2-4, to=3-4]
+		\arrow["{\psi_{i-1}}"', from=3-3, to=4-3]
+		\arrow["{\chi_{i-1}}"', from=3-4, to=4-4]
+		\arrow[from=4-3, to=5-3]
+		\arrow[from=4-4, to=5-4]
+	\end{tikzcd}\]
+	We construct via a diagram chase. Suppose $h \in H_i C= \ker \chi_i / \image \chi_{i+1} $ pick a cycle $x\in \ker \chi_i$
 	
 	\section{Derived functors}
 	
@@ -527,11 +699,15 @@ Alternatively consider the following alternative proof for the second part
 	
 	\section{Mapping cones and double complex
 	}
+	
 	\section{Spectral sequences}
 	
 	\section{Spectral sequence of double complex}
 	
 	\section{Derived categories}
+		\subsection{Diagram chasing lemmas}
+	\subsection{Kunneth formula}
+	\subsection{Dold Kan correspondence	}
 	\section{Freyd-Mitchell Embedding}
 	\begin{theorem}[Freyd-Mitchell Embedding]
 		If $A$ is a small abelian category there is an exact full and faithful embedding functor from $A$ into the category of modules over some ring $R$ which embeds $A$ as a full subcategory.
@@ -731,7 +907,7 @@ Alternatively consider the following alternative proof for the second part
 		corresponds to the previous definition, and also \[  \Hom (A \otimes B, C) \cong \Hom[A, [B,C]]\] where this is the external hom
 	\end{proposition}
 	\begin{proof}
-		The natural isomorphisms exist due to the homset definition of adjunction keeping the components fixed at $B$ and $B, C $. Furthermore bifunctorality is a consequence of bifunctor lemma \ref{bifunctorlemma}.
+		The natural isomorphisms exist due to the homset definition of adjunction keeping the components fixed at $B$ and $B, C $. Furthermore bifunctorality is a consequence of bifunctor lemma Prop. \ref{bifunctorlemma}.
 	\end{proof}
 	
 	
@@ -754,26 +930,123 @@ Alternatively consider the following alternative proof for the second part
 	Example In the category of chain complexes and $I$ being the monoidal unit as before. Maps from $I \to A$ for $A$ a \textbf{(COMPLETE THIS)}
 	
 	\subsection{Enriched categories}
-	Very often the hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace hom-sets with hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of hom-sets via the monoidal product \footnote{This can further be dropped and work over bicategories \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it without proof.
+	Very often the Hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace Hom-sets with Hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of Hom-sets via the monoidal product \footnote{This monoidal property can further be dropped and replaced with bicategories (i.e. a 2-category without strict associativity) \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it without proof.
 	
 	The actual definition isn't important here, we only mention it as the main object of study (abelian categories) is a special case of an enrichment over category of abelian groups.
+	
+	For example categories enriched over the category of finite categories are just 2-categories!
 	\subsection{Abelian Categories}
-	We first define \textbf{pre-additive categories} as a category enriched over $\mathrm{Ab}$ with finite biproducts\footnote{Same as a direct sum, simultaneously a product and coproduct.} such that every morphism has a kernel and cokernel.
+	There is a chain of conditions regarding `abelian'-ness of categories which is roughly understood as follows,
+	\[ \textbf{Abelian} \subseteq \textbf{Pre-Abelian} \subseteq \textbf{Additive} \subseteq \textbf{Ab-Enriched}\]
+	The motivation behind them is to have categories which resemble algebras.
 	
-	But what are kernels and cokernels in the categorical sense? A \textbf{kernel} is a pullback of a morphism $f:A \to B$ and the unique morphism from $0 \to B$. Provided initials and pullbacks exist.
+	Ab-Enriched categories are categories such that for objects $A,B \in \mathbf{C}$ the external hom set $\Hom(A,B)$ has the structure of an abelian group, furthermore it has a well defined notion of composition (which is bilinear due to the monoidal product in Ab), $\Hom(A,B)\otimes \Hom(B,C) =\Hom(A,C)$. 
+	\begin{proposition}
+		In Ab-Enriched categories intial and terminal objects coincide (it is often called the zero object)
+	\end{proposition}
+	\begin{proof}
+		Let $\mathbf{C}$ be an Ab-Enriched category. Note that the Hom-sets between objects have `zero morphisms', i.e. arrows in the Hom-set which behave like the additive identity in the Ab group induced by it. In particular for $0_{A,B}\in \Hom(A,B)$ we have the property that if $f:B \to C$ then $f\circ 0_{A,B}=0_{A,C}$ and $g: A \to D$ then $0_{A,B}\circ g=0_{D,B}$.
+		
+		Now suppose $0 \in \mathbf{C}$ is initial so there is a unique morphism $0\to 0$ so in its Hom-set its both the additive inverse and the identity. So for any $f:X \to 0$ we can say that by the zero morphism property $f=0$ so also $0$ is terminal.
+	\end{proof}
+	\begin{proposition}
+		In Ab-Enriched categories finite coproducts coincide with finite products (i.e. biproducts) \footnote{This also holds over categories enriched over commutative monoids.}
+	\end{proposition}
+	\begin{proof}	
+		Let $\mathbf{C}$ be an Ab-enriched category and $A,B\in \mathbf{C}$ consider the product $A\times B$, which is determined by the following UMP,
+		\[\begin{tikzcd}
+			& X \\
+			A & A\times B & B
+			\arrow["{p_1}"', from=2-2, to=2-1]
+			\arrow["{p_2}", from=2-2, to=2-3]
+			\arrow["u", dashed, from=1-2, to=2-2]
+			\arrow["{x_1}"', from=1-2, to=2-1]
+			\arrow["{x_2}", from=1-2, to=2-3]
+		\end{tikzcd}\]
+		Consider $A$ and $B$ in place of $X $ in the diagram. By the UMP we have $q_1: A \to A\times B, q_2: B \to A\times B$
+		\[\begin{tikzcd}
+			A && B \\
+			& {A\times B} \\
+			A && B
+			\arrow["{p_1}"', from=2-2, to=3-1]
+			\arrow["{p_2}", from=2-2, to=3-3]
+			\arrow["{q_2}"', from=1-3, to=2-2]
+			\arrow["{q_1}"', from=1-1, to=2-2]
+			\arrow["{1_A}"', from=1-1, to=3-1]
+			\arrow["{1_B}", from=1-3, to=3-3]
+		\end{tikzcd}\]
+		So $p_1q_1=1_A$ and $p_2q_2=1_B$ also $p_1q_2=p_2q_1=0$.
+		
+		Now note that $q_1p_1+q_2p_2=1_{A\times B}$ as $p_1(q_1p_1+q_2p_2)=p_1$ and $p_2(q_1p_1+q_2p_2)=p_2$. Claim this $q_1,q_2$ determine a coproduct $A +B$.
+		
+		We wish to show the following UMP holds for some arbitrary $C \in \mathbf{C}$
+		\[\begin{tikzcd}
+			A & C & B \\
+			& {A\times B} \\
+			A && B
+			\arrow["{q_1}"', from=1-1, to=2-2]
+			\arrow["{q_2}", from=1-3, to=2-2]
+			\arrow["{p_1}"', from=2-2, to=3-1]
+			\arrow["{p_2}", from=2-2, to=3-3]
+			\arrow["{1_B}"', from=1-3, to=3-3]
+			\arrow["{1_A}"', from=1-1, to=3-1]
+			\arrow["{r_1}", from=1-1, to=1-2]
+			\arrow["{r_2}"', from=1-3, to=1-2]
+			\arrow["{f}"',dashed, from=2-2, to=1-2]
+		\end{tikzcd}\]
+		Define $f: A\times B \to C$ as $f=r_1p_1+r_2p_2$. Now $fq_1=r_1$ and $fq_2=r_2$ if we show uniqueness of $f$ we are done.
+		
+		Say $f'$ then $(f-f')1_{A \times B}=(f-f')(q_1p_1+q_2p_2)=0$. So $f=f'$.
+		
+		
+	\end{proof}
+
 	
-	\[\begin{tikzcd}
-		{\ker f} && 0 \\
-		\\
-		A && B
-		\arrow["f", from=3-1, to=3-3]
-		\arrow[from=1-3, to=3-3]
-		\arrow[from=1-1, to=1-3]
-		\arrow[from=1-1, to=3-1]
-	\end{tikzcd}\]
-	The inuition behind this definition is that alternatively it is seen as an equalizer of a function $f$ and the unique morphism between $A \to 0 \to B$. The kernel object is the part of the domain that is 'going to zero'.
+	\begin{definition}[Additive category]
+		 An Ab-Enriched category which has all finite coproducts.
+	\end{definition}
 	
-	Now we can define \textbf{abelian categories} as pre-additive categories wherein each mono is a kernel and each epic is a cokernel of some morphism and. Largely the purpose of abelian categories were motivated by wanting to generalize homological methods and to unify various (co)homology theories.
+	Functors between additive categories are called \textit{additive functors}. And can be realized as functors which preserve additivity of homomorphisms between modules, $F(f+g)=F(f)+F(g).$
+	
+	Before proceeding further it is important to think about kernels and cokernels in the categorical sense.
+	\begin{definition}[Kernel]
+		A kernel is a pullback of a morphism $f:A \to B$ and the unique morphism from $0 \to B$. Provided initials and pullbacks exist.
+		
+		\[\begin{tikzcd}
+			{\ker f} && 0 \\
+			\\
+			A && B
+			\arrow["f", from=3-1, to=3-3]
+			\arrow[from=1-3, to=3-3]
+			\arrow[from=1-1, to=1-3]
+			\arrow[from=1-1, to=3-1]
+		\end{tikzcd}\]
+	\end{definition}
+	The intuition behind this definition is that alternatively it is seen as an equalizer of a function $f:A \to B$ and the unique zero morphism $0_{A,B}$. The kernel object is the part of the domain that is 'going to zero'. \footnote{A minor point to note is that in the case of Ab-Enrichments the `zero' in the Hom-sets isn't a terminal, its Hom-set specific. When you assume a Ab-Enriched category has a initial 0 however this matches up with our intuition.}
+	
+	
+	\begin{definition}[Pre-abelian categories]
+		An additive category with all morphism having kernels and cokernels.
+	\end{definition}
+	The above definition is equivalent to saying a pre-abelian category is a Ab-Enriched category with all finite limits and colimits. This is a consequence to the fact that categories have finite limits iff it has finite products and equalizers \cite[Prop.~5.21]{Awodey}. And we know equalizers exist because equalizers of two morphisms is just the kernel of $f-g$.
+	
+	
+	
+	
+	\begin{definition}[Abelian category]
+		 Pre-additive categories for which each mono is a kernel and each epic is a cokernel.
+	\end{definition}
+	Largely the purpose of abelian categories were motivated by wanting to generalize homological methods and to unify various (co)homology theories.
+	
+	There are a few concepts and definitions relevant in the conversation of abelian categories which we will list out here for completeness. Firstly is the notion of \textbf{exact functors} the typical notion of a functor carrying forward exact sequences. With the prefix of left/right added to determine it carrying forward only left or right sides of the exact sequence.
+	
+	
+	\begin{proposition}\label{adjointinjective}
+		Given a pair of adjoint functors $F \dashv U$ between abelian categories $F:\mathbf{C} \rightleftarrows \mathbf{D}:U$ if the left adjoint $F$ is exact, faithful and if $ \mathbf{D}$ has enough injectives also $\mathbf{C}$ has enough injectives.
+	\end{proposition}
+	\begin{proof}
+		content...
+	\end{proof}
 	
 	\bibliographystyle{apalike}
 	\bibliography{references}
