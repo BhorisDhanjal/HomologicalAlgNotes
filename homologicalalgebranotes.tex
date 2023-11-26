@@ -19,7 +19,7 @@
 \usepackage{float}
 \usepackage[autostyle]{csquotes}\usepackage{quiver}
 \usepackage[activate={true,nocompatibility},final,tracking=true,kerning=true,spacing=true,factor=1100,stretch=10,shrink=10]{microtype}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -37,13 +37,13 @@
 
 \newtheorem{proposition}{Proposition}[section]
 %opening
-\title{Sketches on homology}
+\title{Sketches of homology}
 \author{Bhoris Dhanjal}
 
 \begin{document}
 	\tableofcontents
 	\maketitle
-	The material is presented mostly module theoretically with appropriate categorical abstractions when appropriate to better elucidate the concepts in play. We give a proof sketch of the Freyd-Mitchell embedding at the end and demonstrate usage of abelian categories. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}.
+	These are compact notes on homological algebra. The material is presented mostly module theoretically with appropriate categorical abstractions when appropriate to better elucidate the concepts in play. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}.
 
 	\section{Modules and tensor products}
 	\begin{definition}[Module]
@@ -313,8 +313,8 @@ This proceeds just from the previous result.
 
 		\section{Resolutions}
 	Given a module $M$ its \textbf{left resolution} is given by the data of a exact sequence $(A_\bullet, \varphi_\bullet)$ into $M$ as such,
-	\[ 	\cdots \to A_1	\to A_0 \xrightarrow{\alpha} M \to 0 \]
-	where $\alpha $ is called the \textbf{augmentation map}, if the exact sequence is free its a free resolution and such for projective. 
+	\[ 	\cdots \to A_1	\to A_0 \xrightarrow{\epsilon} M \to 0 \]
+	where $\epsilon $ is called the \textbf{augmentation map}, if the exact sequence is free its a free resolution and such for projective. 
 	
 	If we have a cochain complex instead it forms a \textbf{right resolution} and if its elements are injective we call them injective resolutions.
 	
@@ -509,7 +509,7 @@ Alternatively consider the following alternative proof for the second part
 	\begin{definition}[Injective envelope/hull]
 		For $R-$modules $M \subset F$ the unique essential extension of $M$	which is injective and as an intermediate submodule is called the injective envelope of $M$.
 	\end{definition}
-	The injective hull can be used to define a unique minimum injective resolution. (\textbf{WHY?})
+	The injective hull can be used to define a unique minimum injective resolution. (\textbf{???})
 	\begin{proposition}
 		If $N \subset M$ is an essential submodule then any map $M \to X$ that restricts to a monomorphism on $N$ is a monomorphism.
 	\end{proposition}
@@ -593,12 +593,12 @@ Alternatively consider the following alternative proof for the second part
 		\end{tikzcd}\]
 		The intution behind this particular choice of definition is that the map $\alpha - \beta $ maps all cycles to boundaries which have zero homology. So really $\alpha- \beta$ is null homotopic, as such this relation is an equivalence relation.
 	\end{definition}
-	Recall the notion of singular homology, for a topological space $X$, and consider the set of all continuous maps from $n$-simplexes to $X$, which determines the singular $n$-simplex $\sigma: \Delta^n \to X$ which in turn form a basis that generate a free abelian group called $C_n$ whose elements are finite formal sums $
+	Recall the notion of singular homology. For a topological space $X$, the set of all continuous maps from $n$-simplexes to $X$ determines the singular $n$-simplex $\sigma: \Delta^n \to X$. Which in turn forms a basis that generates a free abelian group called $C_n$ whose elements are finite formal sums $
 	\sum_i n_i \sigma_i$ \footnote{$n_i$ are from integers which induces a $\Z$ grading.}. This induces a boundary map $\delta_n:C_n \to C_{n-1}$ defined as \[ \delta_n(\sigma) = \sum_i (-1)^i \sigma:[v_0, \dots, \hat{v_i}, \dots, v_n]\]
 	Which in turn gives rise to a chain complex $(C_\bullet, \delta_\bullet)$ with singular homology defined in the expected manner \[ H_i(X)=\ker \delta_i/ \image \delta_{i+1	} \]
-	The importance of this as an example is that it relates to our above generalization of chain complex homotopy. If we have continuous maps $\alpha ,\beta :X \to Y$ they induce a morphism between the singular chain complexes. And the typical notion of a homotopy between $\alpha, \beta $ as $H:X \times [0,1] \to Y $ itself induces a chain morphism $h(x)=H(x\times [0,1])$.
+	The importance of this as an example is to recall the fact that singular homology is homotopy invariant \cite[Th. ~2.10]{hatcher}. If we have continuous maps $\alpha ,\beta :X \to Y$ they induce a morphism between the singular chain complexes. And the typical notion of a homotopy between $\alpha, \beta $ as $H:X \times [0,1] \to Y $ itself induces a chain morphism $h(x)=H(x\times [0,1])$.
 	
-	The key point that motivated the definition of homotopy equivalence is summarized in the proof of the below proposition,
+	This is often called chain homotopy. The key point that motivated the definition of homotopy equivalence is summarized in the proof of the below proposition,
 	\begin{proposition}
 		If $\alpha, \beta: (F,\varphi) \to (G,\psi)$ are two morphisms of differential modules and $\alpha $ is homotopically equivalent to $\beta $ then they induce the same maps on the homologies. That is to say $\alpha- \beta $ induces the zero map on homology.
 	\end{proposition}
@@ -654,7 +654,7 @@ Alternatively consider the following alternative proof for the second part
 	Consider $(A,\varphi),(B,\psi),(C,\chi)$ to be chain complexes we can define a short exact sequence of complexes as \[ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta} C \to 0 \]
 	For $\alpha, \beta $ maps of complexes as discussed above, and $\beta \alpha=0$, if for all $i$ the underlying sequence of modules is exact\[ 0 \to A_i \xrightarrow{\alpha_i } B_i \xrightarrow{\beta_i } C_i \to 0\]
 	
-	These maps also induce maps on the homologies $\alpha_i: H_i A \to H_i B, \beta_i: H_i B \to H_i C$. Furthermore there is a natural map \[ 	\delta_i : H_i C \to H_{i-1}B \] which is called the \textbf{connecting homomorphism}
+	These maps also induce maps on the homologies $\alpha_i: H_i A \to H_i B, \beta_i: H_i B \to H_i C$. Furthermore there is a natural map \[ 	\delta_i : H_i C \to H_{i-1}A	 \] which is called the \textbf{connecting homomorphism}
 	
 	Before seeing how to construct this $\delta $ it is useful to have a complete picture of the data in front of us. This can be seen below,
 	\[\begin{tikzcd}
@@ -688,16 +688,118 @@ Alternatively consider the following alternative proof for the second part
 		\arrow[from=4-3, to=5-3]
 		\arrow[from=4-4, to=5-4]
 	\end{tikzcd}\]
-	We construct via a diagram chase. Suppose $h \in H_i C= \ker \chi_i / \image \chi_{i+1} $ pick a cycle $x\in \ker \chi_i$
+	We construct via a diagram chase. Suppose $h \in H_i C= \ker \chi_i / \image \chi_{i+1} $ pick a cycle $x\in \ker \chi_i$. As $\beta_i $ is surjective we know there exists $y \in B_i$ s.t. $\beta_i(y)=x $. Now also by the fact that $x\in \ker \chi_i$ and that we have maps between chain complexes so the squares commute. We have that $\beta_{i-1}(\psi_{i}(y))=\chi_i(\beta_i(y))=\chi_i(x)=0$.
 	
+	Now there is some $z \in A_{i-1}$ such that $\alpha_{i-1}(z)=\psi_i(y)$ (this is due to exactness of $i-1$ sequence hence the quotient isomorphism and the above condition).
+	
+	As $\alpha_{i-2}$ is a monomorphism $\alpha_{i-2} \varphi_{i-1}(z)=\psi_{i-1}\alpha_{i-1}(z)=\psi_{i-1}\psi_{i}(y)=0$ so $z\in \ker \alpha_{i-1}$. Just define $\delta_i(h) $ to be the image of $z$ in $H_{i-1}A$.
+	
+	The above definition is well defined as it is independent of the choice of lift $x$. Pick any other lift say $x'$ now $\beta_i(x-x')=x-x=0$. So it has a preimage in $A_i$ and can be given as an embedding from $A_i \to B_i$ so $x-x' \in A_i$. $\phi_i(x-x')=\psi_i x - \psi_i x'$ which implies their images in $H_{i-1}A$ are homotopic.
+	
+	The fact that $\delta_i $ is a group homomorphism is simply via linearity.
+
+	\subsection{Long exact sequences of homologies}	
+	\begin{proposition}[Induced long exact sequence of homology]
+		For a given short exact sequence 
+		\[ 0 \to A \xrightarrow{\alpha } B \xrightarrow{\beta } C \to 0\]
+		of chain complexes $(A, \varphi), (B, \psi), (C, \chi)$, then the connecting homomorphism $\delta_i: H_iC \to H_{i-1}A$ induces the following long exact sequence of homologies
+			\[\begin{tikzcd}
+				& \cdots & {H_iC} \\
+				{H_{i-1}A} & {H_{i-1}B} & {H_{i-1}C} \\
+				{H_{i-2}A} & \cdots
+				\arrow[from=1-2, to=1-3]
+				\arrow[from=2-1, to=2-2]
+				\arrow[from=2-2, to=2-3]
+				\arrow["{\delta_i}"{description}, from=1-3, to=2-1]
+				\arrow["{\delta_{i-1}}"{description}, from=2-3, to=3-1]
+				\arrow[from=3-1, to=3-2]
+			\end{tikzcd}\]
+			
+			Furthermore if the chain complexes are differential modules the following triangle commutes,
+			\[\begin{tikzcd}
+				HA && HB \\
+				& HC
+				\arrow["\alpha", from=1-1, to=1-3]
+				\arrow["\beta", from=1-3, to=2-2]
+				\arrow["\delta", from=2-2, to=1-1]
+			\end{tikzcd}\]
+		
+	\end{proposition}
+	
+	\begin{proposition}[Horseshoe lemma]
+		If there is a short exact sequence of modules,
+		\[ 0 \to M \to N \to P \to 0 \]
+		and both $M,P$ have a projective resolutions $A, C$ 
+		\[\begin{tikzcd}
+			&&& 0 \\
+			\cdots & {A_1} & {A_0} & M & 0 \\
+			&&& N \\
+			\cdots & {C_1} & {C_0} & P & 0 \\
+			&&& 0
+			\arrow[from=2-4, to=2-5]
+			\arrow[from=1-4, to=2-4]
+			\arrow[from=2-4, to=3-4]
+			\arrow[from=3-4, to=4-4]
+			\arrow[from=4-4, to=4-5]
+			\arrow[from=4-4, to=5-4]
+			\arrow[ from=4-3, to=4-4]
+			\arrow[ from=2-3, to=2-4]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=2-2, to=2-3]
+			\arrow[from=4-1, to=4-2]
+			\arrow[from=4-2, to=4-3]
+		\end{tikzcd}\]
+		as below then $N$ also has a projective resolution $B$ which forms a short exact sequence. Also the sequence splits due to $C_i$ being projective so $B_i=A_i \oplus C_i$.
+	\end{proposition}
+	\begin{proof}
+			First note $\epsilon_P: C_0 \to P$ lifts due to projectivity to $C_0 \to N$ also $A_0\to N$ via composition so simply define $B_0 = A_0 \oplus C_0$. This is an epi evidently via diagram chase. Also is projective as direct sum of projectives is projective. Now consider direct sum of kernel of $A_0 \to M, B_0 \to N, C_0 \to P$ and construct the direct sum again to get $F_1$.	Now we get a $3\times 3$. Exactness is due to the Snake lemma
+	\end{proof}
+	
+	\begin{lemma}[Snake lemma]
+		\[\begin{tikzcd}
+			& A & B & C & 0 \\
+			0 & {A'} & {B'} & {C'}
+			\arrow[from=1-2, to=1-3]
+			\arrow[from=1-3, to=1-4]
+			\arrow[from=1-4, to=1-5]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=2-2, to=2-3]
+			\arrow[from=2-3, to=2-4]
+			\arrow["\alpha", from=1-2, to=2-2]
+			\arrow["\beta", from=1-3, to=2-3]
+			\arrow["\gamma", from=1-4, to=2-4]
+		\end{tikzcd}\]
+		The above commutative diagram induces a exact sequence \[ \ker \alpha \to \ker \beta \to \ker \gamma \to \mathrm{coker}\alpha \to \mathrm{coker}\beta \to \mathrm{coker}\gamma \]
+	\end{lemma}
+	\begin{proof}
+		The map $\ker \gamma \to \mathrm{coker} \alpha $ is given by the connecting homomorphism.
+	\end{proof}
+	\textbf{TO DO: Proof of salamander and implications categorically}
 	\section{Derived functors}
+	Derived functors prove to be a major application of projective and injective resolutions. Add motivation
 	
+	\begin{definition}[Left derived functor]
+		Consider $F$ to be a right exact functor, if $A \in R$-Mod has a projective resolution $(P_\bullet, \varphi_\bullet)$. The $i^\textbf{th}$ left derived functor of $F$ is defined to be \[ L_iF(A)=H_i FP \] where $FP$ is the complex defined via $(FP_\bullet,F\varphi_\bullet)$
+		\end{definition}
+		
+	The important properties of left derived functors can be characterized as follows,
+	\begin{proposition}
+		The left derived functor of $F$ is resolution invariant and we have
+		\begin{enumerate}
+			\item $L_0F=F$
+			\item If $A$ is projective then all $L_iF(A)=0$.
+			\item For all short exact sequence of modules \[ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta}  C \to 0\]there is an associated long exact sequence of left derived functors
+			
+			\item The connecting homomorphisms are natural, i.e. for a map between short exact sequences the associated square of left derived functors commute.
+		\end{enumerate}
+	\end{proposition}
 	\subsection{Tor functor}
+	Left derived functor for tensor product. give example where tensor is not right exact
 	\subsection{Ext functor}
 	\subsection{Local cohomology}
 	OVER HERE DO THE NEXT APPENDIX TOO
 	
-	\section{Mapping cones and double complex
+	\section{Mapping cones, cylinders and double complex
 	}
 	
 	\section{Spectral sequences}
@@ -705,9 +807,14 @@ Alternatively consider the following alternative proof for the second part
 	\section{Spectral sequence of double complex}
 	
 	\section{Derived categories}
-		\subsection{Diagram chasing lemmas}
-	\subsection{Kunneth formula}
-	\subsection{Dold Kan correspondence	}
+	All constructions here hold for arbitrary abelian categories but can be taught of as over modules if required.
+	
+	\begin{definition}[Homotopy category of chain complexes]
+		For arbitrary abelian categories
+	\end{definition}
+	
+%	\subsection{Kunneth formula}
+%	\subsection{Dold Kan correspondence	}
 	\section{Freyd-Mitchell Embedding}
 	\begin{theorem}[Freyd-Mitchell Embedding]
 		If $A$ is a small abelian category there is an exact full and faithful embedding functor from $A$ into the category of modules over some ring $R$ which embeds $A$ as a full subcategory.
@@ -719,38 +826,44 @@ Alternatively consider the following alternative proof for the second part
 		
 		Cocomplete abelian category with compact projective	generator is equivalent to End(P) modules
 	\end{proof}
-	
-	\appendix
-	\section{Categories}
-	\subsection{Preliminary notions}
- 	\begin{definition}[Category]
- 		A \textbf{category} consists of the following,
- 		\begin{itemize}
- 			\item Objects: A,B,C,\dots
- 			\item Arrows/Morphisms: f,g,h,\dots
- 			\item For each $ f $ there exists, $ \mathrm{dom}(f) , \mathrm{cod}(f)$ called domain and codomain of $ f $. We write $ f: A \to B $ to indicate $ A=\mathrm{dom}(f) $ and $ B=\mathrm{cod}(f) $.
- 			\item Given  $ f: A \to B$ and $ g: B \to C $ there exists, $ g \circ f: A \to C $ called the \textit{composite} of $ f $ and $ g $.
- 			\item For each $ A $, there exists $ 1_A:A\to A $ called the \textit{identity arrow} of $ A $.
- 			\item Arrows should also satisfy the following,
- 			\begin{itemize}
- 				\item Associativity: $ h \circ(g \circ f) = (h \circ g) \circ f,$ for all $ f:A \to B, g:B \to C, h: C \to D $.
- 				\item Unit: $ f\circ 1_A=f=1_B\circ f, $ for all $ f:A \to B $.	
- 			\end{itemize}
- 		\end{itemize}
- 	\end{definition}
-	
-	\begin{definition}[Functor]
+	\begin{appendices}
+		\section{Categories}
+		\subsection{Preliminary definitions}
+		\begin{definition}[Category]
+			A \textbf{category} consists of the following,
+			\begin{itemize}
+				\item Objects: A,B,C,\dots
+				\item Arrows/Morphisms: f,g,h,\dots
+				\item For each $ f $ there exists, $ \mathrm{dom}(f) , \mathrm{cod}(f)$ called domain and codomain of $ f $. We write $ f: A \to B $ to indicate $ A=\mathrm{dom}(f) $ and $ B=\mathrm{cod}(f) $.
+				\item Given  $ f: A \to B$ and $ g: B \to C $ there exists, $ g \circ f: A \to C $ called the \textit{composite} of $ f $ and $ g $.
+				\item For each $ A $, there exists $ 1_A:A\to A $ called the \textit{identity arrow} of $ A $.
+				\item Arrows should also satisfy the following,
+				\begin{itemize}
+					\item Associativity: $ h \circ(g \circ f) = (h \circ g) \circ f,$ for all $ f:A \to B, g:B \to C, h: C \to D $.
+					\item Unit: $ f\circ 1_A=f=1_B\circ f, $ for all $ f:A \to B $.	
+				\end{itemize}
+			\end{itemize}
+		\end{definition}
+		
+		\begin{definition}[Initial and terminal objects]
+			An object $ 0 \in \mathbf{C} $ is \textbf{initial} if for any object $ C \in \mathbf{C}, \exists!$ morphism $ 0 \to C $.\\
+			An object $ 1 \in \mathbf{C} $ is \textbf{terminal} if for any object $ C \in \mathbf{C}, \exists!$ morphism $ C \to 1 $.
+			
+			Initial and terminal objects are unique up to isomorphism.
+		\end{definition}
+		
+		\begin{definition}[Functor]
 			For categories $\mathbf{C}, \mathbf{D}$ we define a \textbf{functor} $ F: C \to D $ to be a a mapping of objects and arrows to objects and arrows, such that
-		\begin{itemize}
-			\item $ F(f:A\to B) =F(f):F(A)\to F(B)$
-			\item $ F(1_a)=1_{F(A)} $
-			\item $ F(g \circ f) = F(g)\circ F(f)$.
-		\end{itemize}
-	\end{definition}
-
-	\begin{definition}[Generalized elements]
-		For an object $ A \in \mathbf{C} $ arbitrary arrows $ x:X\to A $ are called the \textbf{generalized elements} of $ A $ with stage of definition given by $ X $.
-	\end{definition}
+			\begin{itemize}
+				\item $ F(f:A\to B) =F(f):F(A)\to F(B)$
+				\item $ F(1_a)=1_{F(A)} $
+				\item $ F(g \circ f) = F(g)\circ F(f)$.
+			\end{itemize}
+		\end{definition}
+		
+		\begin{definition}[Generalized elements]
+			For an object $ A \in \mathbf{C} $ arbitrary arrows $ x:X\to A $ are called the \textbf{generalized elements} of $ A $ with stage of definition given by $ X $.
+		\end{definition}
 		
 		\begin{definition}[Bifunctor]
 			A \textbf{bifunctor} is any functor of two variables i.e. domain in terms of a product category.
@@ -758,18 +871,18 @@ Alternatively consider the following alternative proof for the second part
 		
 		
 		\begin{lemma}[Bifunctor lemma]\label{bifunctorlemma}
-		A mapping $F: \mathbf{A} \times \mathbf{B} \to \mathbf{C}$ is a bifunctor if its functorial in each component and the following square commutes,
-		\[\begin{tikzcd}
-			{A'} & {B'} && {F(A,B)} && {F(A,B')} \\
-			\\
-			A & B && {F(A',B)} && {F(A',B')}
-			\arrow["{F(A,g)}", from=1-4, to=1-6]
-			\arrow["{F(A',g)}"', from=3-4, to=3-6]
-			\arrow["{F(f,B')}", from=1-6, to=3-6]
-			\arrow["{F(f,B)}"', from=1-4, to=3-4]
-			\arrow["g"{description}, from=3-2, to=1-2]
-			\arrow["f"{description}, from=3-1, to=1-1]
-		\end{tikzcd}\]
+			A mapping $F: \mathbf{A} \times \mathbf{B} \to \mathbf{C}$ is a bifunctor if its functorial in each component and the following square commutes,
+			\[\begin{tikzcd}
+				{A'} & {B'} && {F(A,B)} && {F(A,B')} \\
+				\\
+				A & B && {F(A',B)} && {F(A',B')}
+				\arrow["{F(A,g)}", from=1-4, to=1-6]
+				\arrow["{F(A',g)}"', from=3-4, to=3-6]
+				\arrow["{F(f,B')}", from=1-6, to=3-6]
+				\arrow["{F(f,B)}"', from=1-4, to=3-4]
+				\arrow["g"{description}, from=3-2, to=1-2]
+				\arrow["f"{description}, from=3-1, to=1-1]
+			\end{tikzcd}\]
 		\end{lemma}
 		
 		\begin{definition}[Natural transformations]
@@ -788,265 +901,358 @@ Alternatively consider the following alternative proof for the second part
 			\end{tikzcd}\]
 		\end{definition}
 		
+		\begin{definition}[Diagram]
+			For categories $\mathbf{J}, \mathbf{C}$ a \textbf{diagram} of type $\mathbf{J}$ in $\mathbf{C}$ is a functor $D: \mathbf{J} \to \mathbf{C}$ where $\mathbf J$ admits an indexing. This is a formalization of the notion of `diagram' we use intuitively. It can be thought of as the image of $\mathbf J$ in $\mathbf C$, the actual stucture of $\mathbf J$ is largely irrelevant.
+			
+			For example,
+			\[\begin{tikzcd}
+				& {\mathbf{J}} &&& {\text{Diagram}} \\
+				\bullet && \bullet & {D_1} && {D_2}
+				\arrow["f", shift left=2, from=2-1, to=2-3]
+				\arrow["g"', shift right=2, from=2-1, to=2-3]
+				\arrow["{D_f}", shift left=2, from=2-4, to=2-6]
+				\arrow["{D_g}"', shift right=2, from=2-4, to=2-6]
+			\end{tikzcd}\]
+		\end{definition}
+		
+		\begin{definition}[Cones]
+			Given $\mathbf{J}, \mathbf{C}$ and a diagram of type $\mathbf{J}$ in $\mathbf{C}$, $D: \mathbf{J} \to \mathbf{C}$ we define a \textbf{cone} to the diagram $D$ for an object (vertex) $C$ of $\mathbf{C}$ and family of arrows $c_j:C \to D_j$ for all $j \in \mathbf{J}$ such for $\alpha: i \to j$ the following commute,
+			\[\begin{tikzcd}
+				& C \\
+				{D_i} && {D_j}
+				\arrow["{c_i}"', from=1-2, to=2-1]
+				\arrow["{c_j}", from=1-2, to=2-3]
+				\arrow["{D_\alpha}"', from=2-1, to=2-3]
+			\end{tikzcd}\]
+			Furthermore we can have a morphism between cones in the natural way $\vartheta: (C, c_j) \to (C', c_j')$ making every such triangle commute,
+			\[\begin{tikzcd}
+				C & {C'} \\
+				& {D_j}
+				\arrow["\vartheta", from=1-1, to=1-2]
+				\arrow["{c_j'}", from=1-2, to=2-2]
+				\arrow["{c_j}"', from=1-1, to=2-2]
+			\end{tikzcd}\]
+			This lets us define a category of cones into $D$ denoted as $\mathbf{Cone}(D)$. Its dual is called a cocone.
+			
+		\end{definition}
+		\begin{definition}[Limits]
+			Given a diagram $D: \mathbf{J} \to \mathbf{C}$ its \textbf{limit} is a terminal object in $\mathbf{Cone}(D)$, denoted as $p_i: \lim_{\leftarrow_j}D_j \to D_i$.
+			
+			If $\mathbf{J}$ is finite the limit is called a finite limit.	
+			
+			\begin{itemize}
+				\item A category has finite limits $\iff $ it has finite products and equalizers (and so pullbacks and terminal objects.)
+			\end{itemize}
+			
+			A functor $F$ is said to \textbf{preserve limits} of type $J$ if $F(\lim_{\leftarrow} D_j) \cong \lim_\leftarrow F(D_j)$. Such a functor is called continuous.
+			
+			\begin{itemize}
+				\item Representable functors in locally small categories are continuous.
+				\item Colimts are the dual notion of limits, e.g. direct limit of groups.
+			\end{itemize}
+		\end{definition}
+		
+		
 		\begin{definition}[Yoneda embedding]
 			The \textbf{Yoneda embedding} is a functor $y:\mathbf{C}\to \mathbf{Sets}^{\mathbf{C}^\text{Op}}$ mapping objects to their contravariant representable functor (i.e. presheaves). In particular $y(C)=\textrm{Hom}_\mathbf{C}(-,C)$ it takes arrows to the natural transformation $yf=\mathrm{Hom}_\mathbf{C}(-,f):\mathrm{Hom}_\mathbf{C}(-,C) \to \mathrm{Hom}_\mathbf{C}(-,D)$
 			
 		\end{definition}
 		
-	\begin{proposition}[Yoneda Lemma]
+		\begin{proposition}[Yoneda Lemma]
 			For a locally small category (i.e. small hom-sets) $\mathbf{C}$ we have $\textrm{Hom}(yC,F) \cong FC$ for $C \in \mathbf{C}$ and a functor $F \in \mathbf{Sets}^{\mathbf{C}^{op}}$. The isomorphism is natural in both $C$ and $F$.
-	\end{proposition}
-	
-	For locally small categories
-	\begin{itemize}
-		\item The Yoneda embedding $y: \mathbf{C} \to \mathbf{Sets}^{\mathbf{C}^\mathbf{op}}$ is full and faithful.
-		\item $yC \cong yC' \implies C \cong C'$ for objects $C,C'$
-		\item All objects in presheaves are colimits of some representable functors (in particular the end). 
-		\item So Yoneda embedding is the free cocompletion of any category. In particular there is a UMP for maps from $\mathbf{C}$ to any cocomplete categories factoring through presheaves wrt Yoneda embedding
-	\end{itemize}	
-	An adjoint categorifies the idea of a very weak notion of equivalence sometimes even called a pseudo inverse.
-	\begin{definition}[Classical definition of adjoint]
-	The functors $F: \mathbf{C} \rightleftarrows \mathbf{D}: U$ form an \textbf{adjunction} between categories if there exists a natural transformation $\eta: 1_\mathbf{C} \to U \circ F$ with this unit having the following UMP,
-	\[\begin{tikzcd}
-		D && {U(F(C))} && {U(D)} \\
-		\\
-		{F(C)} && C
-		\arrow["f"', from=3-3, to=1-5]
-		\arrow["{\eta_C}", from=3-3, to=1-3]
-		\arrow["{U(g)}", from=1-3, to=1-5]
-		\arrow[dashed, from=3-1, to=1-1]
-	\end{tikzcd}\]
-	
-	$F$ is called the left adjoint of $U$ and vice versa, and is denoted as $F \dashv U$.
-	\end{definition}
-	
-	\begin{definition}[Hom-set definition of adjoint]
+		\end{proposition}
+		
+		For locally small categories
+		\begin{itemize}
+			\item The Yoneda embedding $y: \mathbf{C} \to \mathbf{Sets}^{\mathbf{C}^\mathbf{op}}$ is full and faithful.
+			\item $yC \cong yC' \implies C \cong C'$ for objects $C,C'$
+			\item All objects in presheaves are colimits of some representable functors (in particular the end). 
+			\item So Yoneda embedding is the free cocompletion of any category. In particular there is a UMP for maps from $\mathbf{C}$ to any cocomplete categories factoring through presheaves wrt Yoneda embedding
+		\end{itemize}	
+		An adjoint categorifies the idea of a very weak notion of equivalence sometimes even called a pseudo inverse.
+		\begin{definition}[Classical definition of adjoint]
+			The functors $F: \mathbf{C} \rightleftarrows \mathbf{D}: U$ form an \textbf{adjunction} between categories if there exists a natural transformation $\eta: 1_\mathbf{C} \to U \circ F$ with this unit having the following UMP,
+			\[\begin{tikzcd}
+				D && {U(F(C))} && {U(D)} \\
+				\\
+				{F(C)} && C
+				\arrow["f"', from=3-3, to=1-5]
+				\arrow["{\eta_C}", from=3-3, to=1-3]
+				\arrow["{U(g)}", from=1-3, to=1-5]
+				\arrow[dashed, from=3-1, to=1-1]
+			\end{tikzcd}\]
+			
+			$F$ is called the left adjoint of $U$ and vice versa, and is denoted as $F \dashv U$.
+		\end{definition}
+		
+		\begin{definition}[Hom-set definition of adjoint]
 			Alternatively we also have the following formulation, $F \dashv U$ if for $C\in \mathbf{C}, D \in \mathbf{D}$ there exist natural isomorphisms $\phi: \textrm{Hom}_\mathbf{D}(FC, D) \cong \textrm{Hom}_\mathbf{C}(C, UD):\psi$
-	\end{definition}
-	
-	\begin{definition}[Unit-counit definition]
-		For $F: \mathbf{C} \rightleftarrows \mathbf{D}:U$ and natural transformations $\eta: 1_\mathbf{C} \to U \circ F$ and $\epsilon: F \circ U \to 1_\mathbf{D}$ namely unit and counit. 
+		\end{definition}
 		
-		We say $F \dashv U$ iff the following triangle identities hold,
-		\[\begin{tikzcd}
-			UD && UD \\
-			& UFUD \\
-			FC && FC \\
-			& FUFC
-			\arrow["{1_{UD}}", from=1-1, to=1-3]
-			\arrow["{\eta_{UD}}"', from=1-1, to=2-2]
-			\arrow["{U_{\epsilon_D}}"', from=2-2, to=1-3]
-			\arrow["{1_{FC}}", from=3-1, to=3-3]
-			\arrow["{F_{\eta_C}}"', from=3-1, to=4-2]
-			\arrow["{\epsilon_{FC}}"', from=4-2, to=3-3]
-		\end{tikzcd}\]
-	\end{definition}
-	The unit-counit characterization is useful theoretically but we typically only use the Hom-set characterization for all practical purposes.
-	
-	\subsubsection{Examples of adjoints}
-	Free-forgetful adjunction.Typically the forgetful functor usually has a left adjoint which is vaguely `free'. Obviously neither `free'-ness or `forgetful`-ness have concrete categorical definitions but differ from case to case. We will use it for proving injectives are enough.
-	
-	Tensor-Internal Hom adjunction, which we shall see shortly has a special case over topologies where it is called the smash functor hom adjunction. A special case of this (over $S^1$) is the suspension-loop adjunction which yields an example of the Eckmann-Hilton duality. 
-	
-	For arbitrary diagonal functor over some diagram, its right adjoint is limits and left adjoint is its colilmit.
-	
+		\begin{definition}[Unit-counit definition]
+			For $F: \mathbf{C} \rightleftarrows \mathbf{D}:U$ and natural transformations $\eta: 1_\mathbf{C} \to U \circ F$ and $\epsilon: F \circ U \to 1_\mathbf{D}$ namely unit and counit. 
+			
+			We say $F \dashv U$ iff the following triangle identities hold,
+			\[\begin{tikzcd}
+				UD && UD \\
+				& UFUD \\
+				FC && FC \\
+				& FUFC
+				\arrow["{1_{UD}}", from=1-1, to=1-3]
+				\arrow["{\eta_{UD}}"', from=1-1, to=2-2]
+				\arrow["{U_{\epsilon_D}}"', from=2-2, to=1-3]
+				\arrow["{1_{FC}}", from=3-1, to=3-3]
+				\arrow["{F_{\eta_C}}"', from=3-1, to=4-2]
+				\arrow["{\epsilon_{FC}}"', from=4-2, to=3-3]
+			\end{tikzcd}\]
+		\end{definition}
+		The unit-counit characterization is useful theoretically but we typically only use the Hom-set characterization for all practical purposes.
+		
+		\subsubsection{Examples of adjoints}
+		Free-forgetful adjunction.Typically the forgetful functor usually has a left adjoint which is vaguely `free'. Obviously neither `free'-ness or `forgetful`-ness have concrete categorical definitions but differ from case to case. We will use it for proving injectives are enough.
+		
+		Tensor-Internal Hom adjunction, which we shall see shortly has a special case over topologies where it is called the smash functor hom adjunction. A special case of this (over $S^1$) is the suspension-loop adjunction which yields an example of the Eckmann-Hilton duality. 
+		
+		For arbitrary diagonal functor over some diagram, its right adjoint is limits and left adjoint is its colilmit.
+		
 		\subsection{Monoidal categories}
-	A \textbf{monoidal category} is a category $\mathbf{C}$ with a bifunctor $ \otimes: \mathbf{C} \times \mathbf{C} \to \mathbf{C}$, a `unit' element $I$, and natural isomorphisms that make the functor associative and unital with $I$ as expected. It is a generalization of the notion of a `tensor product'. Its used to define enriched categories.
-	
-	This can be formalized as follows, there exists $I \in \mathbf{C}$ and natural isomorphisms,
-	\begin{itemize}
-		\item $\alpha_{ABC}: A \otimes (B \otimes C) \to (A \otimes B) \otimes C$
-		\item $\lambda_A : I \otimes A \to A$ (read as left)
-		\item $\rho_A: A \otimes I \to A$ (read as right)
-	\end{itemize}
-	
-	And the following diagrams commute,
-	\[\begin{tikzcd}
-		& {(A\otimes B)\otimes (C \otimes D)} \\
-		{A \otimes(B \otimes(C\otimes D))} && {((A\otimes B)\otimes C)\otimes D} \\
-		{A \otimes ((B \otimes C) \otimes D)} && {(A \otimes (B\otimes C))\otimes D}
-		\arrow[from=2-1, to=1-2]
-		\arrow[from=1-2, to=2-3]
-		\arrow[from=3-1, to=3-3]
-		\arrow[from=3-3, to=2-3]
-		\arrow[from=2-1, to=3-1]
-	\end{tikzcd}\]
-	\[\begin{tikzcd}
-		{A\otimes(I\otimes B)} && {(A\otimes I)\otimes B} \\
-		& {A\otimes B}
-		\arrow[from=1-1, to=1-3]
-		\arrow[from=1-3, to=2-2]
-		\arrow[from=1-1, to=2-2]
-	\end{tikzcd}\]
-	
-	These coherence conditions were first introduced by Maclane and a textbook presentation for it is there in his book \cite[Sec. ~VII Monoids]{lane1998categories}. The informal reasoning behind the coherence conditions is that all diagrams made with the given natural isomorphisms commute.
-	
-	We have a specific notion of a \textbf{symmetric monoidal category} wherein there exists another natural isomorphism called \textbf{braiding} which just `switches' the order of the tensor product, i.e. $B_{A,B}: A \otimes B \to B \otimes A  $ furthermore $B_{A,B}B_{B,A}=1_{A \otimes B}$, i.e. the tensor product is commutative!
-	
-	The coherence conditions for this includes two hexagon conditions which essentially say that braiding is associative across three objects as expected. This is excluded for brevity but can be seen in detail in \cite{nlab:braided_monoidal_category}	
-	
-	\subsection{External Hom and internal hom functor}
-	The usual notion of the Hom functor involves simply considering the Hom-sets between two objects in a locally small category as a set. This is sometimes called the \textbf{external} Hom functor to differentiate it from the internal hom.
-	\begin{definition}[Covariant Hom-functor]
-		$\Hom(X,-): \mathbf{C} \to \mathbf{Sets}$ sending each object $Y \in \mathbf{C}$ to the set of morphisms between $X,Y$ and mapping morphisms naturally as composition, i.e., $\Hom(X,-)$ sending $f:Y \to Z$ to $\Hom(X,f): \Hom(X,Y)\to \Hom(X,Z)$
-		sending $g\in \Hom(X,Y)$ to $g \circ f$. This has the natural covariant formulation.
-	\end{definition}
-	
-	Perhaps more importantly, $\Hom(-,-)$ can be considered as a bifunctor in the natural way from $\mathbf{C}^{\mathrm{op}}\times \mathbf{C} \to \mathbf{Sets}$ \cite{nlab:hom-functor}.
-	
-	The notion of an \textbf{internal hom} is essentially a functor that behaves the same as a Hom functor but takes values into the category itself instead of into $\mathbf{Sets}$.
-	Internal homs are well defined for categories which are symmetric monoidal category as follows.
-	
-	\begin{definition}[Internal hom]
-		For a symmetric monoidal category ($\mathbf{C}, \otimes$), the internal hom is a functor \[ [X,-]: \mathbf{C}^{\mathrm{op}} \times \mathbf{C} \to \mathbf{C}\]
-		characterized by a pair of adjoint functors $X \in \mathbf{C}$ \[ -\otimes X \dashv [X,-]: \mathbf{C}  \to \mathbf{C}\] If these exist it is called a symmetric closed monoidal category
-	\end{definition}
-	
-	\begin{proposition}[Internal hom bifunctor]
-		For a symmetric monoidal category ($\mathbf{C}, \otimes$), the internal hom is a unique bifunctor \[ [-,-]: \mathbf{C}^{\mathrm{op}} \times \mathbf{C} \to \mathbf{C}\]
-		corresponds to the previous definition, and also \[  \Hom (A \otimes B, C) \cong \Hom[A, [B,C]]\] where this is the external hom
-	\end{proposition}
-	\begin{proof}
-		The natural isomorphisms exist due to the homset definition of adjunction keeping the components fixed at $B$ and $B, C $. Furthermore bifunctorality is a consequence of bifunctor lemma Prop. \ref{bifunctorlemma}.
-	\end{proof}
-	
-	
-	\begin{theorem}[Tensor-Internal Hom adjunction]
-		\[ [A\otimes B, C] \cong [A, [B,C]] \]
-	\end{theorem}
-	\begin{proof}
-	\textbf{	requires full faithfull ness of yoneda complete this later}
-	\end{proof}
-	
-	\begin{proposition}[Recovery of external hom from internal hom]
-		\[ \Hom[A,B]\cong \Hom(I,[A,B]) \]
-	\end{proposition}
-	
-	\subsubsection{Examples of internal homs}
-	In general internal homs and external homs need not correspond, intuitively the internal hom contains a lot more information than just the external hom. And for monoidal unit $I$ maps from $I \to [A,B]$ correspond to the external homs $A \to B$.
-	
-	Heyting algebras correspond to intuitionistic propositional logic. And its internal hom corresponds to its preorder that is to say $p \leq q $ iff $  p \implies q$. This is quite interesting as external homs in Heyting algebras are simply sets with at most one element while internal homs are very illuminating. Furthermore extending this analogy to type theory the idea of the tensor internal hom adjunction is just the notion of `currying'. \textbf{(CITE WHY I FORGOT)}	.
-	
-	Example In the category of chain complexes and $I$ being the monoidal unit as before. Maps from $I \to A$ for $A$ a \textbf{(COMPLETE THIS)}
-	
-	\subsection{Enriched categories}
-	Very often the Hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace Hom-sets with Hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of Hom-sets via the monoidal product \footnote{This monoidal property can further be dropped and replaced with bicategories (i.e. a 2-category without strict associativity) \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it without proof.
-	
-	The actual definition isn't important here, we only mention it as the main object of study (abelian categories) is a special case of an enrichment over category of abelian groups.
-	
-	For example categories enriched over the category of finite categories are just 2-categories!
-	\subsection{Abelian Categories}
-	There is a chain of conditions regarding `abelian'-ness of categories which is roughly understood as follows,
-	\[ \textbf{Abelian} \subseteq \textbf{Pre-Abelian} \subseteq \textbf{Additive} \subseteq \textbf{Ab-Enriched}\]
-	The motivation behind them is to have categories which resemble algebras.
-	
-	Ab-Enriched categories are categories such that for objects $A,B \in \mathbf{C}$ the external hom set $\Hom(A,B)$ has the structure of an abelian group, furthermore it has a well defined notion of composition (which is bilinear due to the monoidal product in Ab), $\Hom(A,B)\otimes \Hom(B,C) =\Hom(A,C)$. 
-	\begin{proposition}
-		In Ab-Enriched categories intial and terminal objects coincide (it is often called the zero object)
-	\end{proposition}
-	\begin{proof}
-		Let $\mathbf{C}$ be an Ab-Enriched category. Note that the Hom-sets between objects have `zero morphisms', i.e. arrows in the Hom-set which behave like the additive identity in the Ab group induced by it. In particular for $0_{A,B}\in \Hom(A,B)$ we have the property that if $f:B \to C$ then $f\circ 0_{A,B}=0_{A,C}$ and $g: A \to D$ then $0_{A,B}\circ g=0_{D,B}$.
+		A \textbf{monoidal category} is a category $\mathbf{C}$ with a bifunctor $ \otimes: \mathbf{C} \times \mathbf{C} \to \mathbf{C}$, a `unit' element $I$, and natural isomorphisms that make the functor associative and unital with $I$ as expected. It is a generalization of the notion of a `tensor product'. Its used to define enriched categories.
 		
-		Now suppose $0 \in \mathbf{C}$ is initial so there is a unique morphism $0\to 0$ so in its Hom-set its both the additive inverse and the identity. So for any $f:X \to 0$ we can say that by the zero morphism property $f=0$ so also $0$ is terminal.
-	\end{proof}
-	\begin{proposition}
-		In Ab-Enriched categories finite coproducts coincide with finite products (i.e. biproducts) \footnote{This also holds over categories enriched over commutative monoids.}
-	\end{proposition}
-	\begin{proof}	
-		Let $\mathbf{C}$ be an Ab-enriched category and $A,B\in \mathbf{C}$ consider the product $A\times B$, which is determined by the following UMP,
+		This can be formalized as follows, there exists $I \in \mathbf{C}$ and natural isomorphisms,
+		\begin{itemize}
+			\item $\alpha_{ABC}: A \otimes (B \otimes C) \to (A \otimes B) \otimes C$
+			\item $\lambda_A : I \otimes A \to A$ (read as left)
+			\item $\rho_A: A \otimes I \to A$ (read as right)
+		\end{itemize}
+		
+		And the following diagrams commute,
 		\[\begin{tikzcd}
-			& X \\
-			A & A\times B & B
-			\arrow["{p_1}"', from=2-2, to=2-1]
-			\arrow["{p_2}", from=2-2, to=2-3]
-			\arrow["u", dashed, from=1-2, to=2-2]
-			\arrow["{x_1}"', from=1-2, to=2-1]
-			\arrow["{x_2}", from=1-2, to=2-3]
+			& {(A\otimes B)\otimes (C \otimes D)} \\
+			{A \otimes(B \otimes(C\otimes D))} && {((A\otimes B)\otimes C)\otimes D} \\
+			{A \otimes ((B \otimes C) \otimes D)} && {(A \otimes (B\otimes C))\otimes D}
+			\arrow[from=2-1, to=1-2]
+			\arrow[from=1-2, to=2-3]
+			\arrow[from=3-1, to=3-3]
+			\arrow[from=3-3, to=2-3]
+			\arrow[from=2-1, to=3-1]
 		\end{tikzcd}\]
-		Consider $A$ and $B$ in place of $X $ in the diagram. By the UMP we have $q_1: A \to A\times B, q_2: B \to A\times B$
 		\[\begin{tikzcd}
-			A && B \\
-			& {A\times B} \\
-			A && B
-			\arrow["{p_1}"', from=2-2, to=3-1]
-			\arrow["{p_2}", from=2-2, to=3-3]
-			\arrow["{q_2}"', from=1-3, to=2-2]
-			\arrow["{q_1}"', from=1-1, to=2-2]
-			\arrow["{1_A}"', from=1-1, to=3-1]
-			\arrow["{1_B}", from=1-3, to=3-3]
-		\end{tikzcd}\]
-		So $p_1q_1=1_A$ and $p_2q_2=1_B$ also $p_1q_2=p_2q_1=0$.
-		
-		Now note that $q_1p_1+q_2p_2=1_{A\times B}$ as $p_1(q_1p_1+q_2p_2)=p_1$ and $p_2(q_1p_1+q_2p_2)=p_2$. Claim this $q_1,q_2$ determine a coproduct $A +B$.
-		
-		We wish to show the following UMP holds for some arbitrary $C \in \mathbf{C}$
-		\[\begin{tikzcd}
-			A & C & B \\
-			& {A\times B} \\
-			A && B
-			\arrow["{q_1}"', from=1-1, to=2-2]
-			\arrow["{q_2}", from=1-3, to=2-2]
-			\arrow["{p_1}"', from=2-2, to=3-1]
-			\arrow["{p_2}", from=2-2, to=3-3]
-			\arrow["{1_B}"', from=1-3, to=3-3]
-			\arrow["{1_A}"', from=1-1, to=3-1]
-			\arrow["{r_1}", from=1-1, to=1-2]
-			\arrow["{r_2}"', from=1-3, to=1-2]
-			\arrow["{f}"',dashed, from=2-2, to=1-2]
-		\end{tikzcd}\]
-		Define $f: A\times B \to C$ as $f=r_1p_1+r_2p_2$. Now $fq_1=r_1$ and $fq_2=r_2$ if we show uniqueness of $f$ we are done.
-		
-		Say $f'$ then $(f-f')1_{A \times B}=(f-f')(q_1p_1+q_2p_2)=0$. So $f=f'$.
-		
-		
-	\end{proof}
-
-	
-	\begin{definition}[Additive category]
-		 An Ab-Enriched category which has all finite coproducts.
-	\end{definition}
-	
-	Functors between additive categories are called \textit{additive functors}. And can be realized as functors which preserve additivity of homomorphisms between modules, $F(f+g)=F(f)+F(g).$
-	
-	Before proceeding further it is important to think about kernels and cokernels in the categorical sense.
-	\begin{definition}[Kernel]
-		A kernel is a pullback of a morphism $f:A \to B$ and the unique morphism from $0 \to B$. Provided initials and pullbacks exist.
-		
-		\[\begin{tikzcd}
-			{\ker f} && 0 \\
-			\\
-			A && B
-			\arrow["f", from=3-1, to=3-3]
-			\arrow[from=1-3, to=3-3]
+			{A\otimes(I\otimes B)} && {(A\otimes I)\otimes B} \\
+			& {A\otimes B}
 			\arrow[from=1-1, to=1-3]
-			\arrow[from=1-1, to=3-1]
+			\arrow[from=1-3, to=2-2]
+			\arrow[from=1-1, to=2-2]
 		\end{tikzcd}\]
-	\end{definition}
-	The intuition behind this definition is that alternatively it is seen as an equalizer of a function $f:A \to B$ and the unique zero morphism $0_{A,B}$. The kernel object is the part of the domain that is 'going to zero'. \footnote{A minor point to note is that in the case of Ab-Enrichments the `zero' in the Hom-sets isn't a terminal, its Hom-set specific. When you assume a Ab-Enriched category has a initial 0 however this matches up with our intuition.}
+		
+		These coherence conditions were first introduced by Maclane and a textbook presentation for it is there in his book \cite[Sec. ~VII Monoids]{lane1998categories}. The informal reasoning behind the coherence conditions is that all diagrams made with the given natural isomorphisms commute.
+		
+		We have a specific notion of a \textbf{symmetric monoidal category} wherein there exists another natural isomorphism called \textbf{braiding} which just `switches' the order of the tensor product, i.e. $B_{A,B}: A \otimes B \to B \otimes A  $ furthermore $B_{A,B}B_{B,A}=1_{A \otimes B}$, i.e. the tensor product is commutative!
+		
+		The coherence conditions for this includes two hexagon conditions which essentially say that braiding is associative across three objects as expected. This is excluded for brevity but can be seen in detail in \cite{nlab:braided_monoidal_category}	
+		
+		\subsection{External Hom and internal hom functor}
+		The usual notion of the Hom functor involves simply considering the Hom-sets between two objects in a locally small category as a set. This is sometimes called the \textbf{external} Hom functor to differentiate it from the internal hom.
+		\begin{definition}[Covariant Hom-functor]
+			$\Hom(X,-): \mathbf{C} \to \mathbf{Sets}$ sending each object $Y \in \mathbf{C}$ to the set of morphisms between $X,Y$ and mapping morphisms naturally as composition, i.e., $\Hom(X,-)$ sending $f:Y \to Z$ to $\Hom(X,f): \Hom(X,Y)\to \Hom(X,Z)$
+			sending $g\in \Hom(X,Y)$ to $g \circ f$. This has the natural covariant formulation.
+		\end{definition}
+		
+		Perhaps more importantly, $\Hom(-,-)$ can be considered as a bifunctor in the natural way from $\mathbf{C}^{\mathrm{op}}\times \mathbf{C} \to \mathbf{Sets}$ \cite{nlab:hom-functor}.
+		
+		The notion of an \textbf{internal hom} is essentially a functor that behaves the same as a Hom functor but takes values into the category itself instead of into $\mathbf{Sets}$.
+		Internal homs are well defined for categories which are symmetric monoidal category as follows.
+		
+		\begin{definition}[Internal hom]
+			For a symmetric monoidal category ($\mathbf{C}, \otimes$), the internal hom is a functor \[ [X,-]: \mathbf{C}^{\mathrm{op}} \times \mathbf{C} \to \mathbf{C}\]
+			characterized by a pair of adjoint functors $X \in \mathbf{C}$ \[ -\otimes X \dashv [X,-]: \mathbf{C}  \to \mathbf{C}\] If these exist it is called a symmetric closed monoidal category
+		\end{definition}
+		
+		\begin{proposition}[Internal hom bifunctor]
+			For a symmetric monoidal category ($\mathbf{C}, \otimes$), the internal hom is a unique bifunctor \[ [-,-]: \mathbf{C}^{\mathrm{op}} \times \mathbf{C} \to \mathbf{C}\]
+			corresponds to the previous definition, and also \[  \Hom (A \otimes B, C) \cong \Hom[A, [B,C]]\] where this is the external hom
+		\end{proposition}
+		\begin{proof}
+			The natural isomorphisms exist due to the homset definition of adjunction keeping the components fixed at $B$ and $B, C $. Furthermore bifunctorality is a consequence of bifunctor lemma Prop. \ref{bifunctorlemma}.
+		\end{proof}
+		
+		
+		\begin{theorem}[Tensor-Internal Hom adjunction]
+			\[ [A\otimes B, C] \cong [A, [B,C]] \]
+		\end{theorem}
+		\begin{proof}
+			\textbf{	requires full faithfull ness of yoneda complete this later}
+		\end{proof}
+		
+		\begin{proposition}[Recovery of external hom from internal hom]
+			\[ \Hom[A,B]\cong \Hom(I,[A,B]) \]
+		\end{proposition}
+		
+		\subsubsection{Examples of internal homs}
+		In general internal homs and external homs need not correspond, intuitively the internal hom contains a lot more information than just the external hom. And for monoidal unit $I$ maps from $I \to [A,B]$ correspond to the external homs $A \to B$.
+		
+		Heyting algebras correspond to intuitionistic propositional logic. And its internal hom corresponds to its preorder that is to say $p \leq q $ iff $  p \implies q$. This is quite interesting as external homs in Heyting algebras are simply sets with at most one element while internal homs are very illuminating. Furthermore extending this analogy to type theory the idea of the tensor internal hom adjunction is just the notion of `currying'. \textbf{(CITE WHY I FORGOT)}	.
+		
+		Example In the category of chain complexes and $I$ being the monoidal unit as before. Maps from $I \to A$ for $A$ a \textbf{(COMPLETE THIS)}
+		
+		\subsection{Enriched categories}
+		Very often the Hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace Hom-sets with Hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of Hom-sets via the monoidal product \footnote{This monoidal property can further be dropped and replaced with bicategories (i.e. a 2-category without strict associativity) \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it without proof.
+		
+		The actual definition isn't important here, we only mention it as the main object of study (abelian categories) is a special case of an enrichment over category of abelian groups.
+		
+		For example categories enriched over the category of finite categories are just 2-categories!
+		\subsection{Abelian Categories}
+		There is a chain of conditions regarding `abelian'-ness of categories which is roughly understood as follows,
+		\[ \textbf{Abelian} \subseteq \textbf{Pre-Abelian} \subseteq \textbf{Additive} \subseteq \textbf{Ab-Enriched}\]
+		The motivation behind them is to have categories which resemble algebras.
+		
+		Ab-Enriched categories are categories such that for objects $A,B \in \mathbf{C}$ the external hom set $\Hom(A,B)$ has the structure of an abelian group, furthermore it has a well defined notion of composition (which is bilinear due to the monoidal product in Ab), $\Hom(A,B)\otimes \Hom(B,C) =\Hom(A,C)$. 
+		\begin{proposition}
+			In Ab-Enriched categories intial and terminal objects coincide (it is often called the zero object)
+		\end{proposition}
+		\begin{proof}
+			Let $\mathbf{C}$ be an Ab-Enriched category. Note that the Hom-sets between objects have `zero morphisms', i.e. arrows in the Hom-set which behave like the additive identity in the Ab group induced by it. In particular for $0_{A,B}\in \Hom(A,B)$ we have the property that if $f:B \to C$ then $f\circ 0_{A,B}=0_{A,C}$ and $g: A \to D$ then $0_{A,B}\circ g=0_{D,B}$.
+			
+			Now suppose $0 \in \mathbf{C}$ is initial so there is a unique morphism $0\to 0$ so in its Hom-set its both the additive inverse and the identity. So for any $f:X \to 0$ we can say that by the zero morphism property $f=0$ so also $0$ is terminal.
+		\end{proof}
+		\begin{proposition}
+			In Ab-Enriched categories finite coproducts coincide with finite products (i.e. biproducts) \footnote{This also holds over categories enriched over commutative monoids.}
+		\end{proposition}
+		\begin{proof}	
+			Let $\mathbf{C}$ be an Ab-enriched category and $A,B\in \mathbf{C}$ consider the product $A\times B$, which is determined by the following UMP,
+			\[\begin{tikzcd}
+				& X \\
+				A & A\times B & B
+				\arrow["{p_1}"', from=2-2, to=2-1]
+				\arrow["{p_2}", from=2-2, to=2-3]
+				\arrow["u", dashed, from=1-2, to=2-2]
+				\arrow["{x_1}"', from=1-2, to=2-1]
+				\arrow["{x_2}", from=1-2, to=2-3]
+			\end{tikzcd}\]
+			Consider $A$ and $B$ in place of $X $ in the diagram. By the UMP we have $q_1: A \to A\times B, q_2: B \to A\times B$
+			\[\begin{tikzcd}
+				A && B \\
+				& {A\times B} \\
+				A && B
+				\arrow["{p_1}"', from=2-2, to=3-1]
+				\arrow["{p_2}", from=2-2, to=3-3]
+				\arrow["{q_2}"', from=1-3, to=2-2]
+				\arrow["{q_1}"', from=1-1, to=2-2]
+				\arrow["{1_A}"', from=1-1, to=3-1]
+				\arrow["{1_B}", from=1-3, to=3-3]
+			\end{tikzcd}\]
+			So $p_1q_1=1_A$ and $p_2q_2=1_B$ also $p_1q_2=p_2q_1=0$.
+			
+			Now note that $q_1p_1+q_2p_2=1_{A\times B}$ as $p_1(q_1p_1+q_2p_2)=p_1$ and $p_2(q_1p_1+q_2p_2)=p_2$. Claim this $q_1,q_2$ determine a coproduct $A +B$.
+			
+			We wish to show the following UMP holds for some arbitrary $C \in \mathbf{C}$
+			\[\begin{tikzcd}
+				A & C & B \\
+				& {A\times B} \\
+				A && B
+				\arrow["{q_1}"', from=1-1, to=2-2]
+				\arrow["{q_2}", from=1-3, to=2-2]
+				\arrow["{p_1}"', from=2-2, to=3-1]
+				\arrow["{p_2}", from=2-2, to=3-3]
+				\arrow["{1_B}"', from=1-3, to=3-3]
+				\arrow["{1_A}"', from=1-1, to=3-1]
+				\arrow["{r_1}", from=1-1, to=1-2]
+				\arrow["{r_2}"', from=1-3, to=1-2]
+				\arrow["{f}"',dashed, from=2-2, to=1-2]
+			\end{tikzcd}\]
+			Define $f: A\times B \to C$ as $f=r_1p_1+r_2p_2$. Now $fq_1=r_1$ and $fq_2=r_2$ if we show uniqueness of $f$ we are done.
+			
+			Say $f'$ then $(f-f')1_{A \times B}=(f-f')(q_1p_1+q_2p_2)=0$. So $f=f'$.
+			
+			
+		\end{proof}
+		
+		
+		\begin{definition}[Additive category]
+			An Ab-Enriched category which has all finite coproducts.
+		\end{definition}
+		
+		Functors between additive categories are called \textit{additive functors}. And can be realized as functors which preserve additivity of homomorphisms between modules, $F(f+g)=F(f)+F(g).$
+		
+		Before proceeding further it is important to think about kernels and cokernels in the categorical sense.
+		\begin{definition}[Kernel]
+			A kernel is a pullback of a morphism $f:A \to B$ and the unique morphism from $0 \to B$. Provided initials and pullbacks exist.
+			
+			\[\begin{tikzcd}
+				{\ker f} && 0 \\
+				\\
+				A && B
+				\arrow["f", from=3-1, to=3-3]
+				\arrow[from=1-3, to=3-3]
+				\arrow[from=1-1, to=1-3]
+				\arrow[from=1-1, to=3-1]
+			\end{tikzcd}\]
+		\end{definition}
+		The intuition behind this definition is that alternatively it is seen as an equalizer of a function $f:A \to B$ and the unique zero morphism $0_{A,B}$. The kernel object is the part of the domain that is 'going to zero'. \footnote{A minor point to note is that in the case of Ab-Enrichments the `zero' in the Hom-sets isn't a terminal, its Hom-set specific. When you assume a Ab-Enriched category has a initial 0 however this matches up with our intuition.}
+		
+		
+		\begin{definition}[Pre-abelian categories]
+			An additive category with all morphism having kernels and cokernels.
+		\end{definition}
+		The above definition is equivalent to saying a pre-abelian category is a Ab-Enriched category with all finite limits and colimits. This is a consequence to the fact that categories have finite limits iff it has finite products and equalizers \cite[Prop.~5.21]{Awodey}. And we know equalizers exist because equalizers of two morphisms is just the kernel of $f-g$.
+		
+		
+		
+		
+		\begin{definition}[Abelian category]
+			Pre-additive categories for which each mono is a kernel and each epic is a cokernel.
+		\end{definition}
+		Largely the purpose of abelian categories were motivated by wanting to generalize homological methods and to unify various (co)homology theories. It was defined in the modern formulation by Grothendieck in his Tohuku paper \cite{grothendieck1957quelques}. We never directly reference this paper for its mathematical content but it is interesting from a historical perspective.
+		\subsubsection{Examples}
+		Some examples of abelian categories are as follows,
+		\begin{enumerate}
+			\item \textbf{The category of modules.}
+			\item\textbf{ A very unique example is that the category of representations of a group is abelian!} A group representation is a group action of a group $G$ on some vector space $V$ via invertable maps, alternatively just a group homomorphism $G\to GL(V)=\mathrm{Aut}(V)$. When posed categorically it becomes a littly silly. This is nothing but a functor between `abelian' objects. The category of representations really is just all such representations between $G$ and all automorphisms of vector spaces.
+			
+			To show the category of representations is abelian (i.e. the functor category). Note the morphisms in between representations $G \to \mathrm{Aut}(V)$ themselves form a vector space. Direct sums are also easy to define naturally. The only difficult notion is to show all monos are some kernel and all epics are some cokernel. Consider some representations $f: A \to \mathrm{Aut}(V), g: A \to \mathrm{Aut}(W)$. If we assume there is a natural transformations $\alpha: f \to g$. It is monic iff its kernel is trivial. (Left cancellation between composition of function with inclusion and zero map.)	
+			\item \textbf{Category of sheaves of abelian groups on some topological space.}
+			
+			To recall the definition of a sheaf. The first example we naturally see is the sheaf of continuous real valued scalar functions of $n$ variables or $n$ times differentiable functions on some open $ U$ set of $\R^n$. The following properties form useful motivations,
+			\begin{enumerate}
+				\item The original set of functions have restrictions down to any other open $V \subset V$, namesly $f \mapsto f|_V$.
+				\item 
+			\end{enumerate}
+			This gives sufficient motivation for the typical definition of a pre-sheaf and a sheaf,
+			\begin{definition}[Presheaf]
+				For a category $C$ a presheaf is any functor $F: \mathbf{C}^{\mathrm{op}}\to \mathbf{Sets}$.
+			\end{definition}
+			In particular in the case for a topological space $X$ a presheaf of groups (or any algebraic object) on $X$ (in truth the set of the lattice of open sets of $X$ ordered by inclusion) is a some contravariant functor $F$ which sends open sets $U \subseteq X$ to some $F(U)$, it respects inclusions (i.e. there for open sets $V \subseteq V $ is a natural transformation $\rho_{UV}: F(U)\to F(V)$ in the form of a restriction). Furthermore, function composition, unitals and empty sets going to empty sets hold (to make it a category). Note that all these notions of presheaves are really just a special case of the categorical definition where the sheaf of groups is really just a group object in the categorical presheaf.
+			\begin{definition}[Sheaf of sets on a topology]
+				A sheaf of a topology $X$ is a presheaf which satisfies two additional properties, for open sets $U \in X$ and open covers ${U_i}$ of $U$
+				\begin{enumerate}
+					\item (Locality)  \textbf{A section}, i.e. an element $s \in F(U)$ goes to zero restricted at $U_i$ for all $i$ implies $s=0$.
+					\item (Gluing) If there is a collection of sections $s_i \in F(U_i)$ such that $s_i|_{U_i \cap U_j}=s_j|_{U_i \cap U_j}$ for all $i,j$ then there is some $s \in F(U)$ such that $s|_{U_i}=s_i$ for all $i$.
+				\end{enumerate}
+				
+				These two conditions can be written is short as just saying we require $F(U)$ to be the equalizer for the following diagram
+				\[\begin{tikzcd}
+					{\prod_{i \in I} F(U_i)} && {\prod_{i,j}F(U_i \cap U_j)}
+					\arrow[shift right=2, from=1-1, to=1-3]
+					\arrow[shift left=2, from=1-1, to=1-3]
+				\end{tikzcd}\]
+			\end{definition}
+			
+			Now finally we get back to the original example. The category of sheaves of abelian groups on a topological space form a abelian category. Additivity is natural due to the functorial nature of $F$. A slightly unsatisfying proof is due to `sheafification', i.e. the left adjoint to the inclusion functor from sheaves into presheaves. Presheves of abelian groups can be understood to have all the required properties to be an Abelian category due the functorial representation. Now due to the following result \cite{stacks1} we can extend this notion to the sheaves via sheafification.
+		\end{enumerate}
+		\subsubsection{Important results}
+		There are a few concepts and definitions relevant in the conversation of abelian categories which we will list out here for completeness. Firstly is the notion of \textbf{exact functors} the typical notion of a functor carrying forward exact sequences. With the prefix of left/right added to determine it carrying forward only left or right sides of the exact sequence.
+		
+		
+		\begin{proposition}\label{adjointinjective}
+			Given a pair of adjoint functors $F \dashv U$ between abelian categories $F:\mathbf{C} \rightleftarrows \mathbf{D}:U$ if the left adjoint $F$ is exact, faithful and if $ \mathbf{D}$ has enough injectives also $\mathbf{C}$ has enough injectives.
+		\end{proposition}
+		\begin{proof}
+			content...
+		\end{proof}
+	\end{appendices}
+	\appendix
 	
 	
-	\begin{definition}[Pre-abelian categories]
-		An additive category with all morphism having kernels and cokernels.
-	\end{definition}
-	The above definition is equivalent to saying a pre-abelian category is a Ab-Enriched category with all finite limits and colimits. This is a consequence to the fact that categories have finite limits iff it has finite products and equalizers \cite[Prop.~5.21]{Awodey}. And we know equalizers exist because equalizers of two morphisms is just the kernel of $f-g$.
-	
-	
-	
-	
-	\begin{definition}[Abelian category]
-		 Pre-additive categories for which each mono is a kernel and each epic is a cokernel.
-	\end{definition}
-	Largely the purpose of abelian categories were motivated by wanting to generalize homological methods and to unify various (co)homology theories.
-	
-	There are a few concepts and definitions relevant in the conversation of abelian categories which we will list out here for completeness. Firstly is the notion of \textbf{exact functors} the typical notion of a functor carrying forward exact sequences. With the prefix of left/right added to determine it carrying forward only left or right sides of the exact sequence.
-	
-	
-	\begin{proposition}\label{adjointinjective}
-		Given a pair of adjoint functors $F \dashv U$ between abelian categories $F:\mathbf{C} \rightleftarrows \mathbf{D}:U$ if the left adjoint $F$ is exact, faithful and if $ \mathbf{D}$ has enough injectives also $\mathbf{C}$ has enough injectives.
-	\end{proposition}
-	\begin{proof}
-		content...
-	\end{proof}
+
 	
 	\bibliographystyle{apalike}
 	\bibliography{references}
