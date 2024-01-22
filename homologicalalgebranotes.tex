@@ -617,7 +617,7 @@ Alternatively consider the following alternative proof for the second part
 	
 	This gives rise to a natural question given two maps between complexs when is their induced homology same? This is answered by the notion of homotopy equivalence (natural transformation).
 	
-	\begin{definition}[Homotopy equivalence of maps]
+	\begin{definition}[Chain homotopy]\label{chainhomotopy}
 		If $\alpha, \beta $ are maps between differential modules $(F, \varphi), (G, \psi )$ then $\alpha $ is homotopically equivalent to $\beta $ if there is a map $h: F \to G $ such that $\alpha - \beta = \psi h+ h \varphi$. If grading is relevant the picture formed is as such, we require a family of maps $h_i: F_i \to G_{i+1}$ \footnote{i.e. It has degree $1$, sometimes the subscript is dropped and just treated as $h$}
 		\[\begin{tikzcd}
 			\cdots && {F_i} && {F_{i-1}} && \cdots \\
@@ -823,26 +823,225 @@ Alternatively consider the following alternative proof for the second part
 	
 	
 	\textbf{TO DO: Proof of salamander and implications categorically}
-	\section{Mapping cones, cylinders and double complex
-	}
-	
-	\textbf{TODO}
-	
-	\section{Derived categories and Derived functors}
-	
-	\subsection{Derived category}
-	
+	\section{Category of chain complexes}
+	\subsection{Chain complexes are monoidal}
+	This section consists mainly of definitions and terminologies that we will require in the section on spectral sequences.
 	\begin{definition}[Category of chain complexes]
-		For arbitrary abelian category $A$
+		For an abelian category $\mathcal{A}$, the collection of chain complexes in $\mathcal{A}$ with morphisms as chain maps form a category often denoted as $\mathrm{Ch}(\mathcal{A})$. It is again an abelian category.
+	\end{definition}
+	Interestingly enough the category of chain complexes is in fact also a closed monoidal category.
+	
+	\begin{definition}[Tensor product of chain complexes]\label{tensorchain}
+		For $A, B \in \mathrm{Ch}(\mathcal{A})$ define $A \otimes B$ component wise as \[ (A \otimes B)_n = \oplus_{i+j=n} A_i \otimes B_j\] with the differential as $ \varphi_n(a,b)=(\varphi_Aa\otimes b)+(-1)^{\mathrm{deg}(a)}(a \otimes \varphi_B b)$
+	\end{definition}
+	This of course only makes sense provided $\mathcal{A}$ admits tensors. When discussing homological algebra in the context of $R-$Mod this distinction need not be made.
+	
+	\begin{definition}[Internal hom of chain complexes]\label{internalchain}
+		For $A,B \in \mathrm{Ch}(\mathcal{A})$ we define an internal hom object as a chain complex with the following components
+		\[ [A,B]_n=\prod_i \mathrm{Hom}(A_i,Y_{i+n})\]
+		with differentials for $x \in [A,B]_n$
+		\[ \varphi_n x= \varphi_B x-(-1)^n x \varphi_A \]
+	\end{definition}
+	The above two definitions characterize $\mathrm{Ch}(\mathcal{A})$ as a closed monoidal category. 
+	\begin{definition}[Unital tensor]\label{chunittensor}
+			The unital tensor is considered as the unital tensor of $\mathcal{A}$ say $1_\mathcal{A}$ understood as a chain complex $\cdots \to 0\to0 \to 0 \to 1_\mathcal{A}$ (i.e. a chain complex concentrated at 0). In particular when $\mathcal{A}=R-$Mod the unital tensor is just $R$.
+	\end{definition}
+
+	
+	
+	
+	\begin{definition}[Quasi-isomorphism]
+		A chain map is called a quasi isomorphism if the induced map on the homologies constituents an isomorphism.
+	\end{definition}
+	The reason for `quasi' is that the relation is reflexive and transitive but not symmetric. 
+	\begin{definition}[Homotopy category of chain complexes]
+		For a given category of chain complexes $\mathrm{Ch}(\mathcal{A})$ we can define $\mathcal{K}(\mathcal{A})$ to be the homotopy category of chain complexes with objects as objects of $\mathrm{Ch}(\mathcal{A})$ and arrows as chain homotopic maps as introduced in Def.\ref{chainhomotopy}.
 	\end{definition}
 	
-	\begin{definition}[Homotopy category of chain complexes]
-		content
+	\subsection{Cones, cylinders and homotopy fiber sequences}
+	
+	
+	The notion of mapping cones and cylinders are almost identical to those we first encounter in algebraic topology. We first see the constructions of these objects with their universal properties and then see what explicit cases later.
+	
+	The universal properties elucidate what the construction is really saying better than viewing the explicit definition straight away which can seem confusing.
+	
+		Sign conventions differ in the classical presentation of mapping cones to maintain consistency we shall follow the convention in Weibel \cite{weibel_1994}
+
+	In order to discuss cylinders we must construct a notion of an `interval' object similar to how we use $[0,1]$ in topology.
+	
+	
+	The interval object for $\mathrm{Ch}(\mathcal{A})$ is defined as a chain complex as follows
+	\begin{definition}[Interval object]
+		For a unital tensor in $\mathcal{A}$ say $1$ the interval complex denoted as $I$ is defined as,
+		\[ \cdots 0 \to 0 \to 1 \to 1 \oplus 1 \]
+		
+		When $\mathcal{A}=R-$Mod this is 
+		\[ \cdots 0 \to 0 \to R \to R \oplus R \]
+		
+		With the differential simply being $(-i,i)$ the identity map.
 	\end{definition}
-	 
-	 \begin{definition}[Derived category]
-	 	For an abelian category $A$ and the homotopy category $K(A)$
-	 \end{definition}
+	%	This allows for an alternate succinct definition of chain homotopy.
+	%	\begin{definition}[Alt. Chain homotopy]
+		%		content
+		%	\end{definition}
+	
+	A cylinder is defined using the tensor unit $I\in \mathrm{Ch}(\mathcal{A})$.
+	\begin{definition}[Cylinder object]
+		For $A \in \mathrm{Ch}(\mathcal{A})$ its cylinder is defined as $\mathrm{Cyl}(A)=I \otimes A$.
+	\end{definition}
+	\begin{definition}[Cone object]
+		Defined as the following pushout
+	\[\begin{tikzcd}
+		A & {\mathrm{cyl}(A)} \\
+		1 & {\mathrm{cone}(A)}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=1-2, to=2-2]
+	\end{tikzcd}\]
+	\end{definition}
+	Similarly the mapping cylinder is also defined via a pushout.
+	\begin{definition}[Mapping cylinder]\label{mappingcylinder}
+		\[\begin{tikzcd}
+			A & B \\
+			{\mathrm{cyl}(A)} & {\mathrm{cyl}(\alpha)}
+			\arrow["\alpha", from=1-1, to=1-2]
+			\arrow[from=1-1, to=2-1]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=2-1, to=2-2]
+		\end{tikzcd}\]
+	
+	\end{definition}
+	
+	\begin{proposition}[Components of the chain complex of a mapping cylinder]
+		\[ \mathrm{cyl}(\alpha)_n=A_n\oplus B_n \oplus A_{n-1} \]
+	\end{proposition}
+
+Finally the mapping cone is the following pushout.
+\begin{definition}[Mapping cone]\label{mappingcone}
+	\[\begin{tikzcd}
+		{\mathrm{cyl}(A)} & {\mathrm{cyl}(\alpha)} \\
+		{\mathrm{cone}(A)} & {\mathrm{cone}(\alpha)}
+		\arrow[from=1-1, to=1-2]
+		\arrow[from=1-1, to=2-1]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=2-1, to=2-2]
+	\end{tikzcd}\]
+	
+		Putting all the following definitions together we can instead view the mapping cone as the pushout for the following diagram,
+	\[\begin{tikzcd}
+		& A & B \\
+		A & {\mathrm{cyl}(A)} & {\mathrm{cyl}(\alpha)} \\
+		1 & {\mathrm{cone}(A)} & {\mathrm{cone}(\alpha)}
+		\arrow[from=2-2, to=2-3]
+		\arrow[from=2-2, to=3-2]
+		\arrow[from=2-3, to=3-3]
+		\arrow[from=3-2, to=3-3]
+		\arrow["\alpha", from=1-2, to=1-3]
+		\arrow[from=1-2, to=2-2]
+		\arrow[from=1-3, to=2-3]
+		\arrow[from=2-1, to=2-2]
+		\arrow[from=2-1, to=3-1]
+		\arrow[from=3-1, to=3-2]
+	\end{tikzcd}\]
+\end{definition}
+This is analogous to the topological definition of a mapping cone where we take a cylinder and identify together one side to a point.
+
+	
+	
+	
+	\begin{proposition}[Components of the chain complex of a mapping cone]
+		\[ \mathrm{cone}(\alpha)_n=B_n\oplus A_{n-1} \]
+		with the differential as 
+		\[\begin{tikzcd}
+			{B_{n+1}} && {B_n} \\
+			{\oplus } && { \oplus } \\
+			{A_n} && {A_{n-1}}
+			\arrow["{\varphi_B}", from=1-1, to=1-3]
+			\arrow["\alpha", from=3-1, to=1-3]
+			\arrow["{-\varphi_A}"', from=3-1, to=3-3]
+		\end{tikzcd}\]
+	\end{proposition}
+		\begin{definition}[Suspension of chain complex]
+		For $A \in \mathrm{Ch}(\mathcal{A})$ the complex defined by shifting degrees down by one is defined as its suspension denoted as follows,
+		\[ A[-1]_n=A_{n-1} \] with the differential shifted down but with a negative sign
+		\[ \varphi_n = -\varphi^A_{n-1} \]
+	\end{definition}
+	
+	We can now identify a canonical short exact sequence \[ B \to \mathrm{cone}(\alpha) \to X[1] \]
+	with the mappings being inclusion and projection respectively. In particular it forms a pushout. 
+	
+	Infact this is universal even with respect to homotopy that means the universality of the pushout is upto chain homotopy. To summarize we have the following proposition.
+	\begin{proposition}[Homotopy pushout induced by mapping cone]
+		For $A, B \in \mathrm{Ch}(\mathcal{A})$ with $\alpha: A \to B$ some chain map. The following forms a short exact sequence of chain complexes with inclusion and projection mappings
+		\[ B \rightarrow \mathrm{cone}(\alpha) \rightarrow A[-1] \] 
+		Which in turn induce a pushout square which is unique up to chain homotopy which characterizes $A[-1]$ as a cofiber of $i: B \to \mathrm{cone}(\alpha)$ over 0.
+		\[\begin{tikzcd}
+			B && B & {\mathrm{cone}(\alpha)} \\
+			A && 0 & {A[-1]}
+			\arrow[from=1-3, to=1-4]
+			\arrow["\alpha"', from=2-1, to=1-1]
+			\arrow[from=1-4, to=2-4]
+			\arrow[from=1-3, to=2-3]
+			\arrow[from=2-3, to=2-4]
+		\end{tikzcd}\]
+	\end{proposition}
+	This induces what is called a homotopy cofiber sequence 
+	\begin{definition}[Homotopy cofiber sequence]
+			For $A, B \in \mathrm{Ch}(\mathcal{A})$ with $\alpha: A \to B$,
+			\[ A \to B \to \mathrm{cone}(\alpha)\to A[-1] \to B \to \mathrm{cone}(\alpha)\to A[-2] \to \cdots \]
+			
+			This gives rise to a more common triangle diagram 
+			\[\begin{tikzcd}
+				A && B \\
+				& {\mathrm{cone}(\alpha)}
+				\arrow["\alpha", from=1-1, to=1-3]
+				\arrow[from=1-3, to=2-2]
+				\arrow[from=2-2, to=1-1]
+			\end{tikzcd}\]
+			This trianglular diagram will be useful in the next section of derived categories.
+	\end{definition}
+	This notion of the homotopy cofiber sequence is in fact more fundamental than the long exact homology sequence we saw before. Taking a representative of the cone up to homotopy as another chain complex $C$ and looking at the induced sequence of their homologies give us the long exact sequence of homology.
+	
+	
+	
+	\subsection{Double complex and total complex}
+	A double complex is understood to be a `chain complex of chain complexes'. In particular it is bigraded over $\Z \times \Z$.
+	\begin{definition}[Double complex]
+		A double complex $A_{\bullet, \bullet}\in \mathrm{Ch}(\mathrm{Ch}(\mathcal{A}))$ is a chain complex of chain complexes in $\mathrm{Ch}(\mathcal{A})$ in particular we say it has both a vertical differential $\varphi^v: A_{\bullet, m}\to A_{\bullet, m-1} $ and a horizontal differential $\varphi^h: A_{n, \bullet} \to A_{n-1, \bullet}$  such that these differentials make all the squares commute, i.e. $\varphi^v \varphi^h=\varphi^h \varphi^v$,
+		\[\begin{tikzcd}
+			& \vdots & \vdots \\
+			\cdots & {A_{n,m}} & {A_{n,m-1}} & \cdots \\
+			\cdots & {A_{n-1,m}} & {A_{n-1,m-1}} & \cdots \\
+			& \vdots & \vdots
+			\arrow["{\varphi^h_{m}}", from=2-2, to=2-3]
+			\arrow[from=2-3, to=2-4]
+			\arrow[from=2-1, to=2-2]
+			\arrow[from=1-2, to=2-2]
+			\arrow[from=1-3, to=2-3]
+			\arrow["{\varphi^v_{n-1}}", from=2-2, to=3-2]
+			\arrow["{\varphi^v_{n-1}}", from=2-3, to=3-3]
+			\arrow[from=3-2, to=4-2]
+			\arrow[from=3-3, to=4-3]
+			\arrow[from=3-1, to=3-2]
+			\arrow["{\varphi^h_{m}}", from=3-2, to=3-3]
+			\arrow[from=3-3, to=3-4]
+		\end{tikzcd}\]
+	\end{definition}
+	\begin{proposition}[Model for mapping cone in terms of double complexes]
+		For $A,B \in \mathrm{Ch}(\mathcal{A})$ and chain map $\alpha: A \to B$ the double complex formed by stating $C_{1,n}=A_n$ and $C_{0,n}=B_n$ with the natural differential forms a homotopically equivalent model for $\mathrm{cone}(f)$.
+	\end{proposition}
+	\begin{definition}[Total complex]
+		For a double complex $A_{\bullet,\bullet}$ there is associated to it a (regular $\Z$ graded) chain complex known as its total complex. The components of a total complex can be expressed as direct sums or direct products, i.e.
+		\[ \mathrm{Tot}^\oplus (A_{\bullet, \bullet})_n=\oplus_{n=p+q} A_{p,q} \]
+		or
+		\[ \mathrm{Tot}^\Pi (A_{\bullet, \bullet})_n=\Pi_{n=p+q} A_{p,q} \]
+		with differentials in each case as 
+		\[ \varphi^{\mathrm{Tot}}=\varphi^v+(-1)^{\mathrm{vertical deg}}\varphi^h \]
+	\end{definition}
+	It is the computation of the homology of a double complex which leads to equivalently computing the homology of the total complex which in turn leads to the formulation of the spectral sequence of a double complex.
+	\section{Derived functors and categories}
+	
 	
 	\subsection{Derived functor}
 	Derived functors prove to be a major application of projective and injective resolutions. The motivation behind defining a derived functor is the observation that often functors fail to be exact only at an end point. It is natural to want to extend out the left/right short exact sequence in a way to get a long exact sequence.
@@ -911,7 +1110,7 @@ Alternatively consider the following alternative proof for the second part
 	 \end{definition}
 	 
 	 
-	\subsection{Tor functor}
+	\subsubsection{Tor functor}
 	Recall that early on we saw that the tensor product over modules is right exact but fails to be left exact. So with what we have seen so far it is natural to think about the left derived functor for the tor functor $M\otimes_R -$ this is called as the Tor functor and is denoted as $\mathrm{Tor}_i^R(M,-)$. The tensor product itself is commutative up to isomorphism and the same is true for the Tor functor. Which 
 	
 	The name Tor comes from torsion. Recall that for some $R$-Module $M$, $x \in M$ is said to be a torsion element if there is a nonzero $r\in R $ such that $rm=0$.
@@ -944,14 +1143,14 @@ Alternatively consider the following alternative proof for the second part
 	\begin{proposition}[Auslander transposition]
 		content
 	\end{proposition}
-	\subsection{Ext functor}
+	\subsubsection{Ext functor}
 	Now again we know $\Hom_R(M,-)$ is left exact as it is a right adjoint. So for some module $N$ we may consider its right derived functors with respect to some injective resolution $I$ of $N$. In particular it is denoted as $R^i \Hom(M,-)N= \mathrm{Ext}_R^i(M,N):= H_{-i} \Hom(M,I)$ as seen before. This may also be computed via a \textit{projective} resolution for $M$ say $F$ as $\mathrm{Ext}_R^i (M,N)= H_{-1} \Hom(F,N)$.
 	
 	
 	\textbf{DO EXERCISES}
 	\subsubsection{Group cohomology as Ext}
 	
-	\subsection{Local cohomology}
+	\subsubsection{Local cohomology}
 	For some ring $R$ and an ideal $I$ define for an $R$-module $M$ $$\Gamma_I(M)=\{x \in M | \text{ there exists} m \in \N,\ I^n m =0\}$$
 	This can be alternatively written in terms of a colimit.\[ \Gamma_I(M)= \lim_{\to_n} \Hom (R/I^n, M) \]
 	
@@ -960,15 +1159,38 @@ Alternatively consider the following alternative proof for the second part
 	So we define a right derived functor, \[ R^n \Gamma_I(M)=H_I^i(M) \] applying $\Gamma_I $ to some injective resolution of $M$.
 	\subsubsection{Sheaf cohomology}
 	
+	\subsection{Derived and triangulated category}
+	
+	Note that the algebraic notion of localization easily generalizes to categories proper. We can localize a category on some collection of arrows which sending the arrows to isomorphisms.
+	
+	\begin{definition}[Derived category (Universal property)]
+		For an abelian category $\mathcal{A}$ the localization of its category of chain complexes $\mathrm{Ch}(\mathcal{A})$ with respect to quasi-isomorphisms gives its associated derived category $D(\mathcal{A})$. It is universal in the sense that any functor from $\mathrm{Ch}(\mathcal{A}) \to \mathcal{C}$ which sends quasi-isomorphisms to isomorphisms factors through $D(A)$.
+	\end{definition}
+	
+	\begin{definition}[Derived category (With homotopy category)]
+		content...
+	\end{definition}
+	
+	The usefulness of a derived category is ??????
+	
+	\begin{definition}[Triangulated categories]
+		content...
+	\end{definition}
+	
 	\section{Spectral sequences}
+	\subsection{Spectral sequence of a filtered complex}
 	
-	\section{Spectral sequence of double complex}
+	\subsection{Spectral sequence of a double complex}
 	
 	
-	
-%	\subsection{Kunneth formula}
+	\section{Some important theorems}
+	\subsection{Universal coefficient theorem}
+	\begin{theorem}[Universal coefficient theorem for homology]
+	For a PID $R$ and $C\in \mathrm{Ch}(R-\mathrm{Mod})$ a chain complex of free modules over $R$ for any $A \in R-$Mod we have a short exact sequence \[ 0 \to H_n(C) \otimes C  \to H_n(C\otimes A) \to \mathrm{Tor}_1(H_{n-1}(C),A) \to 0\]
+	\end{theorem}
+	\subsection{Kunneth formula}
 %	\subsection{Dold Kan correspondence	}
-	\section{Freyd-Mitchell Embedding}
+	\subsection{Freyd-Mitchell Embedding}
 	\begin{theorem}[Freyd-Mitchell Embedding]
 		If $A$ is a small abelian category there is an exact full and faithful embedding functor from $A$ into the category of modules over some ring $R$ which embeds $A$ as a full subcategory.
 	\end{theorem}
