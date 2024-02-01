@@ -43,7 +43,7 @@
 \begin{document}
 	\tableofcontents
 	\maketitle
-	These are compact notes on homological algebra. The material is presented mostly module theoretically with appropriate categorical abstractions when appropriate to better elucidate the concepts in play. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}.
+	These are compact notes on homological algebra. The material is presented mostly module theoretically with appropriate categorical abstractions whenever appropriate. The overall structure of the presented material is influenced by the appendix on homological algebra in Eisenbud's excellent book \cite{eisenbud2013commutative}. Especially up to his presentation of derived functors. 
 
 	\section{Modules and tensor products}
 	\begin{definition}[Module]
@@ -823,6 +823,131 @@ Alternatively consider the following alternative proof for the second part
 	
 	
 	\textbf{TO DO: Proof of salamander and implications categorically}
+	\section{Derived functors}
+	
+	Derived functors prove to be a major application of projective and injective resolutions. The motivation behind defining a derived functor is the observation that often functors fail to be exact only at an end point. It is natural to want to extend out the left/right short exact sequence in a way to get a long exact sequence.
+	\begin{definition}[Left derived functor]
+		Consider $F$ to be a right exact functor, if $A \in R$-Mod has a projective resolution $(P_\bullet, \varphi_\bullet)$. The $i^\textbf{th}$ left derived functor of $F$ is defined to be \[ L_iF(A)=H_i FP \] where $FP$ is the complex defined via $(FP_\bullet,F\varphi_\bullet)$
+	\end{definition}
+	
+	The important properties of left derived functors can be characterized as follows,
+	\begin{proposition}
+		The left derived functor of $F$ is resolution invariant and we have
+		\begin{enumerate}
+			\item $L_0F=F$
+			\item If $A$ is projective then all $L_iF(A)=0$.
+			\item For all short exact sequence of modules \[ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta}  C \to 0\]there is an associated long exact sequence of left derived functors
+			\[\begin{tikzcd}
+				&& \cdots && {L_iFC} \\
+				\\
+				{L_{i-1}FA} && {L_{i-1}FB} && {L_{i-1}FC} \\
+				\\
+				{L_{i-1}FA} && \cdots
+				\arrow[from=1-3, to=1-5]
+				\arrow["{\delta_i}", from=1-5, to=3-1]
+				\arrow[from=3-1, to=3-3]
+				\arrow[from=3-3, to=3-5]
+				\arrow["{\delta_{i-1}}", from=3-5, to=5-1]
+				\arrow[from=5-1, to=5-3]
+			\end{tikzcd}\]
+			\item The connecting homomorphisms are natural, i.e. for a map between short exact sequences 
+			\[\begin{tikzcd}
+				0 & A & B & C & 0 \\
+				0 & {A'} & {B'} & {C'} & 0
+				\arrow[from=1-1, to=1-2]
+				\arrow[from=1-2, to=1-3]
+				\arrow[from=1-3, to=1-4]
+				\arrow[from=1-4, to=1-5]
+				\arrow[from=2-1, to=2-2]
+				\arrow[from=2-2, to=2-3]
+				\arrow[from=2-3, to=2-4]
+				\arrow[from=2-4, to=2-5]
+				\arrow["\alpha"', from=1-2, to=2-2]
+				\arrow["\beta"', from=1-3, to=2-3]
+				\arrow["\gamma"', from=1-4, to=2-4]
+			\end{tikzcd}\]
+			
+			the associated square of left derived functors commute,
+			\[\begin{tikzcd}
+				{L_iFC} & {L_{i-1}FA} \\
+				{L_iFC'} & {L_{i-1}FA'}
+				\arrow["{\delta_i}", from=1-1, to=1-2]
+				\arrow["{L_iF\gamma}"', from=1-1, to=2-1]
+				\arrow["{\delta_{i-1}}"', from=2-1, to=2-2]
+				\arrow["{L_{i-1}F\alpha}", from=1-2, to=2-2]
+			\end{tikzcd}\]
+		\end{enumerate}
+	\end{proposition}
+	\begin{proof}
+		For 1. with right exactness of $F$ we get  $L_0F=H_0FP=\mathrm{coker})FP_1\to FP_0)=FA$ by definition.
+		
+		2. As its resolution independent just take a string of left 0 projectives as the resolution.
+		3. and 4. are nearly the same as seen before in the construction of connecting  homomorphism and horseshoe lemma.
+	\end{proof}
+	
+	The dual notion is as follows,
+	\begin{definition}[Right derived functor]
+		For a left exact functor we define the right derived functor $R^iF$ as $R^iFA=H_{-1}FQ$ where $A$ is some module and $Q$ is its associated injective resolution.
+	\end{definition}
+	
+	
+	\subsubsection{Tor functor}
+	Recall that early on we saw that the tensor product over modules is right exact but fails to be left exact. So with what we have seen so far it is natural to think about the left derived functor for the tor functor $M\otimes_R -$ this is called as the Tor functor and is denoted as $\mathrm{Tor}_i^R(M,-)$. The tensor product itself is commutative up to isomorphism and the same is true for the Tor functor. Which 
+	
+	The name Tor comes from torsion. Recall that for some $R$-Module $M$, $x \in M$ is said to be a torsion element if there is a nonzero $r\in R $ such that $rm=0$.
+	\begin{proposition}
+		If $x \in R$ is not a zero divisor. Then $$Tor_1(R/x,M)=\{m \in M | xm =0\}$$
+	\end{proposition}
+	\begin{proof}
+		content
+	\end{proof}
+	\begin{proposition}
+		For a ring $R$ and $I,J$ ideals of $R$ we know $IJ \subseteq I \cap J$, \[ \mathrm{Tor}_1(R/I, R/J)= (I \cap J )/IJ\]
+	\end{proposition}
+	\begin{proof}
+		content
+	\end{proof}
+	
+	\begin{proposition}[Betti numbers of a module]
+		For a local ring $R$ with maximal ideal $\mathfrak{m}$. For a $R$-Module $M$ a free resolution $(F_\bullet, \varphi_\bullet)$ of $M$ is said to be minimal if each differential $\varphi_i$ has an image contained in $\mathfrak{m}F_{i-1}$. If $F$ is minimal free resolution and rank of $F_i=b_i$ we have that \[ \mathrm{Tor}_i(R/\mathfrak{m}, M)= 	(R/\mathfrak{m})^{b_i}\] these $b_i$ are called `Betti numbers'. \footnote{Motivated by topology where the $n^{\textbf{th}}$ Betti number is the rank of the $n^{\textbf{th}}$ homology group.}
+	\end{proposition}
+	
+	\begin{proposition}[Serre intersection](skip this)
+	\end{proposition}
+	
+	\begin{proposition}
+		For $R$-Modules $M,N$ \( \mathrm{Tor}^R(M,N) \) forms a graded associative $R$-algebra which is $Z_2$ graded commutative.
+	\end{proposition}
+	\begin{proposition}
+		If a projective
+	\end{proposition}
+	\begin{proposition}[Auslander transposition]
+		content
+	\end{proposition}
+	\subsubsection{Ext functor}
+	Now again we know $\Hom_R(M,-)$ is left exact as it is a right adjoint. So for some module $N$ we may consider its right derived functors with respect to some injective resolution $I$ of $N$. In particular it is denoted as $R^i \Hom(M,-)N= \mathrm{Ext}_R^i(M,N):= H_{-i} \Hom(M,I)$ as seen before. This may also be computed via a \textit{projective} resolution for $M$ say $F$ as $\mathrm{Ext}_R^i (M,N)= H_{-1} \Hom(F,N)$.
+	
+	
+	\textbf{DO EXERCISES}
+	\subsubsection{Group cohomology as Ext}
+	
+	\subsubsection{Local cohomology}
+	For some ring $R$ and an ideal $I$ define for an $R$-module $M$ $$\Gamma_I(M)=\{x \in M | \text{ there exists} m \in \N,\ I^n m =0\}$$
+	This can be alternatively written in terms of a colimit.\[ \Gamma_I(M)= \lim_{\to_n} \Hom (R/I^n, M) \]
+	
+	Claim $\Gamma_I $ is a left-exact functor (\textbf{??}).
+	
+	So we define a right derived functor, \[ R^n \Gamma_I(M)=H_I^i(M) \] applying $\Gamma_I $ to some injective resolution of $M$.
+	\subsubsection{Sheaf cohomology}
+	
+	\section{Dold-Kan correspondence}
+	Selecta Mathematica (2021) 27:14
+	https://doi.org/10.1007/s00029-021-00618-5	
+	\subsection{Applications}
+	https://mathoverflow.net/questions/437382/applications-of-the-dold-kan-correspondence
+	Construct Eilenberg Maclane spaces
+	
+	Derived functors of non additive functors
 	\section{Category of chain complexes}
 	\subsection{Chain complexes are monoidal}
 	This section consists mainly of definitions and terminologies that we will require in the section on spectral sequences.
@@ -858,7 +983,9 @@ Alternatively consider the following alternative proof for the second part
 		For a given category of chain complexes $\mathrm{Ch}(\mathcal{A})$ we can define $\mathcal{K}(\mathcal{A})$ to be the homotopy category of chain complexes with objects as objects of $\mathrm{Ch}(\mathcal{A})$ and arrows as chain homotopic maps as introduced in Def.\ref{chainhomotopy}.
 	\end{definition}
 	
-	\subsection{Cones, cylinders and homotopy fiber sequences}
+	
+	
+	\subsection{Cones, cylinders and homotopy cofiber (Puppe) sequences}
 	
 	
 	The notion of mapping cones and cylinders are almost identical to those we first encounter in algebraic topology. We first see the constructions of these objects with their universal properties and then see what explicit cases later.
@@ -1040,126 +1167,8 @@ This is analogous to the topological definition of a mapping cone where we take 
 		\[ \varphi^{\mathrm{Tot}}=\varphi^v+(-1)^{\mathrm{vertical deg}}\varphi^h \]
 	\end{definition}
 	It is the computation of the homology of a double complex which leads to equivalently computing the homology of the total complex which in turn leads to the formulation of the spectral sequence of a double complex.
-	\section{Derived functors and categories}
 	
-	
-	\subsection{Derived functor}
-	Derived functors prove to be a major application of projective and injective resolutions. The motivation behind defining a derived functor is the observation that often functors fail to be exact only at an end point. It is natural to want to extend out the left/right short exact sequence in a way to get a long exact sequence.
-	\begin{definition}[Left derived functor]
-		Consider $F$ to be a right exact functor, if $A \in R$-Mod has a projective resolution $(P_\bullet, \varphi_\bullet)$. The $i^\textbf{th}$ left derived functor of $F$ is defined to be \[ L_iF(A)=H_i FP \] where $FP$ is the complex defined via $(FP_\bullet,F\varphi_\bullet)$
-		\end{definition}
-		
-	The important properties of left derived functors can be characterized as follows,
-	\begin{proposition}
-		The left derived functor of $F$ is resolution invariant and we have
-		\begin{enumerate}
-			\item $L_0F=F$
-			\item If $A$ is projective then all $L_iF(A)=0$.
-			\item For all short exact sequence of modules \[ 0 \to A \xrightarrow{\alpha} B \xrightarrow{\beta}  C \to 0\]there is an associated long exact sequence of left derived functors
-			\[\begin{tikzcd}
-				&& \cdots && {L_iFC} \\
-				\\
-				{L_{i-1}FA} && {L_{i-1}FB} && {L_{i-1}FC} \\
-				\\
-				{L_{i-1}FA} && \cdots
-				\arrow[from=1-3, to=1-5]
-				\arrow["{\delta_i}", from=1-5, to=3-1]
-				\arrow[from=3-1, to=3-3]
-				\arrow[from=3-3, to=3-5]
-				\arrow["{\delta_{i-1}}", from=3-5, to=5-1]
-				\arrow[from=5-1, to=5-3]
-			\end{tikzcd}\]
-			\item The connecting homomorphisms are natural, i.e. for a map between short exact sequences 
-			\[\begin{tikzcd}
-				0 & A & B & C & 0 \\
-				0 & {A'} & {B'} & {C'} & 0
-				\arrow[from=1-1, to=1-2]
-				\arrow[from=1-2, to=1-3]
-				\arrow[from=1-3, to=1-4]
-				\arrow[from=1-4, to=1-5]
-				\arrow[from=2-1, to=2-2]
-				\arrow[from=2-2, to=2-3]
-				\arrow[from=2-3, to=2-4]
-				\arrow[from=2-4, to=2-5]
-				\arrow["\alpha"', from=1-2, to=2-2]
-				\arrow["\beta"', from=1-3, to=2-3]
-				\arrow["\gamma"', from=1-4, to=2-4]
-			\end{tikzcd}\]
-			
-			the associated square of left derived functors commute,
-			\[\begin{tikzcd}
-				{L_iFC} & {L_{i-1}FA} \\
-				{L_iFC'} & {L_{i-1}FA'}
-				\arrow["{\delta_i}", from=1-1, to=1-2]
-				\arrow["{L_iF\gamma}"', from=1-1, to=2-1]
-				\arrow["{\delta_{i-1}}"', from=2-1, to=2-2]
-				\arrow["{L_{i-1}F\alpha}", from=1-2, to=2-2]
-			\end{tikzcd}\]
-		\end{enumerate}
-	\end{proposition}
-	\begin{proof}
-		For 1. with right exactness of $F$ we get  $L_0F=H_0FP=\mathrm{coker})FP_1\to FP_0)=FA$ by definition.
-		
-		2. As its resolution independent just take a string of left 0 projectives as the resolution.
-		3. and 4. are nearly the same as seen before in the construction of connecting  homomorphism and horseshoe lemma.
-	 \end{proof}
-	 
-	 The dual notion is as follows,
-	 \begin{definition}[Right derived functor]
-	 	For a left exact functor we define the right derived functor $R^iF$ as $R^iFA=H_{-1}FQ$ where $A$ is some module and $Q$ is its associated injective resolution.
-	 \end{definition}
-	 
-	 
-	\subsubsection{Tor functor}
-	Recall that early on we saw that the tensor product over modules is right exact but fails to be left exact. So with what we have seen so far it is natural to think about the left derived functor for the tor functor $M\otimes_R -$ this is called as the Tor functor and is denoted as $\mathrm{Tor}_i^R(M,-)$. The tensor product itself is commutative up to isomorphism and the same is true for the Tor functor. Which 
-	
-	The name Tor comes from torsion. Recall that for some $R$-Module $M$, $x \in M$ is said to be a torsion element if there is a nonzero $r\in R $ such that $rm=0$.
-	\begin{proposition}
-		If $x \in R$ is not a zero divisor. Then $$Tor_1(R/x,M)=\{m \in M | xm =0\}$$
-	\end{proposition}
-	\begin{proof}
-		content
-	\end{proof}
-	\begin{proposition}
-		For a ring $R$ and $I,J$ ideals of $R$ we know $IJ \subseteq I \cap J$, \[ \mathrm{Tor}_1(R/I, R/J)= (I \cap J )/IJ\]
-	\end{proposition}
-	\begin{proof}
-		content
-	\end{proof}
-	
-	\begin{proposition}[Betti numbers of a module]
-		For a local ring $R$ with maximal ideal $\mathfrak{m}$. For a $R$-Module $M$ a free resolution $(F_\bullet, \varphi_\bullet)$ of $M$ is said to be minimal if each differential $\varphi_i$ has an image contained in $\mathfrak{m}F_{i-1}$. If $F$ is minimal free resolution and rank of $F_i=b_i$ we have that \[ \mathrm{Tor}_i(R/\mathfrak{m}, M)= 	(R/\mathfrak{m})^{b_i}\] these $b_i$ are called `Betti numbers'. \footnote{Motivated by topology where the $n^{\textbf{th}}$ Betti number is the rank of the $n^{\textbf{th}}$ homology group.}
-	\end{proposition}
-	
-	\begin{proposition}[Serre intersection](skip this)
-	\end{proposition}
-	
-	\begin{proposition}
-		For $R$-Modules $M,N$ \( \mathrm{Tor}^R(M,N) \) forms a graded associative $R$-algebra which is $Z_2$ graded commutative.
-	\end{proposition}
-	\begin{proposition}
-		If a projective
-	\end{proposition}
-	\begin{proposition}[Auslander transposition]
-		content
-	\end{proposition}
-	\subsubsection{Ext functor}
-	Now again we know $\Hom_R(M,-)$ is left exact as it is a right adjoint. So for some module $N$ we may consider its right derived functors with respect to some injective resolution $I$ of $N$. In particular it is denoted as $R^i \Hom(M,-)N= \mathrm{Ext}_R^i(M,N):= H_{-i} \Hom(M,I)$ as seen before. This may also be computed via a \textit{projective} resolution for $M$ say $F$ as $\mathrm{Ext}_R^i (M,N)= H_{-1} \Hom(F,N)$.
-	
-	
-	\textbf{DO EXERCISES}
-	\subsubsection{Group cohomology as Ext}
-	
-	\subsubsection{Local cohomology}
-	For some ring $R$ and an ideal $I$ define for an $R$-module $M$ $$\Gamma_I(M)=\{x \in M | \text{ there exists} m \in \N,\ I^n m =0\}$$
-	This can be alternatively written in terms of a colimit.\[ \Gamma_I(M)= \lim_{\to_n} \Hom (R/I^n, M) \]
-	
-	Claim $\Gamma_I $ is a left-exact functor (\textbf{??}).
-	
-	So we define a right derived functor, \[ R^n \Gamma_I(M)=H_I^i(M) \] applying $\Gamma_I $ to some injective resolution of $M$.
-	\subsubsection{Sheaf cohomology}
-	
-	\subsection{Derived and triangulated category}
+	\section{Derived and triangulated category}
 	
 	Note that the algebraic notion of localization easily generalizes to categories proper. We can localize a category on some collection of arrows which sending the arrows to isomorphisms.
 	
@@ -1188,8 +1197,11 @@ This is analogous to the topological definition of a mapping cone where we take 
 	\begin{theorem}[Universal coefficient theorem for homology]
 	For a PID $R$ and $C\in \mathrm{Ch}(R-\mathrm{Mod})$ a chain complex of free modules over $R$ for any $A \in R-$Mod we have a short exact sequence \[ 0 \to H_n(C) \otimes C  \to H_n(C\otimes A) \to \mathrm{Tor}_1(H_{n-1}(C),A) \to 0\]
 	\end{theorem}
+	We will ignore this and simply prove the generalization below.
 	\subsection{Kunneth formula}
-%	\subsection{Dold Kan correspondence	}
+	\begin{theorem}
+		
+	\end{theorem}
 	\subsection{Freyd-Mitchell Embedding}
 	\begin{theorem}[Freyd-Mitchell Embedding]
 		If $A$ is a small abelian category there is an exact full and faithful embedding functor from $A$ into the category of modules over some ring $R$ which embeds $A$ as a full subcategory.
