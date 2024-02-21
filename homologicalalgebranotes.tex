@@ -940,10 +940,60 @@ Alternatively consider the following alternative proof for the second part
 	So we define a right derived functor, \[ R^n \Gamma_I(M)=H_I^i(M) \] applying $\Gamma_I $ to some injective resolution of $M$.
 	\subsubsection{Sheaf cohomology}
 	
-	\section{Dold-Kan correspondence}
+	\section{Simplicial stuffs and the Dold-Kan correspondence}
+	This section will be a slight detour from the usual discussion of homological algebra to introduce a important bridge between homotopy theory and homological algebra. This bridge is the Dold-Kan correspondence. A reader familiar with simplicial homology will find the generalization that Dold-Kan provides fairly intuitive.
+	
+	In fact Dold-Kan can be thought of as a categorification of a theorem about divided differences (fundamental theorem)! This insight was given by a nCafe post crediting it to Andrew Joyal \cite{ncafedk}.
+	
+	For an exhaustive reference to this section refer to \cite{Goerss_Jardine_2009}, a rapid introduction to simplical sets is also covered in \cite{Riehl2011ALI}.
+	\subsection{Basic idea of simplices}
+	We begin with a notion of a purely combinatorial construction $\Delta$ denote the category with objects as non empty finite ordered sets and order preserving maps. Objects in $\Delta$ are denoted as $[n]=\{1,2,\dots,n\}$, i.e. an $n-$simplex. This is sometimes defined as the full subcategory of $\mathrm{Cat}$ on free categories of finite directed graphs equivalently finite ordinals.
+	
+	There is the natural map from $\Delta \to \mathrm{Top}$ sending $[n]$ to the standard $n-$simplex in $\R^{n+1}$.
+	
+	\subsection{Simplicial sets}
+	
+	\begin{definition}[Simplicial set]
+		A simplicial set is a functor $X: \Delta^\mathrm{op} \to \mathbf{Set}$, i.e. presheaves on $\Delta$. It comprises of a collection of sets $X_n$ which we to be the $n-$simplex with maps between them corresponding naturally with maps in $\Delta$.
+	\end{definition}
+	
+	Furthermore corresponding to injections from $[n-1] \to [n]$ in $\Delta$ we get a family of face maps between simplices $d_i:X_n \to X_{n-1}$, $0\leq i \leq n$.
+	
+	And degeneracy maps corresponding to surjections $ [n+1] \to n$ as a family of maps $s_i: X_n \to X_{n+1}$.
+	
+	These obey the standard relations,
+	\begin{align*}
+		d_id_j &= d_{j-1}d_i, &i <j\\
+		s_is_j&=s_{j+1}s_im &i \leq j\\
+		d_is_j&=1, &i=j,j+1\\
+		d_is_j&=s_{j-1}d_i,& i<j\\
+		d_is_j&=s_jd_{i-1},& i>j+1
+	\end{align*}
+	
+	The following nice visuals are from \cite{friedman2023elementary}.
+		\begin{figure}[h]
+		\centering
+		\caption{a nice plot}
+		\label{fig:mesh1}
+	\end{figure}
+
+	This naturally leads to the definition of $\mathbf{sSet}$ the category of simplicial sets as the functor category $\mathbf{Set}^{\Delta^\mathrm{op}}$
+	\begin{definition}[Simplicial objects in arbitrary categories]
+		The same as above but over any category not just $\mathbf{Set}$.
+	\end{definition}
+	
+	\begin{definition}[Simplicial abelian groups]
+		A simplicial object in $\mathbf{Ab}$.
+	\end{definition}
+	
+	Some examples involve geometric realization and singular simplicial sets.
+	
+	\subsection{Dold-Kan Correspondence for abelian groups}
+	
+	To begin with lets review some basic notions of simplical sets
 	Selecta Mathematica (2021) 27:14
 	https://doi.org/10.1007/s00029-021-00618-5	
-	\subsection{Applications}
+	\subsection{Some applications of Dold-Kan}
 	https://mathoverflow.net/questions/437382/applications-of-the-dold-kan-correspondence
 	Construct Eilenberg Maclane spaces
 	
@@ -957,10 +1007,25 @@ Alternatively consider the following alternative proof for the second part
 	Interestingly enough the category of chain complexes is in fact also a closed monoidal category.
 	
 	\begin{definition}[Tensor product of chain complexes]\label{tensorchain}
-		For $A, B \in \mathrm{Ch}(\mathcal{A})$ define $A \otimes B$ component wise as \[ (A \otimes B)_n = \oplus_{i+j=n} A_i \otimes B_j\] with the differential as $ \varphi_n(a,b)=(\varphi_Aa\otimes b)+(-1)^{\mathrm{deg}(a)}(a \otimes \varphi_B b)$
+		For $A, B \in \mathrm{Ch}(\mathcal{A})$ define $A \otimes B$ component wise as \[ (A \otimes B)_n = \bigoplus_{i+j=n} A_i \otimes B_j\] with the differential as $ \varphi_n(a,b)=(\varphi_Aa\otimes b)+(-1)^{\mathrm{deg}(a)}(a \otimes \varphi_B b)$
 	\end{definition}
 	This of course only makes sense provided $\mathcal{A}$ admits tensors. When discussing homological algebra in the context of $R-$Mod this distinction need not be made.
 	
+	The mysterious sign rule (often referred to as the Koszul sign rule') can be motivated in one of many different ways. Perhaps the most interesting is the notion of a `Day convolution'. The following treatment is due to a MathOverflow answer by Alexander Campbell \cite{359316}.
+	
+	\textbf{MOVE THIS STUFF TO APPENDIX AND ADD OBJECTWISE LIMIT COMPUTATIONS TOO}
+	A Day convolution can be realized as a categorification of typical convolution product.
+	\begin{definition}[Promonoidal category]
+		content
+	\end{definition}
+	\begin{definition}[Profunctor]
+		content
+	\end{definition}
+	\begin{definition}[Day Convolution as a coend]
+		content...
+	\end{definition}
+	Finally it makes sense to consider that there is a promonoidal structure on $\mathrm{Ch}(\mathcal{A})$.
+		
 	\begin{definition}[Internal hom of chain complexes]\label{internalchain}
 		For $A,B \in \mathrm{Ch}(\mathcal{A})$ we define an internal hom object as a chain complex with the following components
 		\[ [A,B]_n=\prod_i \mathrm{Hom}(A_i,Y_{i+n})\]
@@ -1166,6 +1231,8 @@ This is analogous to the topological definition of a mapping cone where we take 
 		with differentials in each case as 
 		\[ \varphi^{\mathrm{Tot}}=\varphi^v+(-1)^{\mathrm{vertical deg}}\varphi^h \]
 	\end{definition}
+	In fact the Total complex of a double complex given via objectiwise tensoring of two complexes $X,Y$ is isomorphic to the tensor product of the chain complexes. This forms an alternative characterization of the chain complex tensor product.
+	
 	It is the computation of the homology of a double complex which leads to equivalently computing the homology of the total complex which in turn leads to the formulation of the spectral sequence of a double complex.
 	
 	\section{Derived and triangulated category}
@@ -1217,7 +1284,7 @@ This is analogous to the topological definition of a mapping cone where we take 
 	\clearpage
 	\begin{appendices}
 		\section{Categories}
-		\subsection{Preliminary definitions}
+		\subsection{Preliminary definitions and basic constructions}
 		\begin{definition}[Category]
 			A \textbf{category} consists of the following,
 			\begin{itemize}
