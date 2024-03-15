@@ -943,19 +943,28 @@ Alternatively consider the following alternative proof for the second part
 	\section{Simplicial stuffs and the Dold-Kan correspondence}
 	This section will be a slight detour from the usual discussion of homological algebra to introduce a important bridge between homotopy theory and homological algebra. This bridge is the Dold-Kan correspondence. A reader familiar with simplicial homology will find the generalization that Dold-Kan provides fairly intuitive.
 	
-	In fact Dold-Kan can be thought of as a categorification of a theorem about divided differences (fundamental theorem)! This insight was given by a nCafe post crediting it to Andrew Joyal \cite{ncafedk}.
+	The Dold-Kan correspondence provides a useful result, serving as a bridge between simplicial homotopy theory and homological algebra. We follow the proof as presented in \cite{Goerss_Jardine_2009}.	
 	
-	For an exhaustive reference to this section refer to \cite{Goerss_Jardine_2009}, a rapid introduction to simplical sets is also covered in \cite{Riehl2011ALI}.
+	In fact Dold-Kan can be thought of as a categorification of a theorem about divided differences (fundamental theorem)! This insight was given by a nCafe post \cite{ncafedk} crediting it to Andrew Joyal.
+	
+	For an exhaustive reference to this section refer to \cite{Goerss_Jardine_2009}, a rapid introduction to simplicial sets is also covered in \cite{Riehl2011ALI}.
 	\subsection{Basic idea of simplices}
-	We begin with a notion of a purely combinatorial construction $\Delta$ denote the category with objects as non empty finite ordered sets and order preserving maps. Objects in $\Delta$ are denoted as $[n]=\{1,2,\dots,n\}$, i.e. an $n-$simplex. This is sometimes defined as the full subcategory of $\mathrm{Cat}$ on free categories of finite directed graphs equivalently finite ordinals.
+	We begin with a notion of a purely combinatorial construction $\Delta$ denote the category with objects as non empty finite ordered sets and order preserving maps. Objects in $\Delta$ are denoted as $[n]=\{1,2,\dots,n\}$, i.e. an $n-$simplex. This is sometimes defined as the full subcategory of $\mathrm{Cat}$ on free categories of finite directed graphs equivalently finite ordinals with order preserving maps.
+	
+	
+	This allows us to define the standard n-simplex as $\Delta[n]=\Hom(-,[n])$
 	
 	There is the natural map from $\Delta \to \mathrm{Top}$ sending $[n]$ to the standard $n-$simplex in $\R^{n+1}$.
 	
 	\subsection{Simplicial sets}
 	
 	\begin{definition}[Simplicial set]
-		A simplicial set is a functor $X: \Delta^\mathrm{op} \to \mathbf{Set}$, i.e. presheaves on $\Delta$. It comprises of a collection of sets $X_n$ which we to be the $n-$simplex with maps between them corresponding naturally with maps in $\Delta$.
+		A simplicial set is a functor $X: \Delta^\mathrm{op} \to \mathbf{Set}$, i.e. presheaves on $\Delta$. It comprises of a collection of sets $X_n$ which we to be the set of $n-$simplices of $X$ with maps between them corresponding naturally with maps in $\Delta$.
 	\end{definition}
+	\begin{proposition}
+		By Yoneda we have $X_n\cong \Hom(\Delta[n],X)$
+	\end{proposition}
+	As $\mathbf{sSet}$ is determined via presheaves it is (co)complete and all (co)limits over small diagrams can be computed objectwise. 
 	
 	Furthermore corresponding to injections from $[n-1] \to [n]$ in $\Delta$ we get a family of face maps between simplices $d_i:X_n \to X_{n-1}$, $0\leq i \leq n$.
 	
@@ -971,10 +980,43 @@ Alternatively consider the following alternative proof for the second part
 	\end{align*}
 	
 	The following nice visuals are from \cite{friedman2023elementary}.
-		\begin{figure}[h]
+		\begin{figure}[!htb]
 		\centering
-		\caption{a nice plot}
-		\label{fig:mesh1}
+		\[\begin{tikzcd}
+			& 2 && 2 \\
+			&& 2 \\
+			0 &&&& 1 \\
+			& 0 && 1 \\
+			& 0 && 1
+			\arrow[""{name=0, anchor=center, inner sep=0}, no head, from=2-3, to=4-2]
+			\arrow[""{name=1, anchor=center, inner sep=0}, no head, from=2-3, to=4-4]
+			\arrow[""{name=2, anchor=center, inner sep=0}, no head, from=4-4, to=4-2]
+			\arrow[""{name=3, anchor=center, inner sep=0}, no head, from=3-5, to=1-4]
+			\arrow[""{name=4, anchor=center, inner sep=0}, no head, from=3-1, to=1-2]
+			\arrow[""{name=5, anchor=center, inner sep=0}, no head, from=5-2, to=5-4]
+			\arrow["{d_0}", shorten <=7pt, shorten >=7pt, Rightarrow, from=1, to=3]
+			\arrow["{d_1}"', shorten <=7pt, shorten >=7pt, Rightarrow, from=0, to=4]
+			\arrow["{d_2}", shorten <=4pt, shorten >=4pt, Rightarrow, from=2, to=5]
+		\end{tikzcd}\]
+		\caption{Face maps for 2-simplex}
+		\label{fig:facemaps}
+	\end{figure}
+	
+		\begin{figure}[!htb]
+		\centering
+		\[\begin{tikzcd}
+			& 2 \\
+			&& {} && {} \\
+			0 && 1 && 0 && 1
+			\arrow[""{name=0, anchor=center, inner sep=0}, no head, from=1-2, to=3-1]
+			\arrow[no head, from=1-2, to=3-3]
+			\arrow[""{name=1, anchor=center, inner sep=0}, no head, from=3-3, to=3-1]
+			\arrow[no head, from=3-5, to=3-7]
+			\arrow[from=2-3, to=2-5]
+			\arrow["{s_1}"', shift left=5, curve={height=-6pt}, Rightarrow, from=0, to=1]
+		\end{tikzcd}\]
+		\caption{Degeneracy maps for 2-simplex}
+		\label{fig:degenmaps}
 	\end{figure}
 
 	This naturally leads to the definition of $\mathbf{sSet}$ the category of simplicial sets as the functor category $\mathbf{Set}^{\Delta^\mathrm{op}}$
@@ -985,12 +1027,61 @@ Alternatively consider the following alternative proof for the second part
 	\begin{definition}[Simplicial abelian groups]
 		A simplicial object in $\mathbf{Ab}$.
 	\end{definition}
+	Further more there is a forgetful free forgetful adjoint pair between $\mathbf{sAb}$ and $\mathbf{sSet}$.
 	
-	Some examples involve geometric realization and singular simplicial sets.
+	Recall that for some topological space $X$ we define its singular simplicial set as $\Hom(\Delta_n,X)$, this infact forms an adjoint pair along with `geometric realization' the functor  $||: \mathbf{sSet} \to \mathbf{Top}$ sending standard $n-$simplicies to topological simplicies, in particular $||:\mathbf{sSet} \rightleftarrows \mathbf{Top}: \mathrm{Sing}, || \dashv \mathrm{Sing}$
+	
+	Since we defined simplicial sets as presheaves of the simplex category we have a lot of nice properties thanks to the well behavedness of presheaves.
+	
+	\begin{proposition}
+		Any simplicial set can be expressed as a colimit of standard n simplicies.
+	\end{proposition}
+	This is a consequence of the fact that any presheaf is a colimit of representable presheaves (as a coend) given some $F: \mathbf{C}^\mathrm{op} \to \mathbf{Set}, F(-)= \int^{c \in \mathbf{C}} F(C) \times \mathrm{Hom}_\mathbf{C}(-,c)$ \footnote{Compare this to Yoneda: $F(c)\cong \mathrm{Nat}(\Hom(-,c),F)$ and the fact that the Yoneda embedding is characterized via an exponential.}. 
+	
+	\subsection{Moore complex and normalized chain complex}
+	
+	Prior to discussing the Dold-Kan correspondence proper there is the question of constructing a complex from a simplicial object. There are three different ways to approach this all of which end up being closely related to each other.
+	
+	The first is the Moore complex.
+	\begin{definition}[Moore complex]
+		For a simplical abelian group $A_.$ associate a complex $A_\bullet$ whose $n^\mathrm{th}$ component is $A_n \in A_.$ with boundary maps $\partial:A_n \to A_{n-1}$ given by alternating sum of face maps $\sum_i^n (-1)^i d_i$
+	\end{definition}
+	
+		Once again the singular chain complex is the Moore complex of the simplicial abelian group associated to the singular complex of a topological space.
+	
+	
+	The second is a subcomplex of the Moore complex $DA_\bullet$ wherein the components are degenerate simplicies (i.e. it is in the image of some degeneracy map).	The simplicial identities allow the construction to be a well defined complex (\textbf{add this later}).
+	
+	The third is the Normalized chain complex of a simplicial abelian group $NA_\bullet$ where the $n^\textbf{th}$ component is the subobject of $A_n$ which vanishes under face maps with differentials being only $(-1)^n d_n$ once again well definedness is due to the simplicial identities.
+	\begin{definition}[Normalized chain complex]
+		$A \in \mathbf{sAb}$, the complex $NA_\bullet $ is defined as 
+		\[ NA_n = \bigcap_{i=0}^{n-1} \ker(d_i) \subset A_n\]
+		With differentials as $\partial: NA_n \to NA_{n-1}$ defined as $(-1)^n d_n$ which forms a chain complex due to the simplicial identity $d_{n-1}d_n=d_{n-1}d_{n-1}.$
+	\end{definition}
+	
+	As it turns out the normalized chain complex and the subcomplex of the Moore complex we defined are isomorphic as chain complexes.
+	
+	\begin{theorem}
+		content
+	\end{theorem}
+	\subsection{Simplicialization functor}
+	We have already seen some motivation for 
+	
 	
 	\subsection{Dold-Kan Correspondence for abelian groups}
 	
-	To begin with lets review some basic notions of simplical sets
+	
+	Recall that a equivalence of categories is a proposition that is stronger than adjoints but weaker than isomorphisms. It can be thought of as adjoints but with natural isomorphisms instead of transformations.
+	\begin{definition}[Equivalence of categories]
+		Two categories $\mathbf{C,D}$ are said to be equivalent if $\exists E:C \rightleftarrows D:F$ and natural isomorphisms $\alpha: 1_\mathbf{C} \to F\circ E, 1_D: E \circ F$
+	\end{definition}
+	
+	\begin{theorem}
+		There is a equivalence of categories $$N:\mathbf{sAb}\rightleftarrows \mathbf{Ch}_+: \Gamma$$ where $N$ denotes the normalized chain complex functor and $\Gamma$ the simplicalization functor.
+	\end{theorem}
+	\begin{proof}
+		We need to show a natural transformation between $\Gamma N A \cong A$ and $N \Gamma C \cong C$
+	\end{proof}
 	Selecta Mathematica (2021) 27:14
 	https://doi.org/10.1007/s00029-021-00618-5	
 	\subsection{Some applications of Dold-Kan}
@@ -1011,9 +1102,12 @@ Alternatively consider the following alternative proof for the second part
 	\end{definition}
 	This of course only makes sense provided $\mathcal{A}$ admits tensors. When discussing homological algebra in the context of $R-$Mod this distinction need not be made.
 	
-	The mysterious sign rule (often referred to as the Koszul sign rule') can be motivated in one of many different ways. Perhaps the most interesting is the notion of a `Day convolution'. The following treatment is due to a MathOverflow answer by Alexander Campbell \cite{359316}.
+	The mysterious sign rule (often referred to as the Koszul sign rule') can be motivated in one of many different ways. 
 	
-	\textbf{MOVE THIS STUFF TO APPENDIX AND ADD OBJECTWISE LIMIT COMPUTATIONS TOO}
+	The most important is that the monoidal product arises naturally when we consider the problem of reducing the double complex we obtain by tensoring piecewise (i.e. finding the total complex but we will see this later).
+	
+	Perhaps another way to motivate it with the notion of a `Day convolution'. The following treatment is due to a MathOverflow answer by Alexander Campbell \cite{359316}.
+	
 	A Day convolution can be realized as a categorification of typical convolution product.
 	\begin{definition}[Promonoidal category]
 		content
@@ -1072,6 +1166,8 @@ Alternatively consider the following alternative proof for the second part
 		
 		With the differential simply being $(-i,i)$ the identity map.
 	\end{definition}
+	
+	This is motivated via the Dold-Kan correspodence as a sequence of maps starting from the standard 1 simplex to simplical sets to the free simplical abelian group, the normalized chain complex obtained at the end of this process is this interval object.
 	%	This allows for an alternate succinct definition of chain homotopy.
 	%	\begin{definition}[Alt. Chain homotopy]
 		%		content
@@ -1082,10 +1178,10 @@ Alternatively consider the following alternative proof for the second part
 		For $A \in \mathrm{Ch}(\mathcal{A})$ its cylinder is defined as $\mathrm{Cyl}(A)=I \otimes A$.
 	\end{definition}
 	\begin{definition}[Cone object]
-		Defined as the following pushout
+		Defined as the following pushout the $1_\mathcal{A}$ denotes the unital tensor object,
 	\[\begin{tikzcd}
 		A & {\mathrm{cyl}(A)} \\
-		1 & {\mathrm{cone}(A)}
+		1_A & {\mathrm{cone}(A)}
 		\arrow[from=1-1, to=1-2]
 		\arrow[from=1-1, to=2-1]
 		\arrow[from=2-1, to=2-2]
@@ -1124,7 +1220,7 @@ Finally the mapping cone is the following pushout. As such
 	\[\begin{tikzcd}
 		& A & B \\
 		A & {\mathrm{cyl}(A)} & {\mathrm{cyl}(\alpha)} \\
-		1 & {\mathrm{cone}(A)} & {\mathrm{cone}(\alpha)}
+		1_A & {\mathrm{cone}(A)} & {\mathrm{cone}(\alpha)}
 		\arrow[from=2-2, to=2-3]
 		\arrow[from=2-2, to=3-2]
 		\arrow[from=2-3, to=3-3]
@@ -1468,7 +1564,7 @@ This is analogous to the topological definition of a mapping cone where we take 
 			\end{tikzcd}\]
 		\end{definition}
 		The unit-counit characterization is useful theoretically but we typically only use the Hom-set characterization for all practical purposes.
-		
+		\subsubsection{(Co)ends}
 		\subsubsection{Examples of adjoints}
 		Free-forgetful adjunction.Typically the forgetful functor usually has a left adjoint which is vaguely `free'. Obviously neither `free'-ness or `forgetful`-ness have concrete categorical definitions but differ from case to case. We will use it for proving injectives are enough.
 		
@@ -1561,7 +1657,7 @@ This is analogous to the topological definition of a mapping cone where we take 
 		Example In the category of chain complexes and $I$ being the monoidal unit as before. Maps from $I \to A$ for $A$ a \textbf{(COMPLETE THIS)}
 		
 		\subsection{Enriched categories}
-		Very often the Hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace Hom-sets with Hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of Hom-sets via the monoidal product \footnote{This monoidal property can further be dropped and replaced with bicategories (i.e. a 2-category without strict associativity) \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it without proof.
+		Very often the Hom-set of a category instead of just being a set may have additional structure (or we may want it to have additional structure). In order to formalize this notion we replace Hom-sets with Hom-\textit{objects} which themselves are objects in another category say $K$. We say its enriched over $K$. This choice of $K$ is typically taken to be monoidal in order to define composition of Hom-sets via the monoidal product \footnote{This monoidal property can further be dropped and replaced with bicategories (i.e. a 2-category without strict associativity) \cite{garner2015enriched}. But this is out of the scope of this article.}. A category $\mathbf{C}$ is said to be enriched over some monoidal category $K$ if ordered pairs in $\mathbf{C}$ can be represented as objects in $K$ with composition defined via the monoidal product. The coherence conditions required to define this are excluded for brevity but can be seen in \cite[Chp. ~3]{riehl_2014} which presents it clearly.
 		
 		The actual definition isn't important here, we only mention it as the main object of study (abelian categories) is a special case of an enrichment over category of abelian groups.
 		
@@ -1704,6 +1800,7 @@ This is analogous to the topological definition of a mapping cone where we take 
 			
 			Now finally we get back to the original example. The category of sheaves of abelian groups on a topological space form a abelian category. Additivity is natural due to the functorial nature of $F$. A slightly unsatisfying proof is due to `sheafification', i.e. the left adjoint to the inclusion functor from sheaves into presheaves. Presheves of abelian groups can be understood to have all the required properties to be an Abelian category due the functorial representation. Now due to the following result \cite{stacks1} we can extend this notion to the sheaves via sheafification.
 		\end{enumerate}
+		
 		\subsubsection{Important results}
 		There are a few concepts and definitions relevant in the conversation of abelian categories which we will list out here for completeness. Firstly is the notion of \textbf{exact functors} the typical notion of a functor carrying forward exact sequences. With the prefix of left/right added to determine it carrying forward only left or right sides of the exact sequence.
 		
