@@ -1,0 +1,109 @@
+\begin{thebibliography}{}
+
+\bibitem[Awodey, 2010]{Awodey}
+Awodey, S. (2010).
+\newblock {\em Category Theory, 2nd Edition}.
+\newblock Oxford University Press, Oxford, England.
+
+\bibitem[Campbell, 2020]{359316}
+Campbell, A. (2020).
+\newblock Is the tensor product of chain complexes a day convolution?
+\newblock MathOverflow.
+
+\bibitem[Eisenbud, 2013]{eisenbud2013commutative}
+Eisenbud, D. (2013).
+\newblock {\em Commutative Algebra: with a View Toward Algebraic Geometry}.
+\newblock Graduate Texts in Mathematics. Springer New York.
+
+\bibitem[Friedman, 2023]{friedman2023elementary}
+Friedman, G. (2023).
+\newblock An elementary illustrated introduction to simplicial sets.
+
+\bibitem[Garner and Shulman, 2015]{garner2015enriched}
+Garner, R. and Shulman, M. (2015).
+\newblock Enriched categories as a free cocompletion.
+
+\bibitem[Goerss and Jardine, 2009]{Goerss_Jardine_2009}
+Goerss, P.~G. and Jardine, J.~F. (2009).
+\newblock {\em Simplicial homotopy theory}.
+\newblock Birkh{\"a}user.
+
+\bibitem[Grothendieck, 1957]{grothendieck1957quelques}
+Grothendieck, A. (1957).
+\newblock Sur quelques points d'alg{\`e}bre homologique.
+\newblock {\em Tohoku Mathematical Journal, Second Series}, 9(2):119--183.
+
+\bibitem[Hatcher, 2002]{hatcher}
+Hatcher, A. (2002).
+\newblock {\em Algebraic topology}.
+\newblock Cambridge University Press.
+
+\bibitem[Lam, 2012]{lam2012lectures}
+Lam, T. (2012).
+\newblock {\em Lectures on Modules and Rings}.
+\newblock Graduate Texts in Mathematics. Springer New York.
+
+\bibitem[Lane, 1998]{lane1998categories}
+Lane, S. (1998).
+\newblock {\em Categories for the Working Mathematician}.
+\newblock Graduate Texts in Mathematics. Springer.
+
+\bibitem[Lang, 2002]{lang02}
+Lang, S. (2002).
+\newblock {\em Algebra}.
+\newblock Springer, New York, NY.
+
+\bibitem[Leinster, 2010]{ncafedk}
+Leinster, T. (2010).
+\newblock The dold–kan theorem: Two questions.
+\newblock n-Category Cafe.
+
+\bibitem[Matsumura, 1987]{matsumura_1987}
+Matsumura, H. (1987).
+\newblock {\em Commutative Ring Theory}.
+\newblock Cambridge Studies in Advanced Mathematics. Cambridge University
+  Press.
+
+\bibitem[{nLab authors}, 2023a]{nlab:braided_monoidal_category}
+{nLab authors} (2023a).
+\newblock braided monoidal category.
+\newblock \url{https://ncatlab.org/nlab/show/braided+monoidal+category}.
+\newblock
+  \href{https://ncatlab.org/nlab/revision/braided+monoidal+category/51}{Revision
+  51}.
+
+\bibitem[{nLab authors}, 2023b]{nlab:hom-functor}
+{nLab authors} (2023b).
+\newblock hom-functor.
+\newblock \url{https://ncatlab.org/nlab/show/hom-functor}.
+\newblock \href{https://ncatlab.org/nlab/revision/hom-functor/23}{Revision 23}.
+
+\bibitem[{nLab authors}, 2023c]{nlab:quillen-suslin_theorem}
+{nLab authors} (2023c).
+\newblock {{Q}}uillen-{{S}}uslin theorem.
+\newblock \url{https://ncatlab.org/nlab/show/Quillen-Suslin+theorem}.
+\newblock
+  \href{https://ncatlab.org/nlab/revision/Quillen-Suslin+theorem/3}{Revision
+  3}.
+
+\bibitem[Riehl, 2011]{Riehl2011ALI}
+Riehl, E. (2011).
+\newblock A leisurely introduction to simplicial sets.
+
+\bibitem[Riehl, 2014]{riehl_2014}
+Riehl, E. (2014).
+\newblock {\em Categorical Homotopy Theory}.
+\newblock New Mathematical Monographs. Cambridge University Press.
+
+\bibitem[{Stacks project authors}, 2023]{stacks1}
+{Stacks project authors}, T. (2023).
+\newblock The stacks project.
+\newblock \url{https://stacks.math.columbia.edu}.
+
+\bibitem[Weibel, 1994]{weibel_1994}
+Weibel, C.~A. (1994).
+\newblock {\em An Introduction to Homological Algebra}.
+\newblock Cambridge Studies in Advanced Mathematics. Cambridge University
+  Press.
+
+\end{thebibliography}

@@ -1,0 +1,53 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Modules and tensor products}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Explicit construction of tensor products}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Properties of tensor products}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Tensor-Internal Hom adjunction}{5}{subsection.1.3}%
+\contentsline {section}{\numberline {2}Chain complexes}{8}{section.2}%
+\contentsline {section}{\numberline {3}Free and Projective modules}{9}{section.3}%
+\contentsline {section}{\numberline {4}Resolutions}{11}{section.4}%
+\contentsline {section}{\numberline {5}Injective modules}{13}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Injective resolutions}{16}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Injective envelopes}{17}{subsection.5.2}%
+\contentsline {section}{\numberline {6}More on chain complexes}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Morphisms and homotopies of complexes}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Exact sequences of chain complexes}{23}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Long exact sequences of homologies}{24}{subsection.6.3}%
+\contentsline {section}{\numberline {7}Derived functors}{26}{section.7}%
+\contentsline {subsubsection}{\numberline {7.0.1}Tor functor}{27}{subsubsection.7.0.1}%
+\contentsline {subsubsection}{\numberline {7.0.2}Ext functor}{28}{subsubsection.7.0.2}%
+\contentsline {subsubsection}{\numberline {7.0.3}Group cohomology as Ext}{29}{subsubsection.7.0.3}%
+\contentsline {subsubsection}{\numberline {7.0.4}Local cohomology}{29}{subsubsection.7.0.4}%
+\contentsline {subsubsection}{\numberline {7.0.5}Sheaf cohomology}{29}{subsubsection.7.0.5}%
+\contentsline {section}{\numberline {8}Simplicial stuffs and the Dold-Kan correspondence}{29}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Basic idea of simplices}{30}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Simplicial sets}{30}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Moore complex and normalized chain complex}{32}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Simplicialization functor}{33}{subsection.8.4}%
+\contentsline {subsection}{\numberline {8.5}Dold-Kan Correspondence for abelian groups}{33}{subsection.8.5}%
+\contentsline {subsection}{\numberline {8.6}Some applications of Dold-Kan}{33}{subsection.8.6}%
+\contentsline {section}{\numberline {9}Category of chain complexes}{33}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Chain complexes are monoidal}{33}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Cones, cylinders and homotopy cofiber (Puppe) sequences}{35}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Double complex and total complex}{39}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Derived and triangulated category}{40}{section.10}%
+\contentsline {section}{\numberline {11}Spectral sequences}{41}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Spectral sequence of a filtered complex}{41}{subsection.11.1}%
+\contentsline {subsection}{\numberline {11.2}Spectral sequence of a double complex}{41}{subsection.11.2}%
+\contentsline {section}{\numberline {12}Some important theorems}{41}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Universal coefficient theorem}{41}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Kunneth formula}{41}{subsection.12.2}%
+\contentsline {subsection}{\numberline {12.3}Freyd-Mitchell Embedding}{41}{subsection.12.3}%
+\contentsline {section}{Appendices}{42}{section*.1}%
+\contentsline {section}{\numberline {A}Categories}{42}{appendix.a.A}%
+\contentsline {subsection}{\numberline {A.1}Preliminary definitions and basic constructions}{42}{subsection.a.A.1}%
+\contentsline {subsubsection}{\numberline {A.1.1}(Co)ends}{46}{subsubsection.a.A.1.1}%
+\contentsline {subsubsection}{\numberline {A.1.2}Examples of adjoints}{46}{subsubsection.a.A.1.2}%
+\contentsline {subsection}{\numberline {A.2}Monoidal categories}{47}{subsection.a.A.2}%
+\contentsline {subsection}{\numberline {A.3}External Hom and internal hom functor}{48}{subsection.a.A.3}%
+\contentsline {subsubsection}{\numberline {A.3.1}Examples of internal homs}{49}{subsubsection.a.A.3.1}%
+\contentsline {subsection}{\numberline {A.4}Enriched categories}{50}{subsection.a.A.4}%
+\contentsline {subsection}{\numberline {A.5}Abelian Categories}{50}{subsection.a.A.5}%
+\contentsline {subsubsection}{\numberline {A.5.1}Examples}{53}{subsubsection.a.A.5.1}%
+\contentsline {subsubsection}{\numberline {A.5.2}Important results}{55}{subsubsection.a.A.5.2}%
+\contentsline {section}{References}{55}{proposition.a.A.6}%
